@@ -1,17 +1,28 @@
 package ru.mbg.palbociclib.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.github.barteksc.pdfviewer.PDFView;
-
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import ru.mbg.palbociclib.R;
-
+import ru.mbg.palbociclib.views.ItemView;
 
 public class PreparatFragment extends Fragment {
+
+    @BindView(R.id.first_control_item)
+    protected ItemView mFirstControlItem;
+    @BindView(R.id.second_control_item)
+    protected ItemView mSecondControlItem;
+    @BindView(R.id.third_control_item)
+    protected ItemView mThirdControlItem;
+    @BindView(R.id.instruction_item)
+    protected ItemView mInstructionItem;
 
     public PreparatFragment() {}
 
@@ -27,18 +38,47 @@ public class PreparatFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_preparat, container, false);
+        return inflater.inflate(R.layout.fragment_preparat, container, false);
+    }
 
-        PDFView pdfView = (PDFView) v.findViewById(R.id.pdf_view);
-        pdfView.fromAsset("preparat.pdf").load();
-        pdfView.fitToWidth();
-
-        return v;
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState){
+        super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this, view);
+        setTitles();
     }
 
     @Override
     public void onResume() {
         super.onResume();
         getActivity().setTitle(R.string.title_preparat);
+    }
+
+    @OnClick(R.id.first_control_item)
+    protected void OnFirstControlClick(){
+        openControlByType(ControlActivity.START_VIEW_TYPE);
+    }
+
+    @OnClick(R.id.second_control_item)
+    protected void OnSecondControlClick(){
+        openControlByType(ControlActivity.MONITORING_VIEW_TYPE);
+    }
+
+    @OnClick(R.id.third_control_item)
+    protected void OnThirdControlClick(){
+        openControlByType(ControlActivity.OPTIMIZATION_VIEW_TYPE);
+    }
+
+    private void openControlByType(int controlType){
+        Intent intent = new Intent(getActivity(), ControlActivity.class);
+        intent.putExtra(ControlActivity.CONTROL_TYPE, controlType);
+        startActivity(intent);
+    }
+
+    private void setTitles(){
+        mFirstControlItem.setTitleTextViewText(R.string.control_start);
+        mSecondControlItem.setTitleTextViewText(R.string.control_monitoring);
+        mThirdControlItem.setTitleTextViewText(R.string.control_optimization);
+        mInstructionItem.setTitleTextViewText(R.string.instruction);
     }
 }

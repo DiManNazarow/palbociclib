@@ -59,4 +59,67 @@
     <string name="consider_lowering_dose">Рассмотреть снижение дозы</string>
     <string name="select_date">Выберите дату</string>
     <string name="dose_was_reduced">Доза приема препарата была уменьшена</string>
+
+    <string name="control">Упавление терапией</string>
+    <string name="control.start">1. Старт</string>
+    <string name="control.monitoring">2. Мониторинг</string>
+    <string name="control.optimization">3. Оптимизация</string>
+
+    <string name="instruction">Краткая инструкция</string>
+
+    <string name="control.start.info">Комбинированной терапии препаратом ИБРАНСА</string>
+    <string name="control.start.count">Для пациентов с HR+/HER2- мРМЖ\nИБРАНСА®: принимается внутрь 1 раз в сутки</string>
+    <string name="control.start.recommendation">Рекомендации по приему</string>
+    <string name="control.start.recommendation.eat">Препарат ИБРАНСА® следует принимать \nво время еды. Необходимо принимать\nпрепарат примерно в одинаковое время\nкаждый день</string>
+    <string name="control.start.recommendation.time">При развитии рвоты или пропуске дозы не\nследует принимать дополнительную дозу\nпрепарата, прием следующей дозы должен\nсостояться в обычное для нее время</string>
+    <string name="control.start.recommendation.take">Капсулы ИБРАНСА® необходимо глотать\nцеликом (пациенты не должны жевать,\nили открывать их перед проглатыванием).\nКапсулы нельзя принимать, если их\nцелостность нарушена</string>
+    <string name="control.start.recommendation.problem_1">Необходимо учитывать риск\nлекарственного взаимодействия при\nодновременном приеме с сильными\nиндукторами или ингибиторами\nизофермента CYP3A</string>
+    <string name="control.start.recommendation.problem_2">— Если нельзя избежать применения\nсильного ингибитора изофермента CYP3A,\nследует снизить дозу ИБРАНСА®  до 75 мг\nодин раз в сутки</string>
+    <string name="control.start.recommendation.problem_3">— Если применение мощного ингибитора\nизофермента CYP3A прекращено, то по\nистечении 3–5 периодов его\nполувыведения дозу препарата Ибранса\nследует увеличить до начальной\n(применявшейся до начала приема/nмощного ингибитора изофермента CYP3A)</string>
+    <string name="control.start.recommendation.problem_4">— Пациенты должны избегать\nупотребления грейпфрутов или\nгрейпфрутового сока в период лечения\nпрепаратом ИБРАНСА®</string>
+
+    <string name="monitoring.info">Своевременный мониторинг показателей крови\nуправлять потенциальными побочными эффектами</string>
+    <string name="monitoring.common">Общий анализ крови (ОАК) назначается перед\nстартом терапии препаратом ИБРАНСА® и в\nначале каждого цикла.</string>
+    <string name="monitoring.monitoring_oak">Мониторинг ОАК проводится на 14 день во\nвремя первых двух циклов и в случае\nвозникновения клинических показаний.</string>
+    <string name="monitoring.graph">При составлении графика мониторинга важно\nучесть, когда пациент фактически получает\nпрепарат и начинает каждый цикл.</string>
+    <string name="monitoring.blood_index">На чем основан регулярный\nконтроль показателей крови:</string>
+    <string name="monitoring.median">Медиана времени до первого эпизода\nнейтропении любой степени тяжести</string>
+    <string name="monitoring.average">Средняя длительность нейтропении\nстепени≥3</string>
+    <string name="monitoring.item_1">Нейтропения являлась наиболее часто\nотмечаемым нежелательным явлением в\nисследовании PALOMA-3 (81).\nНейтропения степени ≥3 отмечалась у 65\nпациентов, получающих ИБРАНСА® +\nфулвестрант</string>
+    <string name="monitoring.item_2">Для пациентов, у которых развилась\nнейтропения степени 3 или 4,\nрекомендовано временное прекращение\nприема препарата, снижение дозы или/nотложенное начало следующего цикла\nтерапии.</string>
+    <string name="monitoring.item_3">Фебрильная нейтропения отмечалась у менее 1%\nпациентов, получающих ИБРАНСА®</string>
+    <string name="monitoring.item_4">Пациентам нужно рекомендовать\nнемедленно сообщать о любых признаках\nухудшения состояния или инфекции, таких\nкак лихорадка, озноб, головокружение,\nодышка, слабость или любая склонность к\nкровотечению и/или к образованию гематом</string>
+
+    <!--<string name="days_15"><b>15</b><br/>дней</string>-->
+    <!--<string name="days_7"><b>7</b><br/>дней</string>-->
+
+    <string name="optimization.info">Может потребоваться оптимизация терапии\nв зависимости от индивидуальной\nчувствительности и переносимости</string>
+    <string name="optimization.correction">Коррекция режима\nдозирования позволяет\nконтролировать основные\nпобочные эффекты терапии</string>
+    <string name="optimization.toxic">Гематологическая токсичность</string>
+    <string name="optimization.neitpor_3">Нейтропения 3-й степени</string>
+    <string name="optimization.day_1">1 ДЕНЬ ЦИКЛА:</string>
+    <string name="optimization.day_1.item_1">ОТЛОЖИТЬ ПРИЕМ ИБРАНСА® и повторить\nОАК в течение 1 недели</string>
+    <string name="optimization.day_1.item_2">НАЧАТЬ новый цикл с той же дозы после\nвосстановления до степени ≤2</string>
+    <string name="optimization.day_14">14 ДЕНЬ ПЕРВЫХ 2х ЦИКЛОВ:</string>
+    <string name="optimization.day_14.item_1">ПРОДОЛЖИТЬ ПРИЕМ ИБРАНСА® в\nтекущей дозе до завершения цикла.\nПовторить ОАК на 21 день</string>
+    <string name="optimization.less_dose">СНИЗИТЬ ДОЗУ при появлении</string>
+    <string name="optimization.less_dose.item_1">нейтропении 4-й степени в контрольном\nОАК на 21 день цикла</string>
+    <string name="optimization.less_dose.item_2">нейтропении 3-й степени повторно в\nследующих циклах.</string>
+    <string name="optimization.neitrop_3_temp">Нейтропения 3-й степени\n c повышением температуры ≥38.5° C и/или\nинфекций; или нейтропения 4-й степени</string>
+    <string name="optimization.any_step">НА ЛЮБОМ ЭТАПЕ МОНИТОРИНГА:</string>
+    <string name="optimization.any_step.item_1">ОТЛОЖИТЬ ПРИЕМ ИБРАНСА® до\nвосстановления до степени ≤2</string>
+    <string name="optimization.any_step.item_2">ВОЗОБНОВИТЬ ПРИЕМ ИБРАНСА® в\nследующей пониженной дозе</string>
+    <string name="optimization.no_toxic">Негематологическая токсичность</string>
+    <string name="optimization.grade_3">Степень ≥3 (если сохраняется, несмотря на\nоптимальное сопроводительное лечение)</string>
+    <string name="optimization.grade_3.item_1">ОТЛОЖИТЬ ПРИЕМ до снижения\nсимптомов до:\n ≤ 1-й степени или\n ≤ 2-й степени\n (если явления не представляют риска для безопасности пациента)</string>
+    <string name="optimization.grade_3.item_2">ВОЗОБНОВИТЬ ЛЕЧЕНИЕ\n с более низкой дозы</string>
+    <string name="optimization.recommendation">Рекомендуемые дозы препарата ИБРАНСА®</string>
+    <string name="optimization.recommendation.item_1">Начальная доза</string>
+    <string name="optimization.recommendation.item_1_1">125 мг/сут</string>
+    <string name="optimization.recommendation.item_2">Первое снижение</string>
+    <string name="optimization.recommendation.item_2_2">100 мг/сут</string>
+    <string name="optimization.recommendation.item_3">Второе снижение</string>
+    <string name="optimization.recommendation.item_3_3">75 мг/сут</string>
+
+
 </resources>

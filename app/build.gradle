@@ -51,4 +51,8 @@ dependencies {
 
     // PDF Viewver
     compile 'com.github.barteksc:android-pdf-viewer:2.5.1'
+
+    // Butter Knife
+    compile 'com.jakewharton:butterknife:8.7.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
 }

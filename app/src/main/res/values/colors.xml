@@ -18,4 +18,22 @@
     <color name="state_treatment_color">#fca77b</color>
     <color name="state_pause_color">#5695dc</color>
     <color name="state_continue_color">#5695dc</color>
+
+    <color name="text_color">#4d5764</color>
+    <color name="info_text_color">#cc4d5764</color>
+
+    <color name="devider_color">#e3e3e3</color>
+
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="black_alpha_50">#7f000000</color>
+    <color name="blue">#5695dc</color>
+    <color name="purple">#a070e4</color>
+    <color name="orange">#fca77b</color>
+    <color name="orange_light">#19fca77b</color>
+
+    <color name="preparat_fragment_background">#fbf8e0</color>
+
+    <color name="optimization_background">#c9d1da</color>
+
 </resources>

@@ -22,4 +22,20 @@
         <item name="android:textStyle">normal</item>
     </style>
 
+    <style name="ItemText">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/text_color</item>
+    </style>
+
+    <style name="InfoText">
+        <item name="android:textColor">@color/info_text_color</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="DigitText">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
 </resources>
