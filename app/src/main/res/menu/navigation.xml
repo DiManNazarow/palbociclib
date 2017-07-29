@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_calendar"
+        android:icon="@drawable/tab_calendar"
+        android:title="@string/tab_calendar" />
+
+    <item
+        android:id="@+id/navigation_patients"
+        android:icon="@drawable/tab_patients"
+        android:title="@string/tab_patients" />
+
+    <item
+        android:id="@+id/navigation_preparat"
+        android:icon="@drawable/tab_preparat"
+        android:title="@string/tab_preparat" />
+
+    <item
+        android:id="@+id/navigation_more"
+        android:icon="@drawable/tab_more"
+        android:title="@string/tab_more" />
+
+</menu>

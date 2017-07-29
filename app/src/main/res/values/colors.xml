@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="background">#fbf9f5</color>
+    <color name="avatar_background">#C9C9A6</color>
+    <color name="treatment_color">#5695dc</color>
+    <color name="treatment_not_started_color">#fca77b</color>
+
+    <color name="cycle1_color">#FCA77B</color>
+    <color name="cycle2_color">#f55969</color>
+    <color name="cycle_default_color">#a070e5</color>
+
+    <color name="state_oak_color">#f55969</color>
+    <color name="state_appointment_color">#f55969</color>
+    <color name="state_treatment_color">#fca77b</color>
+    <color name="state_pause_color">#5695dc</color>
+    <color name="state_continue_color">#5695dc</color>
+</resources>

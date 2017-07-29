@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:state_selected="true" android:color="#4d5764"/>
+    <item android:state_pressed="true" android:color="#4d5764"/>
+    <item app:tsquare_state_current_month="false" android:color="@android:color/white"/>
+    <item app:tsquare_state_highlighted="true" android:color="#4d5764" />
+    <item app:tsquare_state_today="true" android:color="#4d5764"/>
+    <item app:tsquare_state_selectable="false" android:color="#4d5764" />
+    <item android:color="#4d5764"/>
+</selector>
