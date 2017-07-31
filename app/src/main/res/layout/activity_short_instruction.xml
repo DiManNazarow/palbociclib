@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/preparat_fragment_background">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/item_padding_small">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/round_corner_container"
+            android:paddingLeft="@dimen/item_padding_small"
+            android:paddingRight="@dimen/item_padding_small"
+            android:paddingTop="@dimen/default_margin"
+            android:layout_marginBottom="@dimen/item_padding_small">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/short_instruction"
+                android:textSize="24sp"
+                style="@style/ItemText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instruction.registration_number_title"
+                android:layout_marginTop="@dimen/default_margin"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                style="@style/ItemText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instruction.registration_number"
+                android:textSize="16sp"
+                style="@style/InfoText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instruction.international_name_title"
+                android:layout_marginTop="@dimen/default_margin"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                style="@style/ItemText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instruction.international_name"
+                android:textSize="16sp"
+                style="@style/InfoText"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instruction.form_title"
+                android:layout_marginTop="@dimen/default_margin"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                style="@style/ItemText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instruction.form"
+                android:textSize="16sp"
+                style="@style/InfoText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instruction.composition_title"
+                android:layout_marginTop="@dimen/default_margin"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                style="@style/ItemText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instruction.composition"
+                android:textSize="16sp"
+                style="@style/InfoText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instruction.code_title"
+                android:layout_marginTop="@dimen/default_margin"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                style="@style/ItemText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instruction.code"
+                android:textSize="16sp"
+                style="@style/InfoText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instruction.using_title"
+                android:layout_marginTop="@dimen/default_margin"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                style="@style/ItemText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instruction.using"
+                android:textSize="16sp"
+                style="@style/InfoText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instruction.contraindication_title"
+                android:layout_marginTop="@dimen/default_margin"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                style="@style/ItemText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instruction.contraindication"
+                android:textSize="16sp"
+                style="@style/InfoText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instruction.waring_title"
+                android:layout_marginTop="@dimen/default_margin"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                style="@style/ItemText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instruction.waring"
+                android:textSize="16sp"
+                style="@style/InfoText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instruction.dose_title"
+                android:layout_marginTop="@dimen/default_margin"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                style="@style/ItemText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instruction.dose"
+                android:textSize="16sp"
+                style="@style/InfoText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instruction.mode_title"
+                android:layout_marginTop="@dimen/default_margin"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                style="@style/ItemText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instruction.mode"
+                android:textSize="16sp"
+                style="@style/InfoText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instruction.instruction"
+                android:layout_marginTop="@dimen/default_margin"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                style="@style/ItemText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/institution.side_effects_title"
+                android:layout_marginTop="@dimen/default_margin"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                style="@style/ItemText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/institution.side_effects"
+                android:textSize="16sp"
+                style="@style/InfoText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instruction.overdose_title"
+                android:layout_marginTop="@dimen/default_margin"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                style="@style/ItemText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instruction.overdose"
+                android:textSize="16sp"
+                style="@style/InfoText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instruction.save_title"
+                android:layout_marginTop="@dimen/default_margin"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                style="@style/ItemText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instruction.save"
+                android:textSize="16sp"
+                style="@style/InfoText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instruction.shelf_life_title"
+                android:layout_marginTop="@dimen/default_margin"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                style="@style/ItemText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instruction.shelf_life"
+                android:textSize="16sp"
+                style="@style/InfoText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instruction.full_info"
+                android:layout_marginTop="@dimen/default_margin"
+                android:textSize="16sp"
+                style="@style/InfoText"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

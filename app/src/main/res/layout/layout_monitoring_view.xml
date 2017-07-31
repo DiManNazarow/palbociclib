@@ -12,14 +12,14 @@
 
     <TextView
         android:id="@+id/title"
+        style="@style/ItemText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/control.monitoring"
-        android:textSize="32sp"
+        android:layout_marginTop="16dp"
         android:paddingLeft="@dimen/item_padding_small"
         android:paddingRight="@dimen/item_padding_small"
-        android:layout_marginTop="16dp"
-        style="@style/ItemText"/>
+        android:text="@string/control.monitoring"
+        android:textSize="32sp"/>
 
     <LinearLayout
         android:id="@+id/container"

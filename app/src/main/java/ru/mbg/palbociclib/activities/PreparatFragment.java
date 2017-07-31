@@ -55,18 +55,28 @@ public class PreparatFragment extends Fragment {
     }
 
     @OnClick(R.id.first_control_item)
-    protected void OnFirstControlClick(){
+    protected void onFirstControlClick(){
         openControlByType(ControlActivity.START_VIEW_TYPE);
     }
 
     @OnClick(R.id.second_control_item)
-    protected void OnSecondControlClick(){
+    protected void onSecondControlClick(){
         openControlByType(ControlActivity.MONITORING_VIEW_TYPE);
     }
 
     @OnClick(R.id.third_control_item)
-    protected void OnThirdControlClick(){
+    protected void onThirdControlClick(){
         openControlByType(ControlActivity.OPTIMIZATION_VIEW_TYPE);
+    }
+
+    @OnClick(R.id.instruction_item)
+    protected void onInstructionClick(){
+        openInstruction();
+    }
+
+    private void openInstruction(){
+        Intent intent = new Intent(getActivity(), ShortInstructionActivity.class);
+        startActivity(intent);
     }
 
     private void openControlByType(int controlType){
