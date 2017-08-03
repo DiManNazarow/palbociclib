@@ -59,6 +59,11 @@
     <string name="consider_lowering_dose">Рассмотреть снижение дозы</string>
     <string name="select_date">Выберите дату</string>
     <string name="dose_was_reduced">Доза приема препарата была уменьшена</string>
+    <string name="healing">Лечение</string>
+    <string name="start_healing">Назначить лечение</string>
+    <string name="today_day_of_admission">Сегодня день приема пациента</string>
+    <string name="recommendation_of_using">Рекомендации по приёму препарата</string>
+    <string name="history_of_using">История приема препарата</string>
 
     <string name="control">Упавление терапией</string>
     <string name="control.start">1. Старт</string>

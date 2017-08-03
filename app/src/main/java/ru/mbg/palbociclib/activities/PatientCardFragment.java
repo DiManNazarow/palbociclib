@@ -3,6 +3,8 @@ package ru.mbg.palbociclib.activities;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -33,6 +35,7 @@ import ru.mbg.palbociclib.models.Oak;
 import ru.mbg.palbociclib.models.Patient;
 import ru.mbg.palbociclib.models.Treatment;
 import ru.mbg.palbociclib.models.TreatmentDose;
+import ru.mbg.palbociclib.views.DividerItemDecorator;
 
 
 public class PatientCardFragment extends Fragment {
@@ -76,6 +79,7 @@ public class PatientCardFragment extends Fragment {
 
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
+        recyclerView.addItemDecoration(new DividerItemDecorator(getActivity()));
 
         ArrayList<CardType> data = new ArrayList<>();
         data.add(CardType.header);
@@ -145,14 +149,19 @@ public class PatientCardFragment extends Fragment {
             // Начало цикла
             TextView title;
             // Кнопка
+            TextView itemName;
+            CardView dataCard;
             Button button;
             // Описание цикла
+            TextView titleHeader;
             TextView date;
             TextView drugs; // На самом деле — результаты ОАК
             ImageView drugDoseImage;
             TextView drugDose;
             ImageView nextOakImage;
             TextView nextOak;
+
+            boolean isDataShow = false;
 
             ItemViewHolder(View itemView) {
                 super(itemView);
@@ -163,7 +172,10 @@ public class PatientCardFragment extends Fragment {
                 drugStartLabel = (TextView) itemView.findViewById(R.id.drug_start_label);
                 patientPhoto = (ImageView) itemView.findViewById(R.id.patient_photo);
                 title = (TextView) itemView.findViewById(R.id.title);
+                itemName = (TextView) itemView.findViewById(R.id.item_name);
                 button = (Button) itemView.findViewById(R.id.button);
+                titleHeader = (TextView) itemView.findViewById(R.id.item_header);
+                dataCard = (CardView) itemView.findViewById(R.id.data_card);
                 date = (TextView) itemView.findViewById(R.id.date);
                 drugs = (TextView) itemView.findViewById(R.id.drugs);
                 drugDoseImage = (ImageView) itemView.findViewById(R.id.drug_dose_image);
@@ -196,7 +208,7 @@ public class PatientCardFragment extends Fragment {
             CardType type = CardType.fromRawValue(viewType);
             switch (type) {
                 case header:
-                    v = LayoutInflater.from(parent.getContext()).inflate(R.layout.patient_card_header, parent, false);
+                    v = LayoutInflater.from(parent.getContext()).inflate(R.layout.patient_card_header_new, parent, false);
                     break;
                 case cycle:
                     v = LayoutInflater.from(parent.getContext()).inflate(R.layout.patient_card_cycle, parent, false);
@@ -231,7 +243,7 @@ public class PatientCardFragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(ItemViewHolder holder, int position) {
+        public void onBindViewHolder(final ItemViewHolder holder, int position) {
             CardType item = data.get(position);
             switch (item) {
                 case header:
@@ -259,12 +271,31 @@ public class PatientCardFragment extends Fragment {
                     holder.title.setText(item.getTitle());
                     break;
                 case appointmentButton:
-                    holder.button.setText("Мониторинг приема");
+                    holder.itemName.setText(R.string.today_day_of_admission);
+                    holder.button.setText(R.string.appointment_title);
                     break;
                 case startTreatmentButton:
-                    holder.button.setText("Назначить лечение");
+                    holder.itemName.setText(R.string.healing);
+                    holder.button.setText(R.string.start_healing);
                     break;
                 case grade:
+
+                    holder.titleHeader.setText(R.string.recommendation_of_using);
+                    holder.titleHeader.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (!holder.isDataShow){
+                                holder.dataCard.setVisibility(View.VISIBLE);
+                                holder.titleHeader.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_chevron_down_grey600_24dp, 0);
+                                holder.isDataShow = true;
+                            } else {
+                                holder.dataCard.setVisibility(View.GONE);
+                                holder.titleHeader.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_chevron_up_grey600_24dp, 0);
+                                holder.isDataShow = false;
+                            }
+                        }
+                    });
+
                     holder.title.setText(item.getTitle());
                     DateFormat format = SimpleDateFormat.getDateInstance(DateFormat.SHORT);
                     holder.date.setText("на " + format.format(item.getTreatment().getStartDate()));
@@ -289,6 +320,21 @@ public class PatientCardFragment extends Fragment {
                     }
                     break;
                 case card:
+                    holder.titleHeader.setText(R.string.recommendation_of_using);
+                    holder.titleHeader.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (!holder.isDataShow){
+                                holder.dataCard.setVisibility(View.VISIBLE);
+                                holder.titleHeader.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_chevron_down_grey600_24dp, 0);
+                                holder.isDataShow = true;
+                            } else {
+                                holder.dataCard.setVisibility(View.GONE);
+                                holder.titleHeader.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_chevron_up_grey600_24dp, 0);
+                                holder.isDataShow = false;
+                            }
+                        }
+                    });
                     holder.title.setText(item.getTitle());
                     holder.drugs.setText(item.getText());
                     break;

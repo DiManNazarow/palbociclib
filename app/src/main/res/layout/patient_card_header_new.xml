@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/patient_card_left_margin"
+        android:layout_marginRight="@dimen/patient_card_left_margin"
+        android:layout_marginTop="20dp"
+        android:textColor="#4d5764"
+        android:textSize="24sp"
+        tools:text="Шубина Ольга Леонидовна"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/patient_card_left_margin"
+        android:layout_marginTop="@dimen/default_margin"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/patient_photo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:contentDescription="@string/patient_photo"
+            android:scaleType="fitCenter"
+            tools:src="@drawable/p1"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/default_margin">
+
+            <TextView
+                android:id="@+id/drug_start_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#6a6a77"
+                android:textSize="18sp"
+                tools:text="11.04.2017"/>
+
+            <TextView
+                android:id="@+id/drug_start_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#9aa1ab"
+                android:textSize="12sp"
+                tools:text="начало приема препарата"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:background="#f3f1ed"/>
+
+            <TextView
+                android:id="@+id/menopause"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#cc4d5764"
+                android:textSize="14sp"
+                tools:text="Постменопауза"/>
+
+            <TextView
+                android:id="@+id/background_therapy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#cc4d5764"
+                android:textSize="14sp"
+                tools:text="Фоновой терапии нет"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:layout_marginLeft="@dimen/patient_card_left_margin"-->
+        <!--android:background="#f3f1ed"/>-->
+
+</LinearLayout>
