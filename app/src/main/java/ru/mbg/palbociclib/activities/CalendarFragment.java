@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,7 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.timessquare.CalendarCellDecorator;
@@ -26,7 +24,6 @@ import com.squareup.timessquare.CalendarPickerView;
 import com.squareup.timessquare.DayViewAdapter;
 
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -34,11 +31,9 @@ import java.util.List;
 
 import ca.barrenechea.widget.recyclerview.decoration.StickyHeaderAdapter;
 import ca.barrenechea.widget.recyclerview.decoration.StickyHeaderDecoration;
-import ru.mbg.palbociclib.Constants;
 import ru.mbg.palbociclib.EventsDictionary;
 import ru.mbg.palbociclib.PatientProvider;
 import ru.mbg.palbociclib.R;
-import ru.mbg.palbociclib.Utils;
 import ru.mbg.palbociclib.helpers.DateHelper;
 
 

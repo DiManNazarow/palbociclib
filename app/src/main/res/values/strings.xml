@@ -34,11 +34,15 @@
     <string name="logout">Выход</string>
     <string name="mockdate_data">УПРАВЛЕНИЕ ДАТОЙ</string>
     <string name="mockdate">Принудительная дата</string>
+    <string name="date_of_make_oak">Дата сдачи ОАК</string>
+    <string name="how_many_days_make">Сколько дней делается</string>
+    <string name="appoint_oak">НАЗНАЧИТЬ ОАК</string>
     <string name="mockdate_system">(системная)</string>
     <string name="reset_mockdate">Сбросить дату на системную</string>
     <string name="add_patient_title">Добавление пациента</string>
     <string name="general_data">ОБЩАЯ ИНФОРМАЦИЯ</string>
     <string name="was_hormonal_therapy">Была гормональная терапия</string>
+    <string name="was_background_therapy">Фоновая терапия</string>
     <string name="menopause">Менопауза</string>
     <string name="add_patient">Добавить пациента</string>
     <string name="patient_card_title">Карточка пациента</string>
@@ -64,6 +68,9 @@
     <string name="today_day_of_admission">Сегодня день приема пациента</string>
     <string name="recommendation_of_using">Рекомендации по приёму препарата</string>
     <string name="history_of_using">История приема препарата</string>
+
+    <string name="no">Нет</string>
+    <string name="delete">Удалить профиль</string>
 
     <string name="control">Упавление терапией</string>
     <string name="control.start">1. Старт</string>

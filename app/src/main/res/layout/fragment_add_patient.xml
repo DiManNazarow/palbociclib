@@ -10,8 +10,7 @@
         android:layout_height="wrap_content"
         android:background="@color/background"
         android:orientation="vertical"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+        android:paddingBottom="@dimen/default_margin">
 
         <ImageView
             android:id="@+id/avatar"
@@ -23,93 +22,229 @@
             android:layout_marginBottom="10dp"/>
 
         <TextView
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/default_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/default_margin"
             android:text="@string/general_data"/>
 
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp">
+            android:layout_marginTop="@dimen/default_margin"
+            android:orientation="vertical"
+            android:background="@color/white">
 
-            <EditText
-                android:id="@+id/name"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:inputType="textPersonName|textCapWords"
-                android:hint="@string/fio"/>
+                android:layout_marginBottom="@dimen/add_patient_field_margin"
+                android:layout_marginLeft="@dimen/default_margin"
+                android:layout_marginRight="@dimen/default_margin"
+                app:hintTextAppearance="@style/InputText">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:inputType="textPersonName|textCapWords"
+                    android:hint="@string/fio"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_marginLeft="4dp"-->
+                <!--android:layout_marginRight="4dp"-->
+                <!--android:layout_marginBottom="15dp">-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_weight="10"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textSize="16sp"-->
+                    <!--android:text="@string/was_hormonal_therapy"/>-->
+
+                <!--<Switch-->
+                    <!--android:id="@+id/was_hormonal_therapy"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="0"-->
+                    <!--android:textSize="16sp" />-->
+
+            <!--</LinearLayout>-->
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/default_margin"
+                android:background="#aaa"/>
+
+            <LinearLayout
+                android:id="@+id/menopause_layout"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/add_patient_field_margin"
+                android:layout_marginTop="@dimen/add_patient_field_margin"
+                android:layout_marginLeft="@dimen/default_margin"
+                android:layout_marginRight="@dimen/default_margin">
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/menopause"
+                    style="@style/ItemText"/>
+
+                <TextView
+                    android:id="@+id/menopause"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:textSize="18sp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    style="@style/InfoText"
+                    tools:text="Не задано"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/default_margin"
+                android:background="#aaa"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/default_margin"
+                android:layout_marginRight="@dimen/default_margin"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="@dimen/add_patient_field_margin"
+                android:layout_marginTop="@dimen/add_patient_field_margin">
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:text="@string/was_background_therapy"
+                    style="@style/ItemText"/>
+
+                <TextView
+                    android:id="@+id/date_background_therapy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_weight="0"
+                    android:textSize="18sp"
+                    android:text="@string/no"
+                    android:drawableRight="@drawable/ic_chevron_right_grey600_24dp"
+                    style="@style/InfoText"/>
+
+                <!--<Switch-->
+                    <!--android:id="@+id/was_background_therapy"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="0"-->
+                    <!--android:textSize="16sp" />-->
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:background="#aaa"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_marginBottom="10dp"/>-->
+
+        <TextView
+            android:layout_marginTop="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:text="@string/appoint_oak"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="15dp">
+            android:layout_marginTop="@dimen/default_margin"
+            android:orientation="vertical"
+            android:background="@color/white">
 
-            <TextView
+            <LinearLayout
+                android:id="@+id/date_oak"
                 android:layout_width="match_parent"
-                android:layout_weight="10"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="@string/was_hormonal_therapy"/>
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/add_patient_field_margin"
+                android:layout_marginBottom="@dimen/add_patient_field_margin"
+                android:layout_marginLeft="@dimen/default_margin"
+                android:layout_marginRight="@dimen/default_margin">
 
-            <Switch
-                android:id="@+id/was_hormonal_therapy"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:text="@string/date_of_make_oak"
+                    style="@style/ItemText"/>
+
+                <TextView
+                    android:id="@+id/date_oak_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:textSize="18sp"
+                    style="@style/InfoText"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#aaa"
+                android:layout_marginLeft="@dimen/default_margin"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:textSize="16sp" />
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/add_patient_field_margin"
+                android:layout_marginBottom="@dimen/add_patient_field_margin"
+                android:layout_marginLeft="@dimen/default_margin"
+                android:layout_marginRight="@dimen/default_margin">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_weight="10"
+                    android:layout_height="wrap_content"
+                    android:text="@string/how_many_days_make"
+                    style="@style/ItemText"/>
+
+                <TextView
+                    android:id="@+id/how_many_days_make"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:textSize="18sp"
+                    android:text="1"
+                    style="@style/InfoText"/>
+
+            </LinearLayout>
 
         </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#aaa"
-            android:layout_marginBottom="10dp"/>
-
-        <LinearLayout
-            android:id="@+id/menopause_layout"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="@string/menopause"/>
-
-            <TextView
-                android:id="@+id/menopause"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:textSize="16sp"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                tools:text="Не задано"/>
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#aaa"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"/>
 
         <Button
             android:id="@+id/add_button"
@@ -119,9 +254,21 @@
             android:textAllCaps="false"
             android:textColor="#fff"
             android:textSize="16sp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="24dp"
             android:background="@drawable/round_button"
             app:backgroundTint="#f55969"/>
+
+        <TextView
+            android:id="@+id/delete_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_gravity="center_horizontal"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="@string/delete"
+            android:textColor="#f55969"
+            android:visibility="gone"/>
 
     </LinearLayout>
 

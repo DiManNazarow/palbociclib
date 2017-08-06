@@ -96,6 +96,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         return showFragmentForID(item.getItemId());
     }
 
+    public void openPatientsFragment(){
+        manager.beginTransaction().replace(R.id.content, getPatientsFragment()).commit();
+    }
+
     public void selectPrevMonth(View v) {
         getCalendarFragment().selectPrevMonth();
     }

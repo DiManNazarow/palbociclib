@@ -9,13 +9,18 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import ru.mbg.palbociclib.R;
+
 public class DividerItemDecorator extends RecyclerView.ItemDecoration {
 
     private static final int[] ATTRS = new int[]{android.R.attr.listDivider};
 
     protected Drawable mDivider;
 
+    private Context mContext;
+
     public DividerItemDecorator(Context context) {
+        mContext = context;
         final TypedArray styledAttributes = context.obtainStyledAttributes(ATTRS);
         mDivider = styledAttributes.getDrawable(0);
         styledAttributes.recycle();
@@ -36,7 +41,7 @@ public class DividerItemDecorator extends RecyclerView.ItemDecoration {
 
     @Override
     public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
-        int left = parent.getPaddingLeft();
+        int left = parent.getPaddingLeft() + (int) mContext.getResources().getDimension(R.dimen.patient_card_left_margin);
         int right = parent.getWidth() - parent.getPaddingRight();
         int childCount = parent.getChildCount();
         for (int i = 0; i < childCount - 1; i++) {

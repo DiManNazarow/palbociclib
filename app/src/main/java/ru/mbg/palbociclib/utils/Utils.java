@@ -1,4 +1,4 @@
-package ru.mbg.palbociclib;
+package ru.mbg.palbociclib.utils;
 
 import android.content.res.Resources;
 import android.util.TypedValue;

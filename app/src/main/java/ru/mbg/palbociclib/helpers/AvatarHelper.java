@@ -1,26 +1,21 @@
 package ru.mbg.palbociclib.helpers;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.util.LruCache;
-import android.util.Log;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import ru.mbg.palbociclib.Constants;
 import ru.mbg.palbociclib.R;
-import ru.mbg.palbociclib.Utils;
+import ru.mbg.palbociclib.utils.Utils;
 import ru.mbg.palbociclib.models.Patient;
 
 public class AvatarHelper {

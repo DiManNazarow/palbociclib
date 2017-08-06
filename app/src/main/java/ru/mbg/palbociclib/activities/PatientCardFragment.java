@@ -262,9 +262,11 @@ public class PatientCardFragment extends Fragment {
                         holder.drugStartDate.setText(format.format(treatment.getStartDate()));
                         holder.drugStartLabel.setVisibility(View.VISIBLE);
                         holder.drugStartDate.setVisibility(View.VISIBLE);
+                        holder.itemView.findViewById(R.id.drug_divider).setVisibility(View.VISIBLE);
                     } else {
-                        holder.drugStartLabel.setVisibility(View.INVISIBLE);
-                        holder.drugStartDate.setVisibility(View.INVISIBLE);
+                        holder.itemView.findViewById(R.id.drug_divider).setVisibility(View.GONE);
+                        holder.drugStartLabel.setVisibility(View.GONE);
+                        holder.drugStartDate.setVisibility(View.GONE);
                     }
                     break;
                 case cycle:

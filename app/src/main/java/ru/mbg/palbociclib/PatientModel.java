@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.UUID;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 import ru.mbg.palbociclib.helpers.DateHelper;
 import ru.mbg.palbociclib.models.Appointment;
 import ru.mbg.palbociclib.models.AppointmentState;
@@ -42,16 +43,43 @@ public class PatientModel {
         return realm.where(Patient.class).equalTo("id", patientID).findFirst();
     }
 
+    public static void deletePatient(final String patientID, Realm realm){
+        if (realm == null) {
+            realm = Realm.getDefaultInstance();
+        }
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                RealmResults<Patient> rows = realm.where(Patient.class).equalTo("id", patientID).findAll();
+                rows.deleteAllFromRealm();
+            }
+        });
+    }
+
     /// Первичный прием, генерация рекомендаций для фоновой терапии
     public PatientModel(String name, Menopause menopause, boolean wasHormonalTherapy, Settings settings) throws AppError {
-        this(name, menopause, wasHormonalTherapy, settings, null, null);
+        this(name, menopause, wasHormonalTherapy, null, null, settings, null, null);
     }
 
     public PatientModel(String name, Menopause menopause, boolean wasHormonalTherapy, Settings settings, Realm realm) throws AppError {
-        this(name, menopause, wasHormonalTherapy, settings, realm, null);
+        this(name, menopause, wasHormonalTherapy, null, null, settings, realm, null);
     }
 
-    public PatientModel(String name, Menopause menopause, boolean wasHormonalTherapy, Settings settings, Realm realm, DateHelper date) throws AppError {
+    public PatientModel(PatientModelArgument argument) throws AppError {
+        this(argument.mName, argument.mMenopause, argument.wasHormonalTherapy, argument.mAppointment, argument.mBackgroundTherapy, argument.mSettings, argument.mRealm, null);
+    }
+
+    public static class PatientModelArgument {
+        public String mName;
+        public Menopause mMenopause;
+        public boolean wasHormonalTherapy;
+        public Appointment mAppointment;
+        public BackgroundTherapy mBackgroundTherapy;
+        public Settings mSettings;
+        public Realm mRealm;
+    }
+
+    public PatientModel(String name, Menopause menopause, boolean wasHormonalTherapy, Appointment appointment, BackgroundTherapy backgroundTherapy, Settings settings, Realm realm, DateHelper date) throws AppError {
         this.realm = realm == null ? Realm.getDefaultInstance() : realm;
         this.dateHelper = date == null ? DateHelper.instance : date;
         this.settings = settings;
@@ -62,6 +90,12 @@ public class PatientModel {
             patient.setName(name);
             patient.setMenopause(menopause);
             patient.setWasHormonalTherapy(wasHormonalTherapy);
+            if (appointment != null) {
+                patient.getAppointments().add(appointment);
+            }
+            if (backgroundTherapy != null) {
+                patient.setBackgroundTherapy(backgroundTherapy);
+            }
 
             Treatment firstTreatment = this.realm.createObject(Treatment.class);
             firstTreatment.setCycleNumber(0);

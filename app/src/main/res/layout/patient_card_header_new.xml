@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/default_margin">
 
     <TextView
         android:id="@+id/name"
@@ -37,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:gravity="center_vertical"
             android:paddingLeft="@dimen/default_margin">
 
             <TextView
@@ -56,6 +58,7 @@
                 tools:text="начало приема препарата"/>
 
             <View
+                android:id="@+id/drug_divider"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="8dp"
@@ -81,12 +84,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
-    <!--<View-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="1dp"-->
-        <!--android:layout_marginTop="8dp"-->
-        <!--android:layout_marginLeft="@dimen/patient_card_left_margin"-->
-        <!--android:background="#f3f1ed"/>-->
 
 </LinearLayout>
