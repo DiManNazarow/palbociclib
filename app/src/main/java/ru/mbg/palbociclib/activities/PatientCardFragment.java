@@ -136,7 +136,7 @@ public class PatientCardFragment extends Fragment {
 
     void itemClicked(CardType item) {
         if (item == CardType.appointmentButton || item == CardType.startTreatmentButton) {
-            AppointmentFragment appointment = AppointmentFragment.newInstance(patient.getId());
+            AppointmentFragmentNew appointment = AppointmentFragmentNew.newInstance(patient.getId());
             this.getFragmentManager().beginTransaction()
                     .replace(R.id.content, appointment, null)
                     .addToBackStack(null)

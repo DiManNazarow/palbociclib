@@ -93,17 +93,17 @@ public class AppointmentFragmentNew extends Fragment {
                 mOakInfoView.setVisibility(View.VISIBLE);
             }
         });
-        setupGradeInfo();
+        //setupGradeInfo();
     }
 
-    private void setupGradeInfo(){
-        Treatment treatment = patientModel.getPatient().getTreatments().last();
-        if (treatment != null) {
-            Oak oak = treatment.getOaks().last();
-            if (oak != null && oak.getReadyDate() != null) {
-                double netrophils = oak.getNeutrophils()/100;
-                mGradeView.setNeutrophilisTextCount(getString(R.string.neutrophils_count, netrophils));
-            }
-        }
-    }
+//    private void setupGradeInfo(){
+//        Treatment treatment = patientModel.getPatient().getTreatments().last();
+//        if (treatment != null) {
+//            Oak oak = treatment.getOaks().last();
+//            if (oak != null && oak.getReadyDate() != null) {
+//                double netrophils = oak.getNeutrophils()/100;
+//                mGradeView.setNeutrophilisTextCount(getString(R.string.neutrophils_count, netrophils));
+//            }
+//        }
+//    }
 }

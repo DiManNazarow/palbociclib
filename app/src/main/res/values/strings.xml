@@ -76,6 +76,8 @@
     <string name="patient_drugs_day_count">День %1$d-й</string>
     <string name="start_drugs">начало приема препарата</string>
 
+    <string name="app_ok">Ок</string>
+
     <string name="no">Нет</string>
     <string name="delete">Удалить профиль</string>
 
@@ -191,5 +193,7 @@
     <string name="instruction.shelf_life">2 года.</string>
     <string name="instruction.full_info">Полная информация представлена в инструкции по применению лекарственного препарата для медицинского применения (регистрационное удостоверение лекарственного препарата для медицинского применения ЛП-003878 от 5.10.2016).</string>
 
+    <string name="error.miss_neutrophils_for_grade.title">Ошибка выбора грейда</string>
+    <string name="error.miss_neutrophils_for_grade.text">Укажите количество нейтрофилов для установки грейда</string>
 
 </resources>

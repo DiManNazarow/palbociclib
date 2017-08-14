@@ -118,7 +118,7 @@ public class GradePickerView extends LinearLayout implements SeekBar.OnSeekBarCh
         pickGradeText(progress + 1);
         if (fromUser){
             if (mGradeChangeListener != null){
-                mGradeChangeListener.onGradeChange(progress);
+                mGradeChangeListener.onGradeChange(progress + 1);
             }
         }
     }
@@ -135,5 +135,11 @@ public class GradePickerView extends LinearLayout implements SeekBar.OnSeekBarCh
 
     public void setGradeChangeListener(OnGradeChangeListener gradeChangeListener) {
         mGradeChangeListener = gradeChangeListener;
+    }
+
+    public void setGradeSeek(int value){
+        if (value >=0 && value <= GRADE_COUNT) {
+            mGradeSeek.setProgress(value);
+        }
     }
 }

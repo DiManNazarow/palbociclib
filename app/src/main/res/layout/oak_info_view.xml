@@ -9,130 +9,160 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginLeft="@dimen/item_padding_small"
         android:layout_marginRight="@dimen/item_padding_small"
-        android:paddingRight="@dimen/item_padding"
+        android:background="@drawable/round_corner_container"
+        android:orientation="vertical"
         android:paddingLeft="@dimen/item_padding"
-        android:background="@drawable/round_corner_container">
+        android:paddingRight="@dimen/item_padding">
 
-        <RelativeLayout
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/item_padding_small"
-            android:layout_marginBottom="@dimen/item_padding_small">
+            android:layout_height="wrap_content">
 
-            <TextView
-                style="@style/ItemText"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/neutrophils_edit_text"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/neutrophils_percent"/>
+                android:hint="@string/neutrophils_percent"
+                android:inputType="numberDecimal"/>
 
-            <TextView
-                style="@style/InfoText"
-                android:id="@+id/neutrophils_count_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:textSize="18sp"/>
+        </android.support.design.widget.TextInputLayout>
 
-        </RelativeLayout>
+        <!--<TextView-->
+        <!--style="@style/ItemText"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/neutrophils_percent"/>-->
 
-        <include layout="@layout/default_divider"/>
+        <!--<TextView-->
+        <!--style="@style/InfoText"-->
+        <!--android:id="@+id/neutrophils_count_text"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:textSize="18sp"/>-->
 
-        <RelativeLayout
+        <!--<include layout="@layout/default_divider"/>-->
+
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/item_padding_small"
-            android:layout_marginBottom="@dimen/item_padding_small">
+            android:layout_height="wrap_content">
 
-            <TextView
-                style="@style/ItemText"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/leukocytes_edit_text"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/leukocytes"/>
+                android:hint="@string/leukocytes"
+                android:inputType="numberDecimal"/>
 
-            <TextView
-                style="@style/InfoText"
-                android:id="@+id/leukocytes_count_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:textSize="18sp"/>
+        </android.support.design.widget.TextInputLayout>
 
-        </RelativeLayout>
+        <!--<TextView-->
+        <!--style="@style/ItemText"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/leukocytes"/>-->
 
-        <include layout="@layout/default_divider"/>
+        <!--<TextView-->
+        <!--style="@style/InfoText"-->
+        <!--android:id="@+id/leukocytes_count_text"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:textSize="18sp"/>-->
 
-        <RelativeLayout
+
+        <!--<include layout="@layout/default_divider"/>-->
+
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/item_padding_small"
-            android:layout_marginBottom="@dimen/item_padding_small">
+            android:layout_height="wrap_content">
 
-            <TextView
-                style="@style/ItemText"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/platelets_edit_text"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/platelets"/>
+                android:hint="@string/platelets"
+                android:inputType="numberDecimal"/>
 
-            <TextView
-                style="@style/InfoText"
-                android:id="@+id/platelets_count_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:textSize="18sp"/>
+        </android.support.design.widget.TextInputLayout>
 
-        </RelativeLayout>
+        <!--<TextView-->
+        <!--style="@style/ItemText"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/platelets"/>-->
 
-        <include layout="@layout/default_divider"/>
+        <!--<TextView-->
+        <!--style="@style/InfoText"-->
+        <!--android:id="@+id/platelets_count_text"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:textSize="18sp"/>-->
 
-        <RelativeLayout
+
+        <!--<include layout="@layout/default_divider"/>-->
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/item_padding_small"
-            android:layout_marginBottom="@dimen/item_padding_small">
+            android:layout_height="wrap_content">
 
-            <TextView
-                style="@style/ItemText"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/erythrocytes_edit_text"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/erythrocytes"/>
+                android:hint="@string/erythrocytes"
+                android:inputType="numberDecimal"/>
 
-            <TextView
-                style="@style/InfoText"
-                android:id="@+id/erythrocytes_count_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:textSize="18sp"/>
+        </android.support.design.widget.TextInputLayout>
 
-        </RelativeLayout>
+        <!--<TextView-->
+        <!--style="@style/ItemText"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/erythrocytes"/>-->
 
-        <include layout="@layout/default_divider"/>
+        <!--<TextView-->
+        <!--style="@style/InfoText"-->
+        <!--android:id="@+id/erythrocytes_count_text"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:textSize="18sp"/>-->
 
-        <RelativeLayout
+        <!--<include layout="@layout/default_divider"/>-->
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/item_padding_small"
-            android:layout_marginBottom="@dimen/item_padding_small">
+            android:layout_height="wrap_content">
 
-            <TextView
-                style="@style/ItemText"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/hemoglobin_edit_text"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/hemoglobin"/>
+                android:hint="@string/hemoglobin"
+                android:inputType="numberDecimal"/>
 
-            <TextView
-                style="@style/InfoText"
-                android:id="@+id/hemoglobin_count_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:textSize="18sp"/>
+        </android.support.design.widget.TextInputLayout>
 
-        </RelativeLayout>
+        <!--<TextView-->
+        <!--style="@style/ItemText"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/hemoglobin"/>-->
+
+        <!--<TextView-->
+        <!--style="@style/InfoText"-->
+        <!--android:id="@+id/hemoglobin_count_text"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:textSize="18sp"/>-->
+
 
     </LinearLayout>
 
@@ -146,18 +176,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/round_corner_container"
-        android:layout_marginTop="@dimen/item_padding_small"
-        android:layout_marginRight="@dimen/item_padding_small"
         android:layout_marginLeft="@dimen/item_padding_small"
+        android:layout_marginRight="@dimen/item_padding_small"
+        android:layout_marginTop="@dimen/item_padding_small"
+        android:background="@drawable/round_corner_container"
         android:paddingBottom="@dimen/item_padding">
 
         <Button
+            style="@style/Button"
+            android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:backgroundTint="#f55969"
             android:text="@string/know_grade"
-            style="@style/Button"/>
+            app:backgroundTint="#f55969"/>
 
     </LinearLayout>
 

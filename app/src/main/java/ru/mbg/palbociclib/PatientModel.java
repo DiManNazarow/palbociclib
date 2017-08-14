@@ -69,6 +69,11 @@ public class PatientModel {
         this(name, menopause, wasHormonalTherapy, null, null, settings, realm, null);
     }
 
+    public PatientModel(String name, Menopause menopause, boolean wasHormonalTherapy, Settings settings, Realm realm, DateHelper date) throws AppError {
+        this(name, menopause, wasHormonalTherapy, null, null, settings, realm, date);
+    }
+
+
     public PatientModel(PatientModelArgument argument) throws AppError {
         this(argument.mName, argument.mMenopause, argument.wasHormonalTherapy, argument.mAppointment, argument.mBackgroundTherapy, argument.mSettings, argument.mRealm, null);
     }
