@@ -50,8 +50,12 @@ public class PatientModel {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                RealmResults<Patient> rows = realm.where(Patient.class).equalTo("id", patientID).findAll();
-                rows.deleteAllFromRealm();
+                RealmResults<Patient> patients = realm.where(Patient.class).equalTo("id", patientID).findAll();
+                for (Patient patient : patients){
+                    patient.getAppointments().deleteAllFromRealm();
+                    patient.getTreatments().deleteAllFromRealm();
+                }
+                patients.deleteAllFromRealm();
             }
         });
     }

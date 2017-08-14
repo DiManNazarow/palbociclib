@@ -1,5 +1,6 @@
 package ru.mbg.palbociclib.models;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import io.realm.RealmObject;
@@ -17,6 +18,10 @@ public class Appointment extends RealmObject {
             return null;
         }
         return getPatients().first();
+    }
+
+    public Appointment(){
+        date = Calendar.getInstance().getTime();
     }
 
     @LinkingObjects("appointments")
