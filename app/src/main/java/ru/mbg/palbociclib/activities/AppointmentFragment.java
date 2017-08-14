@@ -35,6 +35,7 @@ import ru.mbg.palbociclib.models.TreatmentDose;
 
 
 public class AppointmentFragment extends Fragment {
+
     private static final String PATIENT_ID = "patient_id";
 
     private PatientModel patientModel;
@@ -251,6 +252,7 @@ public class AppointmentFragment extends Fragment {
                     int platelets = Integer.parseInt(plateletsTextView.getText().toString());
                     boolean fever = feverSwitch.isChecked();
                     patientModel.saveOAK(leukocytes, neutrophilis, platelets, fever);
+                   // patientModel = new PatientModel(getArguments().getString(PATIENT_ID), new UserDefaultsSettings(getContext()));
                     AppointmentState result = patientModel.appointment();
                     if (result == AppointmentState.done) {
                         getFragmentManager().popBackStack();

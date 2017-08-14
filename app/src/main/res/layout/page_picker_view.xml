@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:weightSum="2"
+    android:paddingRight="@dimen/item_padding"
+    android:paddingLeft="@dimen/item_padding"
+    android:paddingTop="@dimen/picker_top_bottom_padding"
+    android:paddingBottom="@dimen/picker_top_bottom_padding"
+    android:background="@drawable/round_corner_container">
+
+    <TextView
+        android:id="@+id/first_pick_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/left_picker_button_fill"
+        android:paddingTop="@dimen/picker_button_top_padding"
+        android:paddingBottom="@dimen/picker_button_bottom_padding"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/second_pick_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/right_pick_button"
+        android:paddingTop="@dimen/picker_button_top_padding"
+        android:paddingBottom="@dimen/picker_button_bottom_padding"
+        android:textColor="@color/picker_color"
+        android:layout_weight="1"
+        android:gravity="center"/>
+
+</LinearLayout>

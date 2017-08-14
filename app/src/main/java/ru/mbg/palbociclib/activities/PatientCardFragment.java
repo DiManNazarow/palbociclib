@@ -17,9 +17,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.joda.time.DateTime;
+import org.joda.time.Days;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import io.realm.RealmList;
@@ -35,6 +39,7 @@ import ru.mbg.palbociclib.models.Oak;
 import ru.mbg.palbociclib.models.Patient;
 import ru.mbg.palbociclib.models.Treatment;
 import ru.mbg.palbociclib.models.TreatmentDose;
+import ru.mbg.palbociclib.utils.DateUtils;
 import ru.mbg.palbociclib.views.DividerItemDecorator;
 
 
@@ -95,7 +100,10 @@ public class PatientCardFragment extends Fragment {
         }
         if (treatments.size() > 1) {
             for(int i = 1; i < treatments.size(); i += 1) {
-                data.add(CardType.cycle("Цикл " + treatments.get(i).getCycleNumber()));
+                //data.add(CardType.cycle("Цикл " + treatments.get(i).getCycleNumber()));
+                if (treatments.get(i).getOaks().last() != null){
+                    data.add(CardType.oak(treatments.get(i)));
+                }
                 data.add(CardType.grade("Начало приема", treatments.get(i)));
             }
         }
@@ -161,6 +169,9 @@ public class PatientCardFragment extends Fragment {
             ImageView nextOakImage;
             TextView nextOak;
 
+            TextView mCycleNumber;
+            TextView mDateOfOak;
+
             boolean isDataShow = false;
 
             ItemViewHolder(View itemView) {
@@ -182,6 +193,9 @@ public class PatientCardFragment extends Fragment {
                 drugDose = (TextView) itemView.findViewById(R.id.drug_dose);
                 nextOakImage = (ImageView) itemView.findViewById(R.id.oak_image);
                 nextOak = (TextView) itemView.findViewById(R.id.oak);
+
+                mCycleNumber = (TextView) itemView.findViewById(R.id.cycle_text_view);
+                mDateOfOak = (TextView) itemView.findViewById(R.id.date_oak_text_view);
             }
         }
 
@@ -209,6 +223,9 @@ public class PatientCardFragment extends Fragment {
             switch (type) {
                 case header:
                     v = LayoutInflater.from(parent.getContext()).inflate(R.layout.patient_card_header_new, parent, false);
+                    break;
+                case oak:
+                    v = LayoutInflater.from(parent.getContext()).inflate(R.layout.patient_card_oak, parent, false);
                     break;
                 case cycle:
                     v = LayoutInflater.from(parent.getContext()).inflate(R.layout.patient_card_cycle, parent, false);
@@ -263,26 +280,24 @@ public class PatientCardFragment extends Fragment {
                         holder.drugStartLabel.setVisibility(View.VISIBLE);
                         holder.drugStartDate.setVisibility(View.VISIBLE);
                         holder.itemView.findViewById(R.id.drug_divider).setVisibility(View.VISIBLE);
+
+                        Oak oakReady = treatment.getOaks().where().isNotNull("readyDate").findFirst();
+                        holder.mCycleNumber.setText(getString(R.string.cycle_oak_card, oakReady.getGrade()));
+                        DateTime nowDate = new DateTime(Calendar.getInstance());
+                        DateTime startDrugDate = new DateTime(treatment.getStartDate());
+                        holder.mDateOfOak.setText(getString(R.string.patient_drugs_day_count, Days.daysBetween(startDrugDate, nowDate).getDays()));
                     } else {
                         holder.itemView.findViewById(R.id.drug_divider).setVisibility(View.GONE);
                         holder.drugStartLabel.setVisibility(View.GONE);
                         holder.drugStartDate.setVisibility(View.GONE);
+                        holder.mCycleNumber.setVisibility(View.GONE);
+                        holder.mDateOfOak.setVisibility(View.GONE);
+                        holder.itemView.findViewById(R.id.grade_divider).setVisibility(View.GONE);
                     }
                     break;
-                case cycle:
-                    holder.title.setText(item.getTitle());
-                    break;
-                case appointmentButton:
-                    holder.itemName.setText(R.string.today_day_of_admission);
-                    holder.button.setText(R.string.appointment_title);
-                    break;
-                case startTreatmentButton:
-                    holder.itemName.setText(R.string.healing);
-                    holder.button.setText(R.string.start_healing);
-                    break;
-                case grade:
-
-                    holder.titleHeader.setText(R.string.recommendation_of_using);
+                case oak:
+                    Oak oakReady = item.getTreatment().getOaks().where().isNotNull("readyDate").findFirst();
+                    holder.isDataShow = true;
                     holder.titleHeader.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -298,6 +313,37 @@ public class PatientCardFragment extends Fragment {
                         }
                     });
 
+                    holder.mCycleNumber.setText(getString(R.string.cycle_oak_card, oakReady.getGrade()));
+                    holder.mDateOfOak.setText(DateUtils.format(oakReady.getAssignmentDate(), DateUtils.DEFAULT_DATE_PATTERN));
+                    holder.drugs.setText(oakReady.description());
+                    break;
+                case cycle:
+                    holder.title.setText(item.getTitle());
+                    break;
+                case appointmentButton:
+                    holder.itemName.setText(R.string.today_day_of_admission);
+                    holder.button.setText(R.string.appointment_title);
+                    break;
+                case startTreatmentButton:
+                    holder.itemName.setText(R.string.healing);
+                    holder.button.setText(R.string.start_healing);
+                    break;
+                case grade:
+                    holder.isDataShow = true;
+                                       holder.titleHeader.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (!holder.isDataShow){
+                                holder.dataCard.setVisibility(View.VISIBLE);
+                                holder.titleHeader.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_chevron_down_grey600_24dp, 0);
+                                holder.isDataShow = true;
+                            } else {
+                                holder.dataCard.setVisibility(View.GONE);
+                                holder.titleHeader.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_chevron_up_grey600_24dp, 0);
+                                holder.isDataShow = false;
+                            }
+                        }
+                    });
                     holder.title.setText(item.getTitle());
                     DateFormat format = SimpleDateFormat.getDateInstance(DateFormat.SHORT);
                     holder.date.setText("на " + format.format(item.getTreatment().getStartDate()));
@@ -322,7 +368,6 @@ public class PatientCardFragment extends Fragment {
                     }
                     break;
                 case card:
-                    holder.titleHeader.setText(R.string.recommendation_of_using);
                     holder.titleHeader.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -350,7 +395,7 @@ public class PatientCardFragment extends Fragment {
     }
 
     private enum CardType {
-        header(0), cycle(1), appointmentButton(2), startTreatmentButton(3), grade(4), card(5);
+        header(0), oak(1), cycle(2), appointmentButton(3), startTreatmentButton(4), grade(5), card(6);
 
         public final int rawValue;
 
@@ -367,14 +412,16 @@ public class PatientCardFragment extends Fragment {
                 case 0:
                     return header;
                 case 1:
-                    return cycle;
+                    return oak;
                 case 2:
-                    return appointmentButton;
+                    return cycle;
                 case 3:
-                    return startTreatmentButton;
+                    return appointmentButton;
                 case 4:
-                    return grade;
+                    return startTreatmentButton;
                 case 5:
+                    return grade;
+                case 6:
                     return card;
                 default:
                     return null;
@@ -398,6 +445,12 @@ public class PatientCardFragment extends Fragment {
             CardType o = card;
             o.setTitle(title);
             o.setText(text);
+            return o;
+        }
+
+        public static CardType oak(Treatment treatment){
+            CardType o = oak;
+            o.setTreatment(treatment);
             return o;
         }
 

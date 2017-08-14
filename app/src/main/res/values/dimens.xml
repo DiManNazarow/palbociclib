@@ -8,4 +8,7 @@
     <dimen name="default_margin">16dp</dimen>
     <dimen name="patient_card_left_margin">30dp</dimen>
     <dimen name="add_patient_field_margin">10dp</dimen>
+    <dimen name="picker_button_top_padding">5dp</dimen>
+    <dimen name="picker_button_bottom_padding">5dp</dimen>
+    <dimen name="picker_top_bottom_padding">8dp</dimen>
 </resources>

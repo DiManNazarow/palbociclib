@@ -3,6 +3,8 @@ package ru.mbg.palbociclib;
 import android.app.Application;
 import android.preference.PreferenceManager;
 
+import net.danlew.android.joda.JodaTimeAndroid;
+
 import java.util.Date;
 
 import ru.mbg.palbociclib.helpers.AvatarHelper;
@@ -17,6 +19,7 @@ public class App extends Application {
 
         DatabaseHelper.setupDatabase(true, this);
         AvatarHelper.initCache();
+        JodaTimeAndroid.init(this);
 
         long mockDate = PreferenceManager.getDefaultSharedPreferences(this).getLong(Constants.MOCK_DATE_KEY, -1);
         if (mockDate != -1) {

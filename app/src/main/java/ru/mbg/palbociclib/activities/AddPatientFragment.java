@@ -308,7 +308,6 @@ public class AddPatientFragment extends Fragment {
                 argument.mMenopause = menopause;
                 argument.wasHormonalTherapy = false;
                 argument.mAppointment = mAppointment;
-                //TODO check db relation
                 //argument.mBackgroundTherapy = mBackgroundTherapy;
                 argument.mSettings = settings;
                 PatientModel patientModel = new PatientModel(argument);

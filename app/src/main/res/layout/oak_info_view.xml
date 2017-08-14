@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/item_padding_small"
+        android:layout_marginRight="@dimen/item_padding_small"
+        android:paddingRight="@dimen/item_padding"
+        android:paddingLeft="@dimen/item_padding"
+        android:background="@drawable/round_corner_container">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_padding_small"
+            android:layout_marginBottom="@dimen/item_padding_small">
+
+            <TextView
+                style="@style/ItemText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/neutrophils_percent"/>
+
+            <TextView
+                style="@style/InfoText"
+                android:id="@+id/neutrophils_count_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textSize="18sp"/>
+
+        </RelativeLayout>
+
+        <include layout="@layout/default_divider"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_padding_small"
+            android:layout_marginBottom="@dimen/item_padding_small">
+
+            <TextView
+                style="@style/ItemText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/leukocytes"/>
+
+            <TextView
+                style="@style/InfoText"
+                android:id="@+id/leukocytes_count_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textSize="18sp"/>
+
+        </RelativeLayout>
+
+        <include layout="@layout/default_divider"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_padding_small"
+            android:layout_marginBottom="@dimen/item_padding_small">
+
+            <TextView
+                style="@style/ItemText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/platelets"/>
+
+            <TextView
+                style="@style/InfoText"
+                android:id="@+id/platelets_count_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textSize="18sp"/>
+
+        </RelativeLayout>
+
+        <include layout="@layout/default_divider"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_padding_small"
+            android:layout_marginBottom="@dimen/item_padding_small">
+
+            <TextView
+                style="@style/ItemText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/erythrocytes"/>
+
+            <TextView
+                style="@style/InfoText"
+                android:id="@+id/erythrocytes_count_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textSize="18sp"/>
+
+        </RelativeLayout>
+
+        <include layout="@layout/default_divider"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_padding_small"
+            android:layout_marginBottom="@dimen/item_padding_small">
+
+            <TextView
+                style="@style/ItemText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hemoglobin"/>
+
+            <TextView
+                style="@style/InfoText"
+                android:id="@+id/hemoglobin_count_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textSize="18sp"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginLeft="@dimen/default_margin"
+        android:text="@string/grade"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_corner_container"
+        android:layout_marginTop="@dimen/item_padding_small"
+        android:layout_marginRight="@dimen/item_padding_small"
+        android:layout_marginLeft="@dimen/item_padding_small"
+        android:paddingBottom="@dimen/item_padding">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:backgroundTint="#f55969"
+            android:text="@string/know_grade"
+            style="@style/Button"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -48,10 +48,13 @@
     <string name="patient_card_title">Карточка пациента</string>
     <string name="patient_photo">Фотография пациента</string>
     <string name="appointment_title">Мониторинг приема</string>
-    <string name="oak_data">ДАННЫЕ ОАК</string>
+    <string name="oak_data">Данные ОАК</string>
     <string name="leukocytes">Лейкоциты</string>
-    <string name="neutrophils">Нейтрофилы (%)</string>
+    <string name="neutrophils">Нейтрофилы</string>
+    <string name="neutrophils_percent">Нейтрофилы (%)</string>
     <string name="platelets">Тромбоциты</string>
+    <string name="erythrocytes">Эритроциты</string>
+    <string name="hemoglobin">Гемоглобин</string>
     <string name="save_oak">Сохранить результаты</string>
     <string name="treatment_not_started">Прием препарата не начат</string>
     <string name="save_patient_title">Редактирование пациента</string>
@@ -67,10 +70,31 @@
     <string name="start_healing">Назначить лечение</string>
     <string name="today_day_of_admission">Сегодня день приема пациента</string>
     <string name="recommendation_of_using">Рекомендации по приёму препарата</string>
-    <string name="history_of_using">История приема препарата</string>
+    <string name="history_of_admission">История приема препарата</string>
+    <string name="last_oak_result">Результат последнего ОАК</string>
+    <string name="cycle_oak_card">Цикл %1$d</string>
+    <string name="patient_drugs_day_count">День %1$d-й</string>
+    <string name="start_drugs">начало приема препарата</string>
 
     <string name="no">Нет</string>
     <string name="delete">Удалить профиль</string>
+
+    <string name="set_greid">Задать грейд</string>
+    <string name="find_by_oak">Определить по ОАК</string>
+    <string name="current_admission">ТЕКУЩИЙ ПРИЕМ</string>
+
+    <string name="last_result">Результат предыдущего приема</string>
+
+    <string name="common_intoxication">Общая интоксикация</string>
+    <string name="neutrophils_count">%1$d/мл</string>
+
+    <string name="grade">ГРЕЙД</string>
+    <string name="know_grade">Узнать Грейд</string>
+
+    <string name="l_count">%1$d/л</string>
+    <string name="gl_count">%1$d г/л</string>
+
+    <string name="calculate_dose">Расчитать дозировку</string>
 
     <string name="control">Упавление терапией</string>
     <string name="control.start">1. Старт</string>

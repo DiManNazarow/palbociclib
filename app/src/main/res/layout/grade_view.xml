@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/default_margin"
+    android:layout_marginLeft="@dimen/item_padding_small"
+    android:layout_marginRight="@dimen/item_padding_small"
+    android:paddingLeft="@dimen/item_padding_small"
+    android:paddingRight="@dimen/item_padding_small"
+    android:background="@drawable/round_corner_container">
+
+    <ru.mbg.palbociclib.views.GradePickerView
+        android:id="@+id/grade_picker_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </ru.mbg.palbociclib.views.GradePickerView>
+
+    <include layout="@layout/separate_line"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/item_padding_small"
+        android:paddingTop="@dimen/item_padding_small"
+        android:paddingBottom="@dimen/item_padding_small">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/neutrophils"
+            style="@style/ItemText"/>
+
+        <TextView
+            android:id="@+id/neutrophilis_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textSize="18sp"
+            style="@style/InfoText"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

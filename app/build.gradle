@@ -55,4 +55,6 @@ dependencies {
     // Butter Knife
     compile 'com.jakewharton:butterknife:8.7.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
+
+    compile 'net.danlew:android.joda:2.9.9'
 }

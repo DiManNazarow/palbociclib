@@ -2,14 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:paddingLeft="@dimen/item_padding"
     android:paddingRight="@dimen/item_padding">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@color/devider_color">
+        android:background="@color/divider_color">
 
     </LinearLayout>
 
