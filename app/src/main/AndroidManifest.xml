@@ -35,6 +35,7 @@
             android:theme="@style/Base.Theme.AppCompat"/>
         <activity android:name=".activities.ControlActivity"/>
         <activity android:name=".activities.ShortInstructionActivity"/>
+        <activity android:name=".activities.NotForPatientActivity"/>
 
     </application>
 

@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import io.realm.Realm;
@@ -47,13 +48,13 @@ public class Appointment7Tests {
 
         try {
             sut = new PatientModel("Василиса Иванова", Menopause.perimenopause, false, new TestSettings(), testRealm, dateHelper);
-            sut.saveOAK(3000, 0.4, 200_000, false);
-            sut.appointment();
+            sut.saveOAK(3000, 0.4, 200_000, 0, 0, false);
+            sut.appointment(Calendar.getInstance().getTime(), TreatmentDose.dose125);
             dateHelper.mockDate = DateHelper.advancingDays(dateHelper.mockDate, 14);
-            sut.saveOAK(3000, 0.4, 200_000, false);
-            sut.appointment();
+            sut.saveOAK(3000, 0.4, 200_000, 0, 0, false);
+            sut.appointment(Calendar.getInstance().getTime(), TreatmentDose.dose125);
             dateHelper.mockDate = DateHelper.advancingDays(dateHelper.mockDate, 14);
-            sut.saveOAK(2000, 0.4, 200_000, false);
+            sut.saveOAK(2000, 0.4, 200_000, 0, 0, false);
             testRealm.executeTransaction(new Realm.Transaction() {
                 @Override
                 public void execute(Realm realm) {
@@ -62,7 +63,7 @@ public class Appointment7Tests {
                     sut.getPatient().getTreatments().get(2).setDose(TreatmentDose.dose100);
                 }
             });
-            sut.appointment();
+            sut.appointment(Calendar.getInstance().getTime(), TreatmentDose.dose125);
             dateHelper.mockDate = DateHelper.advancingDays(dateHelper.mockDate, 7);
         } catch (AppError appError) {
             appError.printStackTrace();
@@ -87,10 +88,10 @@ public class Appointment7Tests {
     @Test
     public void continueTreatmentOnGrade1WithoutGrade3() {
         try {
-            sut.saveOAK(4000, 0.4, 200_000, false);
+            sut.saveOAK(4000, 0.4, 200_000, 0, 0, false);
             assertEquals(1, sut.getPatient().getTreatments().last().getOaks().last().getGrade());
 
-            AppointmentState result = sut.appointment();
+            AppointmentState result = sut.appointment(Calendar.getInstance().getTime(), TreatmentDose.dose125);
             assertEquals(AppointmentState.done, result);
 
             Treatment treatment = sut.getPatient().getTreatments().last();
@@ -108,10 +109,10 @@ public class Appointment7Tests {
     @Test
     public void continueTreatmentOnGrade2WithoutGrade3() {
         try {
-            sut.saveOAK(3000, 0.4, 200_000, false);
+            sut.saveOAK(3000, 0.4, 200_000, 0, 0, false);
             assertEquals(2, sut.getPatient().getTreatments().last().getOaks().last().getGrade());
 
-            AppointmentState result = sut.appointment();
+            AppointmentState result = sut.appointment(Calendar.getInstance().getTime(), TreatmentDose.dose125);
             assertEquals(AppointmentState.done, result);
 
             Treatment treatment = sut.getPatient().getTreatments().last();
@@ -137,10 +138,10 @@ public class Appointment7Tests {
             }
         });
         try {
-            sut.saveOAK(4000, 0.4, 200_000, false);
+            sut.saveOAK(4000, 0.4, 200_000, 0, 0, false);
             assertEquals(1, sut.getPatient().getTreatments().last().getOaks().last().getGrade());
 
-            AppointmentState result = sut.appointment();
+            AppointmentState result = sut.appointment(Calendar.getInstance().getTime(), TreatmentDose.dose125);
             assertEquals(AppointmentState.maybeLowerDose, result);
         } catch (AppError appError) {
             appError.printStackTrace();
@@ -159,10 +160,10 @@ public class Appointment7Tests {
             }
         });
         try {
-            sut.saveOAK(3000, 0.4, 200_000, false);
+            sut.saveOAK(3000, 0.4, 200_000, 0, 0, false);
             assertEquals(2, sut.getPatient().getTreatments().last().getOaks().last().getGrade());
 
-            AppointmentState result = sut.appointment();
+            AppointmentState result = sut.appointment(Calendar.getInstance().getTime(), TreatmentDose.dose125);
             assertEquals(AppointmentState.maybeLowerDose, result);
         } catch (AppError appError) {
             appError.printStackTrace();
@@ -173,10 +174,10 @@ public class Appointment7Tests {
     @Test
     public void lowerDoseOnGrade3() {
         try {
-            sut.saveOAK(2000, 0.4, 200_000, false);
+            sut.saveOAK(2000, 0.4, 200_000, 0, 0, false);
             assertEquals(3, sut.getPatient().getTreatments().last().getOaks().last().getGrade());
 
-            AppointmentState result = sut.appointment();
+            AppointmentState result = sut.appointment(Calendar.getInstance().getTime(), TreatmentDose.dose125);
             assertEquals(AppointmentState.maybeLowerDose, result);
         } catch (AppError appError) {
             appError.printStackTrace();
@@ -187,10 +188,10 @@ public class Appointment7Tests {
     @Test
     public void lowerDoseOnGrade4() {
         try {
-            sut.saveOAK(1000, 0.4, 200_000, false);
+            sut.saveOAK(1000, 0.4, 200_000, 0, 0, false);
             assertEquals(4, sut.getPatient().getTreatments().last().getOaks().last().getGrade());
 
-            AppointmentState result = sut.appointment();
+            AppointmentState result = sut.appointment(Calendar.getInstance().getTime(), TreatmentDose.dose125);
             assertEquals(AppointmentState.maybeLowerDose, result);
         } catch (AppError appError) {
             appError.printStackTrace();
@@ -201,11 +202,11 @@ public class Appointment7Tests {
     @Test
     public void setGreaterDoseInstedOfLowering() {
         try {
-            sut.saveOAK(1000, 0.4, 200_000, false);
+            sut.saveOAK(1000, 0.4, 200_000, 0, 0, false);
             assertEquals(4, sut.getPatient().getTreatments().last().getOaks().last().getGrade());
             assertEquals(TreatmentDose.dose100, sut.getPatient().getTreatments().last().getDose());
 
-            AppointmentState result = sut.appointment();
+            AppointmentState result = sut.appointment(Calendar.getInstance().getTime(), TreatmentDose.dose125);
             assertEquals(AppointmentState.maybeLowerDose, result);
 
             try {
@@ -223,11 +224,11 @@ public class Appointment7Tests {
     @Test
     public void setLowerDose() {
         try {
-            sut.saveOAK(1000, 0.4, 200_000, false);
+            sut.saveOAK(1000, 0.4, 200_000, 0, 0, false);
             assertEquals(4, sut.getPatient().getTreatments().last().getOaks().last().getGrade());
             assertEquals(TreatmentDose.dose100, sut.getPatient().getTreatments().last().getDose());
 
-            AppointmentState result = sut.appointment();
+            AppointmentState result = sut.appointment(Calendar.getInstance().getTime(), TreatmentDose.dose125);
             assertEquals(AppointmentState.maybeLowerDose, result);
 
             sut.selectLowerDose(TreatmentDose.dose75);
@@ -250,11 +251,11 @@ public class Appointment7Tests {
     @Test
     public void setSameDose() {
         try {
-            sut.saveOAK(1000, 0.4, 200_000, false);
+            sut.saveOAK(1000, 0.4, 200_000, 0, 0, false);
             assertEquals(4, sut.getPatient().getTreatments().last().getOaks().last().getGrade());
             assertEquals(TreatmentDose.dose100, sut.getPatient().getTreatments().last().getDose());
 
-            AppointmentState result = sut.appointment();
+            AppointmentState result = sut.appointment(Calendar.getInstance().getTime(), TreatmentDose.dose125);
             assertEquals(AppointmentState.maybeLowerDose, result);
 
             sut.selectLowerDose(TreatmentDose.dose100);

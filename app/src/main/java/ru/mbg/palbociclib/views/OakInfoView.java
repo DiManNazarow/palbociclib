@@ -32,7 +32,7 @@ public class OakInfoView extends LinearLayout {
     protected EditText mErythrocytesCountEditText;
     @BindView(R.id.hemoglobin_edit_text)
     protected EditText mHemoglobinCountEditText;
-    @BindView(R.id.button)
+    @BindView(R.id.calculate_grade_button)
     protected Button mKnowGradeButton;
 
     private View mRootView;
@@ -46,6 +46,16 @@ public class OakInfoView extends LinearLayout {
     private double mErythrocytesCount = -1.0;
 
     private double mHemoglobinCount = -1.0;
+
+    private int mGrade;
+
+    private boolean isGradeCalculate = false;
+
+    public interface GradeStateChangeListener {
+        void gradeStateChange(boolean state);
+    }
+
+    private GradeStateChangeListener mGradeStateChangeListener;
 
     public OakInfoView(Context context) {
         super(context);
@@ -118,20 +128,45 @@ public class OakInfoView extends LinearLayout {
         }
     }
 
-    @OnClick(R.id.button)
-    protected void onKnowGradeButtonClick(){
-        int grade;
-        double ln = mLeukocytesCount * ( mNeutrophilsCount / 100.0 );
-        if (ln < 500) {
-            grade = 4;
-        } else if (ln <= 1000) {
-            grade = 3;
-        } else if (ln < 1500) {
-            grade = 2;
-        } else {
-            grade = 1;
+    @OnClick(R.id.calculate_grade_button)
+    protected void onCalculateGradeButtonClick(){
+        processShowGrade();
+    }
+
+    private void processShowGrade(){
+        mKnowGradeButton.setVisibility(GONE);
+        GradeCountView gradeCountView = new GradeCountView(getContext());
+        mGrade = Utils.calculateGrade((int)mLeukocytesCount, (int)mNeutrophilsCount);
+        isGradeCalculate = true;
+        processGradeStateChange(isGradeCalculate);
+        gradeCountView.setGradeCount(mGrade);
+        gradeCountView.setNeutrophilsCount((int)mNeutrophilsCount);
+        gradeCountView.setEditButtonClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((LinearLayout)findViewById(R.id.grade_count_info_container)).removeAllViews();
+                mKnowGradeButton.setVisibility(VISIBLE);
+                ((LinearLayout)findViewById(R.id.grade_count_info_container)).addView(mKnowGradeButton);
+                isGradeCalculate = false;
+                processGradeStateChange(isGradeCalculate);
+            }
+        });
+        ((LinearLayout)findViewById(R.id.grade_count_info_container)).removeAllViews();
+        ((LinearLayout)findViewById(R.id.grade_count_info_container)).addView(gradeCountView);
+    }
+
+    private void processGradeStateChange(boolean state){
+        if (mGradeStateChangeListener != null){
+            mGradeStateChangeListener.gradeStateChange(state);
         }
-        mKnowGradeButton.setText(String.valueOf(grade));
+    }
+
+    public void setGradeStateChangeListener(GradeStateChangeListener gradeCalculateListener) {
+        mGradeStateChangeListener = gradeCalculateListener;
+    }
+
+    public boolean isGradeCalculate() {
+        return isGradeCalculate;
     }
 
     public double getNeutrophilsCount() {
@@ -152,5 +187,9 @@ public class OakInfoView extends LinearLayout {
 
     public double getHemoglobinCount() {
         return mHemoglobinCount;
+    }
+
+    public int getGrade() {
+        return mGrade;
     }
 }

@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Calendar;
+
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import ru.mbg.palbociclib.helpers.DateHelper;
@@ -61,12 +63,12 @@ public class PatientStartTreatmentTests {
     @Test
     public void notStartTreatmentOnBadOAK1() {
         try {
-            sut.saveOAK(100, 0.4, 200_000, false);
+            sut.saveOAK(100, 0.4, 200_000, 0, 0, false);
         } catch (AppError appError) {
             fail();
         }
         try {
-            AppointmentState result = sut.appointment();
+            AppointmentState result = sut.appointment(Calendar.getInstance().getTime(), TreatmentDose.dose125);
             assertEquals(AppointmentState.assignNextAppointment, result);
         } catch (AppError appError) {
             fail();
@@ -76,12 +78,12 @@ public class PatientStartTreatmentTests {
     @Test
     public void notStartTreatmentOnBadOAK2() {
         try {
-            sut.saveOAK(3000, 0.4, 2000, false);
+            sut.saveOAK(3000, 0.4, 2000, 0, 0, false);
         } catch (AppError appError) {
             fail();
         }
         try {
-            AppointmentState result = sut.appointment();
+            AppointmentState result = sut.appointment(Calendar.getInstance().getTime(), TreatmentDose.dose125);
             assertEquals(AppointmentState.assignNextAppointment, result);
         } catch (AppError appError) {
             fail();
@@ -93,12 +95,12 @@ public class PatientStartTreatmentTests {
         assertEquals(1, sut.getPatient().getTreatments().size());
 
         try {
-            sut.saveOAK(3000, 0.4, 200_000, false);
+            sut.saveOAK(3000, 0.4, 200_000, 0, 0, false);
         } catch (AppError appError) {
             fail();
         }
         try {
-            AppointmentState result = sut.appointment();
+            AppointmentState result = sut.appointment(Calendar.getInstance().getTime(), TreatmentDose.dose125);
 
             assertEquals(AppointmentState.done, result);
             assertEquals(2, sut.getPatient().getTreatments().size());

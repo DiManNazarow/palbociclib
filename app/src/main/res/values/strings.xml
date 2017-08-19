@@ -59,7 +59,7 @@
     <string name="treatment_not_started">Прием препарата не начат</string>
     <string name="save_patient_title">Редактирование пациента</string>
     <string name="fever">Лихорадка</string>
-    <string name="assign_next_oak">Результаты анализов не позволяют начать лечение, назначить повторный ОАК</string>
+    <string name="assign_next_oak">Результаты анализов не позволяют начать лечение</string>
     <string name="assign_continue_date">Определить длительность перерыва</string>
     <string name="next_treatment_date">Дата следующего приема</string>
     <string name="continue_date">Дата возобновления</string>
@@ -76,6 +76,9 @@
     <string name="patient_drugs_day_count">День %1$d-й</string>
     <string name="start_drugs">начало приема препарата</string>
 
+    <string name="only_for_doctor">Это приложение только для врачей</string>
+    <string name="work_in_progress">Мы работаем над приложением для пациентов</string>
+    
     <string name="app_ok">Ок</string>
 
     <string name="no">Нет</string>
@@ -84,6 +87,8 @@
     <string name="set_greid">Задать грейд</string>
     <string name="find_by_oak">Определить по ОАК</string>
     <string name="current_admission">ТЕКУЩИЙ ПРИЕМ</string>
+    <string name="grade_count">Грейд %1$d</string>
+    <string name="neutrophils_count_for_grade">Нейтрофилы %1$d/мл</string>
 
     <string name="last_result">Результат предыдущего приема</string>
 
@@ -97,6 +102,16 @@
     <string name="gl_count">%1$d г/л</string>
 
     <string name="calculate_dose">Расчитать дозировку</string>
+
+    <string name="recommended_dose">РЕКОМЕНДУЕМАЯ ДОЗИРОВКА</string>
+    <string name="treatment_params">ПАРАМЕТРЫ ЛЕЧЕНИЯ</string>
+
+    <string name="choose_treatment_dose">Выберите дозу препарата</string>
+
+    <string name="next_reception">Следующий прием</string>
+    <string name="dosage">Дозировка</string>
+
+    <string name="confirm_appointment">Подтвердить назначение</string>
 
     <string name="control">Упавление терапией</string>
     <string name="control.start">1. Старт</string>
@@ -195,5 +210,7 @@
 
     <string name="error.miss_neutrophils_for_grade.title">Ошибка выбора грейда</string>
     <string name="error.miss_neutrophils_for_grade.text">Укажите количество нейтрофилов для установки грейда</string>
+    <string name="error.error_save_appointment">Ошибка назначения лечения</string>
+    <string name="error.wrong_aok_data">Указанные данные ОАК не позволяют назначить лечение</string>
 
 </resources>

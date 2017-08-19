@@ -137,19 +137,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="10"
-                    android:text="@string/was_background_therapy"
+                    android:text="@string/was_hormonal_therapy"
                     style="@style/ItemText"/>
 
-                <TextView
-                    android:id="@+id/date_background_therapy"
+                <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/hormonal_therapy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:layout_weight="0"
-                    android:textSize="18sp"
-                    android:text="@string/no"
-                    android:drawableRight="@drawable/ic_chevron_right_grey600_24dp"
-                    style="@style/InfoText"/>
+                    android:textSize="18sp"/>
 
                 <!--<Switch-->
                     <!--android:id="@+id/was_background_therapy"-->

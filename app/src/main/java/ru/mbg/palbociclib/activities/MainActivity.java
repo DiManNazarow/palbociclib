@@ -3,6 +3,7 @@ package ru.mbg.palbociclib.activities;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -96,8 +97,21 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         return showFragmentForID(item.getItemId());
     }
 
+    @Override
+    public void onBackPressed(){
+        if (!manager.getFragments().isEmpty()){
+            manager.popBackStack();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
     public void openPatientsFragment(){
-        manager.beginTransaction().replace(R.id.content, getPatientsFragment()).commit();
+        manager.beginTransaction().replace(R.id.content, getPatientsFragment()).addToBackStack(null).commit();
+    }
+
+    public void openFragment(Fragment fragment){
+        manager.beginTransaction().replace(R.id.content, fragment).addToBackStack(null).commit();
     }
 
     public void selectPrevMonth(View v) {

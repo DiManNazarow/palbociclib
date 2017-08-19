@@ -22,6 +22,15 @@ public class IntroActivity extends AppCompatActivity {
                 finish();
             }
         });
+        findViewById(R.id.i_am_not_a_doctor_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(IntroActivity.this, NotForPatientActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
 }

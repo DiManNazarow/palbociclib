@@ -19,6 +19,10 @@ public class Oak extends RealmObject {
     private double neutrophils = 0.0;
     /// Тромбоциты
     private long platelets = 0;
+    /// Эритроциты
+    private long erythrocytes = 0;
+    /// Гемоглобин
+    private long hemoglobin = 0;
     /// Грейд
     private int grade = 0;
     /// Лихорадка
@@ -82,6 +86,22 @@ public class Oak extends RealmObject {
 
     public void setPlatelets(long platelets) {
         this.platelets = platelets;
+    }
+
+    public long getErythrocytes() {
+        return erythrocytes;
+    }
+
+    public void setErythrocytes(long erythrocytes) {
+        this.erythrocytes = erythrocytes;
+    }
+
+    public long getHemoglobin() {
+        return hemoglobin;
+    }
+
+    public void setHemoglobin(long hemoglobin) {
+        this.hemoglobin = hemoglobin;
     }
 
     public int getGrade() {

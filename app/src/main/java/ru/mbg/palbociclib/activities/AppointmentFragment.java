@@ -251,9 +251,9 @@ public class AppointmentFragment extends Fragment {
                     double neutrophilis = Double.parseDouble(neutrophilisTextView.getText().toString()) / 100.0;
                     int platelets = Integer.parseInt(plateletsTextView.getText().toString());
                     boolean fever = feverSwitch.isChecked();
-                    patientModel.saveOAK(leukocytes, neutrophilis, platelets, fever);
+                    //patientModel.saveOAK(leukocytes, neutrophilis, platelets, fever);
                    // patientModel = new PatientModel(getArguments().getString(PATIENT_ID), new UserDefaultsSettings(getContext()));
-                    AppointmentState result = patientModel.appointment();
+                    AppointmentState result = patientModel.appointment(null, null);
                     if (result == AppointmentState.done) {
                         getFragmentManager().popBackStack();
                     } else {
@@ -264,7 +264,7 @@ public class AppointmentFragment extends Fragment {
                     if (setDate == null) {
                         return;
                     }
-                    patientModel.assignOAKAndAppointmentAt(setDate);
+                    patientModel.assignOAKAndAppointmentAt(setDate, null);
                     getFragmentManager().popBackStack();
                     break;
                 case assignContinueDate:

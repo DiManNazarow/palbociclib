@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -82,8 +83,8 @@ public class CalendarTests {
         PatientModel patient;
         try {
             patient = new PatientModel("Василиса Иванова", Menopause.perimenopause, false, new TestSettings(), testRealm, dateHelper);
-            patient.saveOAK(4000, 0.4, 200_000, false);
-            patient.appointment();
+            patient.saveOAK(4000, 0.4, 200_000, 0, 0, false);
+            patient.appointment(Calendar.getInstance().getTime(), TreatmentDose.dose125);
         } catch (AppError appError) {
             fail();
             return;
@@ -114,14 +115,14 @@ public class CalendarTests {
         PatientModel patient;
         try {
             patient = new PatientModel("Василиса Иванова", Menopause.perimenopause, false, new TestSettings(), testRealm, dateHelper);
-            patient.saveOAK(4000, 0.4, 200_000, false);
-            patient.appointment();
+            patient.saveOAK(4000, 0.4, 200_000, 0, 0, false);
+            patient.appointment(Calendar.getInstance().getTime(), TreatmentDose.dose125);
             dateHelper.mockDate = DateHelper.advancingDays(dateHelper.mockDate, 14);
-            patient.saveOAK(4000, 0.4, 200_000, false);
-            patient.appointment();
+            patient.saveOAK(4000, 0.4, 200_000, 0, 0, false);
+            patient.appointment(Calendar.getInstance().getTime(), TreatmentDose.dose125);
             dateHelper.mockDate = DateHelper.advancingDays(dateHelper.mockDate, 14);
-            patient.saveOAK(4000, 0.4, 200_000, false);
-            patient.appointment();
+            patient.saveOAK(4000, 0.4, 200_000, 0, 0, false);
+            patient.appointment(Calendar.getInstance().getTime(), TreatmentDose.dose125);
         } catch (AppError appError) {
             fail();
             return;

@@ -11,11 +11,26 @@
         android:orientation="vertical">
 
         <ru.mbg.palbociclib.views.ItemView
-            android:id="@+id/last_result_item"
+            android:id="@+id/last_oak_item"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingBottom="@dimen/item_padding_small"
+            android:paddingTop="@dimen/item_padding_small">
 
         </ru.mbg.palbociclib.views.ItemView>
+
+        <ru.mbg.palbociclib.views.LastOakView
+            android:id="@+id/last_oak_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:background="@color/white"
+            android:paddingLeft="@dimen/item_padding"
+            android:paddingRight="@dimen/item_padding"
+            android:paddingBottom="@dimen/item_padding">
+
+        </ru.mbg.palbociclib.views.LastOakView>
 
         <TextView
             android:layout_width="wrap_content"
@@ -34,13 +49,13 @@
 
         </ru.mbg.palbociclib.views.PagePickerView>
 
-        <ru.mbg.palbociclib.views.GradeView
+        <ru.mbg.palbociclib.views.SetGradeView
             android:id="@+id/grade_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="visible">
 
-        </ru.mbg.palbociclib.views.GradeView>
+        </ru.mbg.palbociclib.views.SetGradeView>
 
         <ru.mbg.palbociclib.views.OakInfoView
             android:id="@+id/oak_info_view"
@@ -82,11 +97,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/button"
+            <ru.mbg.palbociclib.views.CustomButton
+                android:id="@+id/calculate_dose_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:backgroundTint="#f55969"
                 android:text="@string/calculate_dose"
                 style="@style/Button"/>
 

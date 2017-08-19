@@ -21,7 +21,7 @@ import ru.mbg.palbociclib.R;
 import ru.mbg.palbociclib.utils.GuiUtils;
 import ru.mbg.palbociclib.utils.Utils;
 
-public class GradeView extends LinearLayout implements GradePickerView.OnGradeChangeListener{
+public class SetGradeView extends LinearLayout implements GradePickerView.OnGradeChangeListener{
 
     @BindView(R.id.grade_picker_view)
     protected GradePickerView mGradePickerView;
@@ -32,25 +32,25 @@ public class GradeView extends LinearLayout implements GradePickerView.OnGradeCh
 
     private double mNeutrophilisCount = -1.0;
 
-    private int mGrade;
+    private int mGrade = 1;
 
-    public GradeView(Context context) {
+    public SetGradeView(Context context) {
         super(context);
         init();
     }
 
-    public GradeView(Context context, @Nullable AttributeSet attrs) {
+    public SetGradeView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public GradeView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public SetGradeView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public GradeView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public SetGradeView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init();
     }

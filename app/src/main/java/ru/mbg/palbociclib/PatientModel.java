@@ -1,5 +1,6 @@
 package ru.mbg.palbociclib;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
@@ -15,6 +16,7 @@ import ru.mbg.palbociclib.models.Oak;
 import ru.mbg.palbociclib.models.Patient;
 import ru.mbg.palbociclib.models.Treatment;
 import ru.mbg.palbociclib.models.TreatmentDose;
+import ru.mbg.palbociclib.utils.DateUtils;
 
 public class PatientModel {
     private final Patient patient;
@@ -52,7 +54,11 @@ public class PatientModel {
             public void execute(Realm realm) {
                 RealmResults<Patient> patients = realm.where(Patient.class).equalTo("id", patientID).findAll();
                 for (Patient patient : patients){
+                    patient.getBackgroundTherapy().deleteFromRealm();
                     patient.getAppointments().deleteAllFromRealm();
+                    for (Treatment treatment : patient.getTreatments()){
+                        treatment.getOaks().deleteAllFromRealm();
+                    }
                     patient.getTreatments().deleteAllFromRealm();
                 }
                 patients.deleteAllFromRealm();
@@ -62,23 +68,24 @@ public class PatientModel {
 
     /// Первичный прием, генерация рекомендаций для фоновой терапии
     public PatientModel(String name, Menopause menopause, boolean wasHormonalTherapy, Settings settings) throws AppError {
-        this(name, menopause, wasHormonalTherapy, null, null, settings, null, null);
+        this(name, menopause, wasHormonalTherapy, null, null, null, settings, null, null);
     }
 
     public PatientModel(String name, Menopause menopause, boolean wasHormonalTherapy, Settings settings, Realm realm) throws AppError {
-        this(name, menopause, wasHormonalTherapy, null, null, settings, realm, null);
+        this(name, menopause, wasHormonalTherapy, null, null, null, settings, realm, null);
     }
 
     public PatientModel(String name, Menopause menopause, boolean wasHormonalTherapy, Settings settings, Realm realm, DateHelper date) throws AppError {
-        this(name, menopause, wasHormonalTherapy, null, null, settings, realm, date);
+        this(name, menopause, wasHormonalTherapy, null, null, null, settings, realm, date);
     }
 
 
     public PatientModel(PatientModelArgument argument) throws AppError {
-        this(argument.mName, argument.mMenopause, argument.wasHormonalTherapy, argument.mAppointment, argument.mBackgroundTherapy, argument.mSettings, argument.mRealm, null);
+        this(argument.mName, argument.mMenopause, argument.wasHormonalTherapy, argument.mAppointment, argument.mBackgroundTherapy, argument.dateOak, argument.mSettings, argument.mRealm, null);
     }
 
     public static class PatientModelArgument {
+        public Date dateOak;
         public String mName;
         public Menopause mMenopause;
         public boolean wasHormonalTherapy;
@@ -88,7 +95,7 @@ public class PatientModel {
         public Realm mRealm;
     }
 
-    public PatientModel(String name, Menopause menopause, boolean wasHormonalTherapy, Appointment appointment, BackgroundTherapy backgroundTherapy, Settings settings, Realm realm, DateHelper date) throws AppError {
+    public PatientModel(String name, Menopause menopause, boolean wasHormonalTherapy, Appointment appointment, BackgroundTherapy backgroundTherapy, Date oakDate, Settings settings, Realm realm, DateHelper date) throws AppError {
         this.realm = realm == null ? Realm.getDefaultInstance() : realm;
         this.dateHelper = date == null ? DateHelper.instance : date;
         this.settings = settings;
@@ -113,8 +120,12 @@ public class PatientModel {
 
             assignTherapy();
 
-            assignOAKToBeReadyTo(dateHelper.currentDate());
-            patient.getTreatments().last().getOaks().last().setAssignmentDate(dateHelper.currentDate());
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(oakDate);
+            calendar.set(Calendar.DAY_OF_MONTH, 1);
+
+            assignOAKToBeReadyTo(calendar.getTime());
+            //patient.getTreatments().last().getOaks().last().setAssignmentDate(dateHelper.currentDate());
             assignAppointmentAt(dateHelper.currentDate());
 
             this.realm.commitTransaction();
@@ -174,7 +185,7 @@ public class PatientModel {
         patient.getAppointments().add(appointment);
     }
 
-    public void saveOAK(final int leukocytes, final double neutrophilis, final int platelets, final boolean fever) throws AppError {
+    public void saveOAK(final int leukocytes, final double neutrophilis, final int platelets, final int erythrocytes, final int hemoglobin, final boolean fever) throws AppError {
         Treatment currentTreatment = patient.getTreatments().last();
         if (currentTreatment == null) {
             throw new AppError(AppError.notSupportedPatient);
@@ -183,9 +194,9 @@ public class PatientModel {
         if (oak == null) {
             throw new AppError(AppError.oakNotAssigned);
         }
-        if (oak.getReadyDate() != null) {
-            throw new AppError(AppError.oakNotAssigned);
-        }
+//        if (oak.getReadyDate() != null) {
+//            throw new AppError(AppError.oakNotAssigned);
+//        }
 
         final int grade;
         double ln = leukocytes * neutrophilis;
@@ -206,13 +217,15 @@ public class PatientModel {
                 oak.setLeukocytes(leukocytes);
                 oak.setNeutrophils(neutrophilis);
                 oak.setPlatelets(platelets);
+                oak.setErythrocytes(erythrocytes);
+                oak.setHemoglobin(hemoglobin);
                 oak.setGrade(grade);
                 oak.setFever(fever);
             }
         });
     }
 
-    public AppointmentState appointment() throws AppError {
+    public AppointmentState appointment(Date nextReceptionDate, TreatmentDose treatmentDose) throws AppError {
         Treatment currentTreatment = patient.getTreatments().last();
         if (currentTreatment == null) {
             throw new AppError(AppError.notSupportedPatient);
@@ -236,7 +249,8 @@ public class PatientModel {
         this.realm.beginTransaction();
         try {
             if (patient.getTreatments().size() == 1) {
-                if (startTreatment(oak)) {
+                if (startTreatment(oak, treatmentDose)) {
+                    assignAppointmentAt(nextReceptionDate);
                     result = AppointmentState.done;
                 } else {
                     result = AppointmentState.assignNextAppointment;
@@ -282,7 +296,7 @@ public class PatientModel {
         }
     }
 
-    public void assignOAKAndAppointmentAt(final Date date) throws AppError {
+    public void assignOAKAndAppointmentAt(final Date nextOakDate, final Date nextReceptionDate) throws AppError {
         final Appointment currentAppointment = patient.getAppointments().last();
         if (currentAppointment == null) {
             throw new AppError(AppError.notSupportedPatient);
@@ -291,7 +305,7 @@ public class PatientModel {
             throw new AppError(AppError.wrongAppointmentState);
         }
 
-        Date oakDate = DateHelper.advancingDays(DateHelper.strippingTime(date), -settings.getOakReadyDays());
+        Date oakDate = DateHelper.advancingDays(DateHelper.strippingTime(nextOakDate), -settings.getOakReadyDays());
         if (oakDate.getTime() <= dateHelper.currentDate().getTime()) {
             throw new AppError(AppError.wrongAppointmentDate);
         }
@@ -301,8 +315,8 @@ public class PatientModel {
             public void execute(Realm realm) {
                 currentAppointment.setState(AppointmentState.done);
 
-                assignOAKToBeReadyTo(date);
-                assignAppointmentAt(date);
+                assignOAKToBeReadyTo(nextOakDate);
+                assignAppointmentAt(nextReceptionDate);
             }
         });
     }
@@ -373,12 +387,12 @@ public class PatientModel {
         });
     }
 
-    private boolean startTreatment(Oak oak) {
+    private boolean startTreatment(Oak oak, TreatmentDose treatmentDose) {
         if (oak.getGrade() < 3 && oak.getPlatelets() > 50_000) {
             Treatment treatment = realm.createObject(Treatment.class);
             treatment.setCycleNumber(1);
             treatment.setStartDate(dateHelper.currentDate());
-            treatment.setDose(TreatmentDose.dose125);
+            treatment.setDose(treatmentDose);
             treatment.getOaks().add(oak);
             patient.getTreatments().add(treatment);
             Date date14 = DateHelper.advancingDays(dateHelper.currentDate(), 14);

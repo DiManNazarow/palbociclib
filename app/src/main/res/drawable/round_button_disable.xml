@@ -8,7 +8,7 @@
                 android:radius="23dp" />
 
             <solid
-                android:color="#f55969" />
+                android:color="@color/disable_color" />
         </shape>
     </item>
 </selector>

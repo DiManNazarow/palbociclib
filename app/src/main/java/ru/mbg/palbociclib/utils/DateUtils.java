@@ -25,9 +25,28 @@ public class DateUtils {
         dialog.show();
     }
 
-    public static String getCurrentDate(){
+    public static String getCurrentDateString(){
         Calendar calendar = Calendar.getInstance();
         return format(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+    }
+
+    public static Date getCurrentDate(){
+        Calendar calendar = Calendar.getInstance();
+        return calendar.getTime();
+    }
+
+    public static Date getCurrentDate(int offset){
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH, offset);
+        return calendar.getTime();
+    }
+
+    public static Date getDate(int year, int month, int dayOfMonth){
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        return calendar.getTime();
     }
 
     public static String format(long time, String pattern) {

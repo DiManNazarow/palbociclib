@@ -68,7 +68,7 @@ public class PatientSaveOAKTests {
             }
         });
         try {
-            sut.saveOAK(10, 1, 10, false);
+            sut.saveOAK(10, 1, 10, 0, 0, false);
             fail();
         } catch (AppError appError) {
             assertEquals(AppError.oakNotAssigned, appError.type);
@@ -78,7 +78,7 @@ public class PatientSaveOAKTests {
     @Test
     public void saveOAKGrade4() {
         try {
-            sut.saveOAK(1000, 0.45, 20, false);
+            sut.saveOAK(1000, 0.45, 20, 0, 0, false);
 
             Treatment treatment = sut.getPatient().getTreatments().first();
             Oak oak = treatment.getOaks().first();
@@ -98,7 +98,7 @@ public class PatientSaveOAKTests {
     @Test
     public void saveOAKGrade3() {
         try {
-            sut.saveOAK(2000, 0.45, 20, false);
+            sut.saveOAK(2000, 0.45, 20, 0, 0, false);
 
             Treatment treatment = sut.getPatient().getTreatments().first();
             Oak oak = treatment.getOaks().first();
@@ -111,7 +111,7 @@ public class PatientSaveOAKTests {
     @Test
     public void saveOAKGrade2() {
         try {
-            sut.saveOAK(3000, 0.45, 20, false);
+            sut.saveOAK(3000, 0.45, 20, 0, 0, false);
 
             Treatment treatment = sut.getPatient().getTreatments().first();
             Oak oak = treatment.getOaks().first();
@@ -124,7 +124,7 @@ public class PatientSaveOAKTests {
     @Test
     public void saveOAKGrade1() {
         try {
-            sut.saveOAK(4000, 0.45, 20, false);
+            sut.saveOAK(4000, 0.45, 20, 0, 0, false);
 
             Treatment treatment = sut.getPatient().getTreatments().first();
             Oak oak = treatment.getOaks().first();

@@ -56,4 +56,12 @@ public enum TreatmentDose {
                 return none;
         }
     }
+
+    public static String[] getAsStringList(){
+        String[] list = new String[3];
+        list[0] = dose75.description();
+        list[1] = dose100.description();
+        list[2] = dose125.description();
+        return list;
+    }
 }

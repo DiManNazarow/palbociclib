@@ -281,8 +281,7 @@ public class PatientCardFragment extends Fragment {
                         holder.drugStartDate.setVisibility(View.VISIBLE);
                         holder.itemView.findViewById(R.id.drug_divider).setVisibility(View.VISIBLE);
 
-                        Oak oakReady = treatment.getOaks().where().isNotNull("readyDate").findFirst();
-                        holder.mCycleNumber.setText(getString(R.string.cycle_oak_card, oakReady.getGrade()));
+                        holder.mCycleNumber.setText(getString(R.string.cycle_oak_card, treatment.getCycleNumber()));
                         DateTime nowDate = new DateTime(Calendar.getInstance());
                         DateTime startDrugDate = new DateTime(treatment.getStartDate());
                         holder.mDateOfOak.setText(getString(R.string.patient_drugs_day_count, Days.daysBetween(startDrugDate, nowDate).getDays()));
@@ -313,8 +312,8 @@ public class PatientCardFragment extends Fragment {
                         }
                     });
 
-                    holder.mCycleNumber.setText(getString(R.string.cycle_oak_card, oakReady.getGrade()));
-                    holder.mDateOfOak.setText(DateUtils.format(oakReady.getAssignmentDate(), DateUtils.DEFAULT_DATE_PATTERN));
+                    holder.mCycleNumber.setText(getString(R.string.cycle_oak_card, item.getTreatment().getCycleNumber()));
+                    holder.mDateOfOak.setText(DateUtils.format(oakReady.getReadyDate(), DateUtils.DEFAULT_DATE_PATTERN));
                     holder.drugs.setText(oakReady.description());
                     break;
                 case cycle:

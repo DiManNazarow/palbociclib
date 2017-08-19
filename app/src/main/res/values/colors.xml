@@ -40,4 +40,6 @@
 
     <color name="separate_line_color">#f3f1ed</color>
 
+    <color name="disable_color">#c9d1da</color>
+
 </resources>

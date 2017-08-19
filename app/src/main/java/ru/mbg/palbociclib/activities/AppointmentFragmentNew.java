@@ -1,48 +1,51 @@
 package ru.mbg.palbociclib.activities;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.SeekBar;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.joda.time.DateTime;
+import org.joda.time.Days;
+
+import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.realm.RealmList;
+import io.realm.RealmResults;
+import ru.mbg.palbociclib.AppError;
+import ru.mbg.palbociclib.Constants;
 import ru.mbg.palbociclib.PatientModel;
 import ru.mbg.palbociclib.R;
 import ru.mbg.palbociclib.UserDefaultsSettings;
+import ru.mbg.palbociclib.models.Appointment;
+import ru.mbg.palbociclib.models.AppointmentState;
 import ru.mbg.palbociclib.models.Oak;
 import ru.mbg.palbociclib.models.Treatment;
-import ru.mbg.palbociclib.views.GradePickerView;
-import ru.mbg.palbociclib.views.GradeView;
+import ru.mbg.palbociclib.models.TreatmentDose;
+import ru.mbg.palbociclib.views.CustomButton;
+import ru.mbg.palbociclib.views.LastOakView;
+import ru.mbg.palbociclib.views.SetGradeView;
 import ru.mbg.palbociclib.views.ItemView;
 import ru.mbg.palbociclib.views.OakInfoView;
 import ru.mbg.palbociclib.views.PagePickerView;
-import ru.mbg.palbociclib.views.WrapContentViewPager;
 
-public class AppointmentFragmentNew extends Fragment {
+public class AppointmentFragmentNew extends AbsAppointmentFragment {
 
     private static final String PATIENT_ID = "patient_id";
 
-    private PatientModel patientModel;
-
-    @BindView(R.id.last_result_item)
-    protected ItemView mLastResultItem;
     @BindView(R.id.page_picker_view)
     protected PagePickerView mPagePickerView;
     @BindView(R.id.grade_view)
-    protected GradeView mGradeView;
+    protected SetGradeView mSetGradeView;
     @BindView(R.id.oak_info_view)
     protected OakInfoView mOakInfoView;
+    @BindView(R.id.calculate_dose_button)
+    protected CustomButton mCalculateDoseButton;
 
     public static AppointmentFragmentNew newInstance(String patientID) {
         AppointmentFragmentNew fragment = new AppointmentFragmentNew();
@@ -55,11 +58,17 @@ public class AppointmentFragmentNew extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    protected PatientModel getPatientModel() {
         if (getArguments() != null) {
             String patientID = getArguments().getString(PATIENT_ID);
-            patientModel = new PatientModel(patientID, new UserDefaultsSettings(getContext()));
+            return new PatientModel(patientID, new UserDefaultsSettings(getContext()));
+        } else {
+            return null;
         }
-        setHasOptionsMenu(true);
     }
 
     @Override
@@ -77,33 +86,50 @@ public class AppointmentFragmentNew extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-        mLastResultItem.setTitleTextViewText(R.string.last_result);
         mPagePickerView.setFirstPickerText(R.string.set_greid);
         mPagePickerView.setSecondPickerText(R.string.find_by_oak);
         mPagePickerView.setOnPickerClickListener(new PagePickerView.OnPickerClickListener() {
             @Override
             public void onFirstPickerClick() {
-                mGradeView.setVisibility(View.VISIBLE);
+                mSetGradeView.setVisibility(View.VISIBLE);
                 mOakInfoView.setVisibility(View.GONE);
+                mCalculateDoseButton.setEnabled(true);
             }
 
             @Override
             public void onSecondPickerClick() {
-                mGradeView.setVisibility(View.GONE);
+                mSetGradeView.setVisibility(View.GONE);
                 mOakInfoView.setVisibility(View.VISIBLE);
+                mCalculateDoseButton.setEnabled(mOakInfoView.isGradeCalculate());
             }
         });
-        //setupGradeInfo();
+        mOakInfoView.setGradeStateChangeListener(new OakInfoView.GradeStateChangeListener() {
+            @Override
+            public void gradeStateChange(boolean state) {
+                mCalculateDoseButton.setEnabled(state);
+            }
+        });
+        mCalculateDoseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).openFragment(RecommendedDoseFragment.newInstance(getArguments().getString(PATIENT_ID), fillAppointmentModel()));
+            }
+        });
     }
 
-//    private void setupGradeInfo(){
-//        Treatment treatment = patientModel.getPatient().getTreatments().last();
-//        if (treatment != null) {
-//            Oak oak = treatment.getOaks().last();
-//            if (oak != null && oak.getReadyDate() != null) {
-//                double netrophils = oak.getNeutrophils()/100;
-//                mGradeView.setNeutrophilisTextCount(getString(R.string.neutrophils_count, netrophils));
-//            }
-//        }
-//    }
+    private AppointmentModel fillAppointmentModel(){
+        if (mSetGradeView.getVisibility() == View.VISIBLE){
+            mAppointmentModel.grade = mSetGradeView.getGrade();
+            mAppointmentModel.neutrophils = mSetGradeView.getNeutrophilisCount();
+        }
+        if (mOakInfoView.getVisibility() == View.VISIBLE){
+            mAppointmentModel.grade = mOakInfoView.getGrade();
+            mAppointmentModel.neutrophils = mOakInfoView.getNeutrophilsCount();
+            mAppointmentModel.erythrocytes = mOakInfoView.getErythrocytesCount();
+            mAppointmentModel.leukocytes = mOakInfoView.getLeukocytesCount();
+            mAppointmentModel.platelets = mOakInfoView.getPlateletsCount();
+            mAppointmentModel.hemoglobin = mOakInfoView.getHemoglobinCount();
+        }
+        return mAppointmentModel;
+    }
 }

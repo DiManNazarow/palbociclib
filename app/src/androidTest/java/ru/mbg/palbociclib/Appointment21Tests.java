@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import io.realm.Realm;
@@ -47,11 +48,11 @@ public class Appointment21Tests {
 
         try {
             sut = new PatientModel("Василиса Иванова", Menopause.perimenopause, false, new TestSettings(), testRealm, dateHelper);
-            sut.saveOAK(3000, 0.4, 200_000, false);
-            sut.appointment();
+            sut.saveOAK(3000, 0.4, 200_000, 0, 0, false);
+            sut.appointment(Calendar.getInstance().getTime(), TreatmentDose.dose125);
             dateHelper.mockDate = DateHelper.advancingDays(dateHelper.mockDate, 14);
-            sut.saveOAK(2000, 0.4, 200_000, false);
-            sut.appointment();
+            sut.saveOAK(2000, 0.4, 200_000, 0, 0, false);
+            sut.appointment(Calendar.getInstance().getTime(), TreatmentDose.dose125);
             dateHelper.mockDate = DateHelper.advancingDays(dateHelper.mockDate, 7);
         } catch (AppError appError) {
             appError.printStackTrace();
@@ -79,11 +80,11 @@ public class Appointment21Tests {
             Treatment treatment = sut.getPatient().getTreatments().last();
 
             Oak readyOak = treatment.getOaks().last();
-            sut.saveOAK(4000, 0.4, 200_000, false);
+            sut.saveOAK(4000, 0.4, 200_000, 0, 0, false);
             assertNotNull(readyOak.getReadyDate());
             assertEquals(1, readyOak.getGrade());
 
-            AppointmentState result = sut.appointment();
+            AppointmentState result = sut.appointment(Calendar.getInstance().getTime(), TreatmentDose.dose125);
             assertEquals(AppointmentState.done, result);
 
             Oak oak = treatment.getOaks().last();
@@ -105,11 +106,11 @@ public class Appointment21Tests {
             Treatment treatment = sut.getPatient().getTreatments().last();
 
             Oak readyOak = treatment.getOaks().last();
-            sut.saveOAK(3000, 0.4, 200_000, false);
+            sut.saveOAK(3000, 0.4, 200_000, 0, 0, false);
             assertNotNull(readyOak.getReadyDate());
             assertEquals(2, readyOak.getGrade());
 
-            AppointmentState result = sut.appointment();
+            AppointmentState result = sut.appointment(Calendar.getInstance().getTime(), TreatmentDose.dose125);
             assertEquals(AppointmentState.done, result);
 
             Oak oak = treatment.getOaks().last();
@@ -131,12 +132,12 @@ public class Appointment21Tests {
             Treatment treatment = sut.getPatient().getTreatments().last();
 
             Oak readyOak = treatment.getOaks().last();
-            sut.saveOAK(2000, 0.4, 200_000, false);
+            sut.saveOAK(2000, 0.4, 200_000, 0, 0, false);
             assertNotNull(readyOak.getReadyDate());
             assertEquals(3, readyOak.getGrade());
             assertFalse(readyOak.isFever());
 
-            AppointmentState result = sut.appointment();
+            AppointmentState result = sut.appointment(Calendar.getInstance().getTime(), TreatmentDose.dose125);
             assertEquals(AppointmentState.done, result);
 
             Oak oak = treatment.getOaks().last();
@@ -159,12 +160,12 @@ public class Appointment21Tests {
             assertEquals(TreatmentDose.dose125, treatment.getDose());
 
             Oak readyOak = treatment.getOaks().last();
-            sut.saveOAK(2000, 0.4, 200_000, true);
+            sut.saveOAK(2000, 0.4, 200_000, 0, 0, false);
             assertNotNull(readyOak.getReadyDate());
             assertEquals(3, readyOak.getGrade());
             assertTrue(readyOak.isFever());
 
-            AppointmentState result = sut.appointment();
+            AppointmentState result = sut.appointment(Calendar.getInstance().getTime(), TreatmentDose.dose125);
             assertEquals(AppointmentState.doseWasReduced, result);
 
             Oak oak = treatment.getOaks().last();
@@ -192,12 +193,12 @@ public class Appointment21Tests {
             });
 
             Oak readyOak = treatment.getOaks().last();
-            sut.saveOAK(2000, 0.4, 200_000, true);
+            sut.saveOAK(2000, 0.4, 200_000, 0, 0, false);
             assertNotNull(readyOak.getReadyDate());
             assertEquals(3, readyOak.getGrade());
             assertTrue(readyOak.isFever());
 
-            AppointmentState result = sut.appointment();
+            AppointmentState result = sut.appointment(Calendar.getInstance().getTime(), TreatmentDose.dose125);
             assertEquals(AppointmentState.assignContinueTreatment, result);
 
             assertEquals(TreatmentDose.dose75, treatment.getDose());
@@ -217,12 +218,12 @@ public class Appointment21Tests {
             assertEquals(TreatmentDose.dose125, treatment.getDose());
 
             Oak readyOak = treatment.getOaks().last();
-            sut.saveOAK(1000, 0.4, 200_000, true);
+            sut.saveOAK(1000, 0.4, 200_000, 0, 0, false);
             assertNotNull(readyOak.getReadyDate());
             assertEquals(4, readyOak.getGrade());
             assertTrue(readyOak.isFever());
 
-            AppointmentState result = sut.appointment();
+            AppointmentState result = sut.appointment(Calendar.getInstance().getTime(), TreatmentDose.dose125);
             assertEquals(AppointmentState.doseWasReduced, result);
 
             assertEquals(TreatmentDose.dose100, treatment.getDose());
@@ -248,12 +249,12 @@ public class Appointment21Tests {
             });
 
             Oak readyOak = treatment.getOaks().last();
-            sut.saveOAK(1000, 0.4, 200_000, true);
+            sut.saveOAK(1000, 0.4, 200_000, 0, 0, false);
             assertNotNull(readyOak.getReadyDate());
             assertEquals(4, readyOak.getGrade());
             assertTrue(readyOak.isFever());
 
-            AppointmentState result = sut.appointment();
+            AppointmentState result = sut.appointment(Calendar.getInstance().getTime(), TreatmentDose.dose125);
             assertEquals(AppointmentState.assignContinueTreatment, result);
 
             assertEquals(TreatmentDose.dose75, treatment.getDose());

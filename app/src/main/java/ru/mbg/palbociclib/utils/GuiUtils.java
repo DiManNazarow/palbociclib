@@ -38,4 +38,15 @@ public class GuiUtils {
         }
     }
 
+    public static void showSelectDialog(Context context, String title, String[] elements, DialogInterface.OnClickListener onClickListener, boolean cancelable){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(title);
+        builder.setItems(elements, onClickListener);
+        builder.setCancelable(cancelable);
+        try {
+            builder.show();
+        } catch (WindowManager.BadTokenException ignored) {
+        }
+    }
+
 }

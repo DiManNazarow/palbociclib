@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.SwitchCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -22,11 +23,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,7 +45,6 @@ import butterknife.ButterKnife;
 import ru.mbg.palbociclib.AppError;
 import ru.mbg.palbociclib.Constants;
 import ru.mbg.palbociclib.PatientModel;
-import ru.mbg.palbociclib.PatientProvider;
 import ru.mbg.palbociclib.R;
 import ru.mbg.palbociclib.Settings;
 import ru.mbg.palbociclib.UserDefaultsSettings;
@@ -66,11 +66,11 @@ public class AddPatientFragment extends Fragment {
     private ImageView avatarImageView;
     private TextView menopauseTextView;
     private EditText nameEditText;
-    private TextView mDateBackgroundTherapy;
+    //private TextView mDateBackgroundTherapy;
     private Bitmap avatarImage;
     private Menopause menopause = Menopause.none;
     private Appointment mAppointment = new Appointment();
-    private BackgroundTherapy mBackgroundTherapy = new BackgroundTherapy();
+    private boolean wasHormonalTherapy = false;
 
     @BindView(R.id.date_oak)
     protected LinearLayout mDateOak;
@@ -78,6 +78,10 @@ public class AddPatientFragment extends Fragment {
     protected TextView mDateOakTextView;
     @BindView(R.id.delete_button)
     protected TextView mDeleteButton;
+    @BindView(R.id.hormonal_therapy)
+    protected SwitchCompat mWasHormonalTherapy;
+
+    private Date mOakDate;
 
     public AddPatientFragment() {
     }
@@ -99,6 +103,7 @@ public class AddPatientFragment extends Fragment {
                 patient = PatientModel.getPatientWithID(patientID, null);
             }
         }
+        mOakDate = DateUtils.getCurrentDate();
     }
 
     @Override
@@ -120,8 +125,8 @@ public class AddPatientFragment extends Fragment {
         nameEditText = (EditText) view.findViewById(R.id.name);
         menopauseTextView = (TextView) view.findViewById(R.id.menopause);
         Button saveButton = (Button) view.findViewById(R.id.add_button);
-        mDateBackgroundTherapy = (TextView) view.findViewById(R.id.date_background_therapy);
-
+        //mDateBackgroundTherapy = (TextView) view.findViewById(R.id.date_background_therapy);
+        mWasHormonalTherapy.setChecked(wasHormonalTherapy);
 
         nameEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -153,7 +158,7 @@ public class AddPatientFragment extends Fragment {
         if (patient != null) {
             avatarImageView.setImageDrawable(AvatarHelper.getAvatarForPatient(patient, getContext()));
             nameEditText.setText(patient.getName());
-            mDateBackgroundTherapy.setText(DateUtils.format(patient.getBackgroundTherapy().getDate(), DateUtils.DEFAULT_DATE_PATTERN));
+            //mDateBackgroundTherapy.setText(DateUtils.format(patient.getBackgroundTherapy().getDate(), DateUtils.DEFAULT_DATE_PATTERN));
             mDateOakTextView.setText(DateUtils.format(patient.getAppointments().get(0).getDate(), DateUtils.DEFAULT_DATE_PATTERN));
             menopause = patient.getMenopause();
             mDeleteButton.setVisibility(View.VISIBLE);
@@ -190,41 +195,26 @@ public class AddPatientFragment extends Fragment {
                     builder.show();
                 }
             });
-            mDateOakTextView.setText(DateUtils.getCurrentDate());
+            mDateOakTextView.setText(DateUtils.getCurrentDateString());
             mDateOak.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     DateUtils.showDatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                            Calendar calendar = Calendar.getInstance();
-                            calendar.set(Calendar.YEAR, year);
-                            calendar.set(Calendar.MONTH, month);
-                            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                            mAppointment.setDate(calendar.getTime());
+                            mOakDate = DateUtils.getDate(year, month, dayOfMonth);
                             mDateOakTextView.setText(DateUtils.format(year, month, dayOfMonth));
                         }
                     });
                 }
             });
-            mDateBackgroundTherapy.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    DateUtils.showDatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
-                        @Override
-                        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                            mDateBackgroundTherapy.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                            Calendar calendar = Calendar.getInstance();
-                            calendar.set(Calendar.YEAR, year);
-                            calendar.set(Calendar.MONTH, month);
-                            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                            mBackgroundTherapy.setDate(calendar.getTime());
-                            mDateBackgroundTherapy.setText(DateUtils.format(year, month, dayOfMonth));
-                        }
-                    });
-                }
-            });
         }
+        mWasHormonalTherapy.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                wasHormonalTherapy = isChecked;
+            }
+        });
         menopauseTextView.setText(menopause.description());
         return view;
     }
@@ -304,9 +294,10 @@ public class AddPatientFragment extends Fragment {
             } else {
                 Settings settings = new UserDefaultsSettings(getContext());
                 PatientModel.PatientModelArgument argument = new PatientModel.PatientModelArgument();
+                argument.dateOak = mOakDate;
                 argument.mName = name;
                 argument.mMenopause = menopause;
-                argument.wasHormonalTherapy = false;
+                argument.wasHormonalTherapy = wasHormonalTherapy;
                 argument.mAppointment = mAppointment;
                 //argument.mBackgroundTherapy = mBackgroundTherapy;
                 argument.mSettings = settings;
