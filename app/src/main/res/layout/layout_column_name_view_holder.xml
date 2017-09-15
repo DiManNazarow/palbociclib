@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="32dp"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:fontFamily="sans-serif-condensed"
+        android:textStyle="bold"
+        android:textColor="#52454a"
+        android:lineSpacingExtra="4sp"
+        android:text="@string/cycle"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="7">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minWidth="42dp"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:lineSpacingExtra="4sp"
+            android:text="@string/monday"
+            android:textColor="#52454a"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minWidth="42dp"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:lineSpacingExtra="4sp"
+            android:text="@string/tuesday"
+            android:textColor="#52454a"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minWidth="42dp"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:lineSpacingExtra="4sp"
+            android:text="@string/wednesday"
+            android:textColor="#52454a"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minWidth="42dp"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:lineSpacingExtra="4sp"
+            android:text="@string/thursday"
+            android:textColor="#52454a"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minWidth="42dp"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:lineSpacingExtra="4sp"
+            android:text="@string/friday"
+            android:textColor="#52454a"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minWidth="42dp"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:lineSpacingExtra="4sp"
+            android:text="@string/saturday"
+            android:textColor="#52454a"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minWidth="42dp"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:lineSpacingExtra="4sp"
+            android:text="@string/sunday"
+            android:textColor="#52454a"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            />
+
+
+    </LinearLayout>
+
+</LinearLayout>

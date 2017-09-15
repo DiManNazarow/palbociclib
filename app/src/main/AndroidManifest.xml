@@ -35,7 +35,16 @@
             android:theme="@style/Base.Theme.AppCompat"/>
         <activity android:name=".activities.ControlActivity"/>
         <activity android:name=".activities.ShortInstructionActivity"/>
-        <activity android:name=".activities.NotForPatientActivity"/>
+        <activity android:name=".activities.NotForPatientActivity"
+                  android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".new_version.gui.activities.StartActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".new_version.gui.activities.NewCalendarActivity"
+                  android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".new_version.gui.activities.SetDoseActivity"
+                  android:theme="@style/AppTheme.NoActionBar"/>
 
     </application>
 

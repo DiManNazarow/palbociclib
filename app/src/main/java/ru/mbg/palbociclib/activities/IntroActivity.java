@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import ru.mbg.palbociclib.R;
+import ru.mbg.palbociclib.new_version.gui.activities.StartActivity;
 
 public class IntroActivity extends AppCompatActivity {
 
@@ -17,7 +18,7 @@ public class IntroActivity extends AppCompatActivity {
         findViewById(R.id.i_am_a_doctor_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(IntroActivity.this, LoginActivity.class);
+                Intent intent = new Intent(IntroActivity.this, StartActivity.class);
                 startActivity(intent);
                 finish();
             }

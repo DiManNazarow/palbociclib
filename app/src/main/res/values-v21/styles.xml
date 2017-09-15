@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorControlActivated">#ffa98c</item>
+        <item name="android:datePickerStyle">@style/DatePickerStyle</item>
+        <item name="android:statusBarColor">@color/green</item>
+    </style>
+
+    <style name="DatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker">
+        <item name="android:headerBackground">@color/green</item>
+        <item name="android:calendarTextColor">#52454a</item>
+        <item name="android:datePickerMode">calendar</item>
+    </style>
+</resources>

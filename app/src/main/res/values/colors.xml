@@ -29,7 +29,6 @@
     <color name="black_alpha_50">#7f000000</color>
     <color name="blue">#5695dc</color>
     <color name="purple">#a070e4</color>
-    <color name="orange">#fca77b</color>
     <color name="orange_light">#19fca77b</color>
 
     <color name="preparat_fragment_background">#fbf8e0</color>
@@ -41,5 +40,16 @@
     <color name="separate_line_color">#f3f1ed</color>
 
     <color name="disable_color">#c9d1da</color>
+
+    <color name="green">#65c162</color>
+
+    <color name="light_green">#93db81</color>
+
+    <color name="orange">#ff9075</color>
+
+    <color name="today">#4b82ff</color>
+    <color name="greyed_out">#c7c7c7</color>
+    <color name="calendar_fill">#3cffbf95</color>
+    <color name="pause">#78eaeaea</color>
 
 </resources>

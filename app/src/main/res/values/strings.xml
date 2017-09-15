@@ -13,7 +13,7 @@
     <string name="disclaimer1">Используя данное приложение, вы принимаете</string>
     <string name="disclaimer2">Пользовательское соглашение</string>
     <string name="i_am_a_doctor">Да, я врач!</string>
-    <string name="i_am_not_a_doctor">Я не врач:(</string>
+    <string name="i_am_not_a_doctor">Я не врач</string>
     <string name="hello1">Здравствуйте!</string>
     <string name="hello2">Авторизуйтесь, чтобы начать работу в приложении.</string>
     <string name="not_registered">Еще не зарегистрированы?</string>
@@ -77,7 +77,7 @@
     <string name="start_drugs">начало приема препарата</string>
 
     <string name="only_for_doctor">Это приложение только для врачей</string>
-    <string name="work_in_progress">Мы работаем над приложением для пациентов</string>
+    <string name="work_in_progress">Мы работаем над приложением\nдля пациентов</string>
     
     <string name="app_ok">Ок</string>
 
@@ -212,5 +212,68 @@
     <string name="error.miss_neutrophils_for_grade.text">Укажите количество нейтрофилов для установки грейда</string>
     <string name="error.error_save_appointment">Ошибка назначения лечения</string>
     <string name="error.wrong_aok_data">Указанные данные ОАК не позволяют назначить лечение</string>
+
+    <string name="new_version.next">ДАЛЕЕ</string>
+    <string name="new_version.date_cycle_start">Дата начала цикла</string>
+    <string name="new_version.one">1</string>
+    <string name="new_version.two">2</string>
+    <string name="new_version.three">3</string>
+    <string name="new_version.four">4 И БОЛЕЕ</string>
+    <string name="new_version.welcome">Добрый день!</string>
+    <string name="new_version.choose_date_and_cycle">Чтобы начать пользоваться приложением, введите дату и номер текущего цикла</string>
+    <string name="new_version.cycle_number">Номер цикла</string>
+    <string name="new_version.input_date">Введите дату начала цикла</string>
+    <string name="new_version.date_start">Дата начала: %1$s</string>
+    <string name="new_version.info">Weeks 1-3, take IBRANCE + an aromataseinhibitor. Week 4, take an aromataseinhibitor only. Be sure to follow yourdosing schedule exactly as your healthcare team prescribes.</string>
+    <string name="new_version.put_toxic_level">Укажите степень гематотоксичности</string>
+    <string name="new_version.start_125">НАЧАТЬ ПРИЁМ 125г</string>
+    <string name="new_version.continue_125">ПРОДОЛЖИТЬ ПРИЁМ 125г</string>
+    <string name="new_version.continue_100">ПРОДОЛЖИТЬ ПРИЁМ 100г</string>
+    <string name="new_version.continue_75">ПРОДОЛЖИТЬ ПРИЁМ 75г</string>
+    <string name="new_version.stop_appointment">ПРЕРВАТЬ ПРИЕМ</string>
+    <string name="new_version.error">Ошибка</string>
+    <string name="new_version.error.empty_date">Не указана дата начала цикла.</string>
+    <string name="new_version.error.empty_cycle">Цикл не выбран.</string>
+    <string name="new_version.rule" formatted="false">Определение грэйда ( токсичности ) производится согласно CTCAE 4.0.\nГрэйд 1: Нейтрофилы ≥1500/мл;\nГрэйд 2: Нейтрофилы 1000 — 1500/мл;\nГрэйд 3: Нейтрофилы 500 — 1000/мл;\nГрэйд 4: Нейтрофилы менее 500/мл;</string>
+
+
+    <string name="monday">ПН</string>
+    <string name="tuesday">ВТ</string>
+    <string name="wednesday">СР</string>
+    <string name="thursday">ЧТ</string>
+    <string name="friday">ПТ</string>
+    <string name="saturday">СБ</string>
+    <string name="sunday">ВС</string>
+    <string name="cycle">ЦИКЛ</string>
+
+    <array name="months">
+        <item>ЯНВАРЬ</item>
+        <item>ФЕВРАЛЬ</item>
+        <item>МАРТ</item>
+        <item>АПРЕЛЬ</item>
+        <item>МАЙ</item>
+        <item>ИЮНЬ</item>
+        <item>ИЮЛЬ</item>
+        <item>АВГУСТ</item>
+        <item>СЕНТЯБРЬ</item>
+        <item>ОКТЯБРЬ</item>
+        <item>НОЯБРЬ</item>
+        <item>ДЕКАБРЬ</item>
+    </array>
+
+    <array name="months_data">
+        <item>января</item>
+        <item>февраля</item>
+        <item>марта</item>
+        <item>апреля</item>
+        <item>майя</item>
+        <item>июня</item>
+        <item>июля</item>
+        <item>августа</item>
+        <item>сентября</item>
+        <item>октября</item>
+        <item>ноября</item>
+        <item>декабря</item>
+    </array>
 
 </resources>

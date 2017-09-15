@@ -194,7 +194,7 @@ public class PatientModel {
         if (oak == null) {
             throw new AppError(AppError.oakNotAssigned);
         }
-//        if (oak.getReadyDate() != null) {
+//        if (oak_left.getReadyDate() != null) {
 //            throw new AppError(AppError.oakNotAssigned);
 //        }
 

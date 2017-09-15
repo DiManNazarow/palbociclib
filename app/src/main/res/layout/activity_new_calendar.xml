@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ru.mbg.palbociclib.new_version.gui.views.CycleInfoView
+        android:id="@+id/cycle_info_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </ru.mbg.palbociclib.new_version.gui.views.CycleInfoView>
+
+    <ru.mbg.palbociclib.new_version.gui.views.MonthPickerView
+        android:id="@+id/month_picker_view"
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+
+    </ru.mbg.palbociclib.new_version.gui.views.MonthPickerView>
+
+    <include layout="@layout/layout_column_name_view_holder"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/month_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

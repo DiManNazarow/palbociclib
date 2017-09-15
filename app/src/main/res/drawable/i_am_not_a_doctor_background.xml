@@ -5,12 +5,10 @@
             android:shape="rectangle" >
 
             <corners
-                android:bottomRightRadius="23dp"
-                android:radius="0dp"
-                android:topRightRadius="23dp" />
+                android:radius="3dp"/>
 
             <solid
-                android:color="#fca77b" />
+                android:color="#ff9075" />
         </shape>
     </item>
 </selector>

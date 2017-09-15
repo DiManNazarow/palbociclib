@@ -5,7 +5,7 @@ import android.preference.PreferenceManager;
 
 public class UserDefaultsSettings implements Settings {
     private static final String FIO = "settings.fio";
-    private static final String OAK = "settings.oak";
+    private static final String OAK = "settings.oak_left";
     private static final String PUSH = "settings.push";
 
     private Context context;
