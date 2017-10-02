@@ -88,7 +88,6 @@ public class CalendarView extends LinearLayout{
     private void init() {
         mRootView = LayoutInflater.from(getContext()).inflate(R.layout.calendar, this, true);
         ButterKnife.bind(this, mRootView);
-        updateCalendar();
         setListeners(mOnItemLongClickListener, mOnItemClickListener);
         mCycles = new ArrayList<>();
     }
@@ -138,12 +137,6 @@ public class CalendarView extends LinearLayout{
 
             // move calendar backwards to the beginning of the week
             calendar.add(Calendar.DAY_OF_MONTH, -monthBeginningCell);
-
-            // fill cells
-            int lineStart = 0;
-            int lineEnd = 5;
-            int dayInMonth = Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH);
-            Date cycleStartDate = DateUtils.getDate(mPatient.getCycleStartDate(), DateUtils.DEFAULT_DATE_PATTERN);
 
             while (cells.size() < 48) {
                 cells.add(calendar.getTime());
@@ -210,7 +203,8 @@ public class CalendarView extends LinearLayout{
                 if (view == null)
                     view = inflater.inflate(R.layout.control_calendar_day, parent, false);
 
-                TextView textView = (TextView) ((ViewGroup)view).getChildAt(0);
+                TextView textView = (TextView) ((ViewGroup)view).findViewById(R.id.date);
+                View label = ((ViewGroup)view).findViewById(R.id.label);
 
                 // if this day has an event, specify event image
                 view.setBackgroundResource(0);
@@ -220,6 +214,10 @@ public class CalendarView extends LinearLayout{
                 textView.setTypeface(null, Typeface.NORMAL);
                 textView.setTextColor(Color.BLACK);
                 textView.setText(String.valueOf(date.getDate()));
+
+                boolean oak = false;
+                boolean start = false;
+                boolean end = false;
 
                 if (mPatient.getOaksDate() != null) {
                     for (final Three<Integer, Date, Integer> eventDate : mPatient.getOaksDate()) {
@@ -238,7 +236,11 @@ public class CalendarView extends LinearLayout{
                                     case PatientModelHelper.EventList.START_CYCLE_DATE: {
                                         mCycles.add(new Pair<Integer, Integer>(PatientModelHelper.EventList.START_CYCLE_DATE, position));
                                         mCycle = eventDate.third;
+                                        oak = true;
+                                        start = true;
                                         textView.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.oak_left));
+                                        label.setBackgroundResource(R.drawable.label_dark_green);
+                                        label.setVisibility(VISIBLE);
                                         textView.setText("OAK");
                                         view.setOnClickListener(new OnClickListener() {
                                             @Override
@@ -337,6 +339,9 @@ public class CalendarView extends LinearLayout{
 
                                         if (eventDate.third < 3) {
                                             textView.setText("OAK");
+                                            label.setBackgroundResource(R.drawable.label_dark_green);
+                                            label.setVisibility(VISIBLE);
+                                            oak = true;
                                         }
                                         view.setOnClickListener(new OnClickListener() {
                                             @Override
@@ -370,10 +375,13 @@ public class CalendarView extends LinearLayout{
                                     case PatientModelHelper.EventList.END_CYCLE_DATE: {
                                         mCycles.add(new Pair<Integer, Integer>(PatientModelHelper.EventList.END_CYCLE_DATE, position));
                                         mCycle = eventDate.third;
-                                        isBackGroundSet = true;
                                         if (eventDate.third < 3) {
                                             textView.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.oak_right_21));
                                             textView.setText("OAK");
+                                            label.setBackgroundResource(R.drawable.label_red_dark);
+                                            label.setVisibility(VISIBLE);
+                                            oak = true;
+                                            end = true;
                                         } else {
                                             textView.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.calendar_right_cycle));
                                         }
@@ -429,12 +437,34 @@ public class CalendarView extends LinearLayout{
                     if (todayByCalendar.get(Calendar.MONTH) == todayByList.get(Calendar.MONTH)) {
                         textView.setTypeface(null, Typeface.BOLD);
                         if (!isBackGroundSet) {
-                            view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_day_calendar));
+                            if (end){
+                                view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_day_calendar_red));
+                            } else {
+                                view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_day_calendar));
+                            }
                             if (todayByList.getTime().after(DateUtils.getDate(mPatient.getCycleStartDate(), DateUtils.DEFAULT_DATE_PATTERN))) {
-                                textView.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.calendar_fill));
+                                if (start){
+                                    textView.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.calendar_fill_left));
+                                } else if (end){
+                                    textView.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.calendar_fill_right));
+                                } else {
+                                    textView.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.calendar_fill));
+                                }
+                            }
+                            if (oak){
+                                if (end){
+                                    label.setBackgroundResource(R.drawable.label_red_light);
+                                }
+                                label.setBackgroundResource(R.drawable.label_green_light);
+                                label.setVisibility(VISIBLE);
+                                textView.setTypeface(null, Typeface.NORMAL);
                             }
                         }
-                        textView.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
+                        if (oak){
+                            textView.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+                        } else {
+                            textView.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
+                        }
                     }
                 }
                 return view;
@@ -488,7 +518,7 @@ public class CalendarView extends LinearLayout{
                 } else if (pos >= 35 && pos <= 41) {
                     start = 5;
                 }
-                pos = mCycles.get(1).second;
+                pos = endPos;//mCycles.get(1).second;
                 if (pos >= 0 && pos <= 6) {
                     end = 0;
                 } else if (pos >= 7 && pos <= 13) {
@@ -503,7 +533,7 @@ public class CalendarView extends LinearLayout{
                     end = 5;
                 }
                 for (int i = 0; i < 6; i++){
-                    if (i >= start/* && i <= end*/){
+                    if (i >= start && i <= end){
                         cycles.add(mCycle += 0.1);
                         mLast = cycles.get(i);
                     } else {
@@ -628,6 +658,37 @@ public class CalendarView extends LinearLayout{
                 int pos = mCycles.get(0).second;
 
                 if (pos >= 0 && pos <= 6) {
+                    start = 0;
+                } else if (pos >= 7 && pos <= 13) {
+                    start = 1;
+                } else if (pos >= 14 && pos <= 20) {
+                    start = 2;
+                } else if (pos >= 21 && pos <= 27) {
+                    start = 3;
+                } else if (pos >= 28 && pos <= 34) {
+                    start = 4;
+                } else if (pos >= 35 && pos <= 41) {
+                    start = 5;
+                }
+
+                pos = mCycles.get(1).second;
+
+                if (pos >= 0 && pos <= 6) {
+                    end = 0;
+                } else if (pos >= 7 && pos <= 13) {
+                    end = 1;
+                } else if (pos >= 14 && pos <= 20) {
+                    end = 2;
+                } else if (pos >= 21 && pos <= 27) {
+                    end = 3;
+                } else if (pos >= 28 && pos <= 34) {
+                    end = 4;
+                } else if (pos >= 35 && pos <= 41) {
+                    start = 5;
+                }
+                pos = mCycles.get(2).second;
+
+                if (pos >= 0 && pos <= 6) {
                     three = 0;
                 } else if (pos >= 7 && pos <= 13) {
                     three = 1;
@@ -641,38 +702,11 @@ public class CalendarView extends LinearLayout{
                     three = 5;
                 }
 
-                pos = mCycles.get(1).second;
-                if (pos >= 0 && pos <= 6) {
-                    start = 0;
-                } else if (pos >= 7 && pos <= 13) {
-                    start = 1;
-                } else if (pos >= 14 && pos <= 20) {
-                    start = 2;
-                } else if (pos >= 21 && pos <= 27) {
-                    start = 3;
-                } else if (pos >= 28 && pos <= 34) {
-                    start = 4;
-                } else if (pos >= 35 && pos <= 41) {
-                    start = 5;
-                }
-                pos = mCycles.get(2).second;
-                if (pos >= 0 && pos <= 6) {
-                    end = 0;
-                } else if (pos >= 7 && pos <= 13) {
-                    end = 1;
-                } else if (pos >= 14 && pos <= 20) {
-                    end = 2;
-                } else if (pos >= 21 && pos <= 27) {
-                    end = 3;
-                } else if (pos >= 28 && pos <= 34) {
-                    end = 4;
-                } else if (pos >= 35 && pos <= 41) {
-                    end = 5;
-                }
+                double c = mCycle - 1;
 
                 for (int i = 0; i < 6; i++){
-                    if (i >= start && i <= end) {
-                        cycles.add(mCycle += 0.1);
+                    if (i >= start && i < three) {
+                        cycles.add(c += 0.1);
                     } else if (i >= three){
                         cycles.add(mCycle += 0.1);
                     } else {
@@ -732,11 +766,13 @@ public class CalendarView extends LinearLayout{
                     end = 5;
                 }
 
+                double c = mCycle - 1;
+
                 for (int i = 0; i < 6; i++){
-                    if (i >= start && i <= end) {
+                    if (i <= zero){
+                        cycles.add(c += 0.1);
+                    } else if (i >= start && i <= end) {
                         cycles.add(mCycle += 0.1);
-                    } else if (i <= zero){
-                        cycles.add(-1.0);
                     } else {
                         cycles.add(-1.0);
                     }

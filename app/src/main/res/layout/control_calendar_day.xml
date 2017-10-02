@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="42dp"
-    android:layout_height="42dp"
-    android:gravity="center">
+    android:layout_height="42dp">
 
     <TextView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/date"
         android:layout_width="42dp"
         android:layout_height="32dp"
         android:gravity="center"
@@ -17,6 +17,18 @@
         android:fontFamily="sans-serif"
         android:textStyle="normal"
         android:textColor="#52454a"
+        android:layout_centerInParent="true"
         tools:text="56"
     />
-</LinearLayout>
+
+    <View
+        android:id="@+id/label"
+        android:layout_width="12dp"
+        android:layout_height="4dp"
+        android:visibility="gone"
+        android:background="@drawable/label_green_light"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="8dp"/>
+
+</RelativeLayout>

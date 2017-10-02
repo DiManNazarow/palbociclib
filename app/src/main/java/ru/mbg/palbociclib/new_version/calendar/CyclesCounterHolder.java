@@ -28,7 +28,7 @@ public class CyclesCounterHolder {
     private double cycle;
 
     public double increase(){
-        cycle = cycle + 0.1;
+        cycle = cycle + 0.1001;
         return cycle;
     }
 

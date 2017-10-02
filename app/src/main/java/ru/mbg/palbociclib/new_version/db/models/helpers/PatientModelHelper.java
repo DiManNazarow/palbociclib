@@ -23,8 +23,33 @@ public class PatientModelHelper {
         public static final int PAUSE_START_DATE = 5;
         public static final int PAUSE_DATE = 6;
         public static final int PAUSE_END_DATE = 7;
+        public static final int CYCLE_COUNTER = 8;
+        public static final int EMPTY = 9;
 
     }
+
+//    public static List<Three<Date /*Дата календаря*/, Integer /*Тип*/, Double/*цикл*/>> prepareCalendarInfo(Date currentDate, Patient patient){
+//        for (int i = 0; i<12; i++){
+//
+//            Calendar calendar = (Calendar) currentDate.clone();
+//
+//            // determine the cell for current month's beginning
+//            calendar.set(Calendar.DAY_OF_MONTH, 0);
+//            int monthBeginningCell = calendar.get(Calendar.DAY_OF_WEEK) - 2;
+//
+//            // move calendar backwards to the beginning of the week
+//            calendar.add(Calendar.DAY_OF_MONTH, -monthBeginningCell);
+//
+//
+//
+//            for (int j = 0; j<48; j++){
+//
+//
+//
+//            }
+//
+//        }
+//    }
 
     public static List<Three<Integer, Date, Integer>> fillPatientActionDate(Patient patient){
         List<Three<Integer, Date, Integer>> actions = new ArrayList<>();
