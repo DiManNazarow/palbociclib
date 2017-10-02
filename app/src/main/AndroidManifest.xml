@@ -45,6 +45,8 @@
                   android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".new_version.gui.activities.SetDoseActivity"
                   android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".new_version.gui.activities.MonitoringActivity"
+            android:theme="@style/MonitoringTheme"/>
 
     </application>
 

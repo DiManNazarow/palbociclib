@@ -39,14 +39,14 @@ public class CalendarMonthAdapter extends RecyclerView.Adapter<RecyclerView.View
         mContext = context;
         mPatient = patient;
         currentMonth = DateUtils.getCurrentDate();
-        nextMonth = DateUtils.getCurrentDate(40);
+        nextMonth = DateUtils.increaseMonth(currentMonth);
     }
 
     public CalendarMonthAdapter(Context context, Date currentMonth, Patient patient) {
         mContext = context;
         mPatient = patient;
         this.currentMonth = currentMonth;
-        nextMonth = DateUtils.getCurrentDate(currentMonth, 35);
+        nextMonth = DateUtils.increaseMonth(currentMonth);
     }
 
     @Override

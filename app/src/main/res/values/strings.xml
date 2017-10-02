@@ -236,6 +236,23 @@
     <string name="new_version.error.empty_cycle">Цикл не выбран.</string>
     <string name="new_version.rule" formatted="false">Определение грэйда ( токсичности ) производится согласно CTCAE 4.0.\nГрэйд 1: Нейтрофилы ≥1500/мл;\nГрэйд 2: Нейтрофилы 1000 — 1500/мл;\nГрэйд 3: Нейтрофилы 500 — 1000/мл;\nГрэйд 4: Нейтрофилы менее 500/мл;</string>
 
+    <string name="stop_monitoring">Прервать прием до восстановления количества клеток до Грейда меньше или равного 2</string>
+    <string name="start_monitoring">Начать прием Палбоциклиба 125 мг</string>
+    <string name="start_monitoring_same_dose">Начало приема в прежней дозе</string>
+    <string name="continue_in_same_dose">Продолжить прием в текущей дозе</string>
+    <string name="continue_in_lover_dose">Возобновить прием в следующей пониженной дозе</string>
+    <string name="pause">7 дней перерыв</string>
+    <string name="start_new_cycle_lover">Начать цикл в следующей пониженной дозе</string>
+    <string name="start_new_cycle_2">Начать цикл 2 в прежней дозе</string>
+    <string name="start_new_cycle_3">Начать цикл 3 в прежней дозе</string>
+    <string name="start_new_cycle_2_lover">Начать цикл 2 в следующей пониженной дозе</string>
+    <string name="start_new_cycle_3_lover">Начать цикл 3 в следующей пониженной дозе</string>
+    <string name="control_on_14_day">Контроль ОАК на 14-й день</string>
+    <string name="control_on_21_day">Контроль ОАК на 21-й день</string>
+    <string name="control_in_new_cycle">Контроль ОАК в 1-й день каждого следующего цикла</string>
+    <string name="pause_monitoring">Отложить прием. ОАК повторить через 1 неделю</string>
+    <string name="new_cycle_with_looking">Начать цикл. При восстановлении до Грейда менее или равного 2, рассмотреть снижение дозы в случае замедленного ( более 1 недели ) восстановления показателей крови</string>
+    <string name="new_cycle_with_zitopenii">Начать цикл. При восстановлении до Грейда менее или равного 2, рассмотреть снижение дозы в случае замедленного ( более 1 недели ) восстановления показателей крови/при повторных эпизодах цитопении Грейда 3</string>
 
     <string name="monday">ПН</string>
     <string name="tuesday">ВТ</string>

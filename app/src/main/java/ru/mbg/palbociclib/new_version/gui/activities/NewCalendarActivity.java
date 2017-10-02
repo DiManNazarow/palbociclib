@@ -1,12 +1,20 @@
 package ru.mbg.palbociclib.new_version.gui.activities;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -34,6 +42,8 @@ public class NewCalendarActivity extends AppCompatActivity {
     protected MonthPickerView mMonthPickerView;
     @BindView(R.id.month_recycler_view)
     protected RecyclerView mMonthRecyclerView;
+    @BindView(R.id.floatingActionButton)
+    protected FloatingActionButton mMonitoringButton;
 
     private Patient mPatient;
 
@@ -50,6 +60,12 @@ public class NewCalendarActivity extends AppCompatActivity {
 
         mCycleInfoView.setCycleText(getString(R.string.cycle_oak_card, mPatient.getCycleCount()));
         mCycleInfoView.setDateText(getString(R.string.new_version_date_start, mPatient.getCycleStartDate()));
+        mCycleInfoView.setCloseButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         mMonthRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         mMonthRecyclerView.setAdapter(new CalendarMonthAdapter(getApplicationContext(), mPatient));
@@ -61,5 +77,37 @@ public class NewCalendarActivity extends AppCompatActivity {
             }
         });
 
+        mMonitoringButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopup();
+            }
+        });
+
+    }
+
+    private void showPopup(){
+
+        final AlertDialog.Builder adb = new AlertDialog.Builder(this);
+
+        View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.popup_layout, null);
+        adb.setView(view);
+        TextView mCancelButton = (TextView)view.findViewById(R.id.cancel_button);
+        TextView mMonitoringButton = (TextView)view.findViewById(R.id.monitoring_button);
+        final AlertDialog alertDialog = adb.create();
+        mCancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+            }
+        });
+        mMonitoringButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MonitoringActivity.class);
+                startActivity(intent);
+            }
+        });
+        alertDialog.show();
     }
 }

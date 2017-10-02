@@ -45,6 +45,11 @@
 
     <color name="light_green">#93db81</color>
 
+    <color name="row_fill_yellow">#fff8f4</color>
+    <color name="row_fill_green">#f7fbf3</color>
+    <color name="row_fill_red">#13ff0004</color>
+    <color name="calculate_button_background">#b5b7b4</color>
+
     <color name="orange">#ff9075</color>
 
     <color name="today">#4b82ff</color>

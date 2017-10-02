@@ -85,6 +85,19 @@ public class DateUtils {
         return calendar.get(Calendar.MONTH);
     }
 
+    public static int getYear(Date date){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        return calendar.get(Calendar.YEAR);
+    }
+
+    public static Date increaseMonth(Date current){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(current);
+        calendar.add(Calendar.MONTH, 1);
+        return calendar.getTime();
+    }
+
     public static Date getCurrentDate(){
         Calendar calendar = Calendar.getInstance();
         return calendar.getTime();

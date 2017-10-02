@@ -29,8 +29,10 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.mbg.palbociclib.R;
+import ru.mbg.palbociclib.new_version.calendar.CyclesCounterHolder;
 import ru.mbg.palbociclib.new_version.db.models.Patient;
 import ru.mbg.palbociclib.new_version.db.models.helpers.PatientModelHelper;
+import ru.mbg.palbociclib.new_version.gui.activities.MonitoringActivity;
 import ru.mbg.palbociclib.new_version.gui.activities.SetDoseActivity;
 import ru.mbg.palbociclib.utils.DateUtils;
 import ru.mbg.palbociclib.utils.Three;
@@ -52,13 +54,15 @@ public class CalendarView extends LinearLayout{
 
     private double mLast = 0;
 
-    private boolean isTodayInCycle = false;
-
     private List<Pair<Integer, Integer>> mCycles;
 
     private AdapterView.OnItemClickListener mOnItemClickListener;
 
     private AdapterView.OnItemLongClickListener mOnItemLongClickListener;
+
+    private int endPos = 0;
+
+    private boolean update = true;
 
     public CalendarView(Context context) {
         super(context);
@@ -114,18 +118,23 @@ public class CalendarView extends LinearLayout{
             currentDate.setTime(nextMonth);
         }
         mPatient = patient;
+        update = false;
         //mCycle = patient.getCycleCount() + cycleIncreaseSize;
         updateCalendar();
     }
 
+    List<Date> cells;
+
+    int monthBeginningCell;
+
     public void updateCalendar() {
         try {
-            List<Date> cells = new ArrayList<>();
+            cells = new ArrayList<>();
             Calendar calendar = (Calendar) currentDate.clone();
 
             // determine the cell for current month's beginning
             calendar.set(Calendar.DAY_OF_MONTH, 0);
-            int monthBeginningCell = calendar.get(Calendar.DAY_OF_WEEK) - 2;
+            monthBeginningCell = calendar.get(Calendar.DAY_OF_WEEK) - 2;
 
             // move calendar backwards to the beginning of the week
             calendar.add(Calendar.DAY_OF_MONTH, -monthBeginningCell);
@@ -138,24 +147,11 @@ public class CalendarView extends LinearLayout{
 
             while (cells.size() < 48) {
                 cells.add(calendar.getTime());
-                long t = calendar.getTime().getTime();
-                if (cycleStartDate != null && t >= cycleStartDate.getTime() && lineStart == 0){
-                    lineStart = cells.size()/7;
-                }
-                int i = calendar.get(Calendar.DAY_OF_MONTH);
-                if (i == dayInMonth){
-                    lineEnd = cells.size()/7 + 1;
-                }
                 calendar.add(Calendar.DAY_OF_MONTH, 1);
-            }
-
-            int weeks = cells.size() / 7;
-            final ArrayList<Double> cycles = new ArrayList<>();
-            for (int i = 0; i < weeks; i++){
-                if (i < lineStart || i >= lineEnd){
-                    cycles.add(-1.0);
-                } else {
-                    cycles.add(null);
+                if (cells.size() > 1) {
+                    if ((DateUtils.getMonth(cells.get(cells.size() - 2)) < DateUtils.getMonth(cells.get(cells.size() - 1))) || (DateUtils.getYear(cells.get(cells.size() - 2)) < DateUtils.getYear(cells.get(cells.size() - 1)))) {
+                        endPos = cells.size() - 2;
+                    }
                 }
             }
 
@@ -189,6 +185,8 @@ public class CalendarView extends LinearLayout{
             }
 
         }
+
+        boolean newCycle = false;
 
         @Override
         @NonNull
@@ -240,68 +238,6 @@ public class CalendarView extends LinearLayout{
                                     case PatientModelHelper.EventList.START_CYCLE_DATE: {
                                         mCycles.add(new Pair<Integer, Integer>(PatientModelHelper.EventList.START_CYCLE_DATE, position));
                                         mCycle = eventDate.third;
-//                                        if (day == todayByList.get(Calendar.DAY_OF_MONTH)) {
-//                                            // if it is today, set it to blue/bold
-//                                            if (todayByCalendar.get(Calendar.MONTH) == todayByList.get(Calendar.MONTH)) {
-//                                                ((TextView) view).setTypeface(null, Typeface.BOLD);
-//                                                view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_day_calendar));
-//                                                switch (position) {
-//                                                    case 0:
-//                                                        isBackGroundSet = true;
-//                                                        view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_dat_calendar_left));
-//                                                        break;
-//                                                    case 6:
-//                                                        isBackGroundSet = true;
-//                                                        view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_day_calendar_right));
-//                                                        break;
-//                                                    case 7:
-//                                                        isBackGroundSet = true;
-//                                                        view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_dat_calendar_left));
-//                                                        break;
-//                                                    case 13:
-//                                                        isBackGroundSet = true;
-//                                                        view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_day_calendar_right));
-//                                                        break;
-//                                                    case 14:
-//                                                        isBackGroundSet = true;
-//                                                        view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_dat_calendar_left));
-//                                                        break;
-//                                                    case 20:
-//                                                        isBackGroundSet = true;
-//                                                        view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_day_calendar_right));
-//                                                        break;
-//                                                    case 21:
-//                                                        isBackGroundSet = true;
-//                                                        view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_dat_calendar_left));
-//                                                        break;
-//                                                    case 27:
-//                                                        isBackGroundSet = true;
-//                                                        view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_day_calendar_right));
-//                                                        break;
-//                                                    case 28:
-//                                                        isBackGroundSet = true;
-//                                                        view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_dat_calendar_left));
-//                                                        break;
-//                                                    case 34:
-//                                                        isBackGroundSet = true;
-//                                                        view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_day_calendar_right));
-//                                                        break;
-//                                                    case 35:
-//                                                        isBackGroundSet = true;
-//                                                        view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_dat_calendar_left));
-//                                                        break;
-//                                                    case 41:
-//                                                        isBackGroundSet = true;
-//                                                        view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_day_calendar_right));
-//                                                        break;
-//                                                    default:
-//                                                        isBackGroundSet = true;
-//                                                        view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.oak_left));
-//                                                        break;
-//                                                }
-//                                            }
-//                                        }
-
                                         textView.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.oak_left));
                                         textView.setText("OAK");
                                         view.setOnClickListener(new OnClickListener() {
@@ -313,7 +249,7 @@ public class CalendarView extends LinearLayout{
                                         break;
                                     }
                                     case PatientModelHelper.EventList.OAK_DATE: {
-                                        if (eventDate.third > 3) {
+                                        if (eventDate.third > 2) {
                                             switch (position) {
                                                 case 0:
                                                     textView.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.calendar_left_cycle));
@@ -399,14 +335,14 @@ public class CalendarView extends LinearLayout{
                                             }
                                         }
 
-                                        if (eventDate.third < 4) {
+                                        if (eventDate.third < 3) {
                                             textView.setText("OAK");
                                         }
                                         view.setOnClickListener(new OnClickListener() {
                                             @Override
                                             public void onClick(View view) {
-                                                if (eventDate.third < 4) {
-                                                    openSetDoseScreen(position, eventDate.third, 21);
+                                                if (eventDate.third < 3) {
+                                                    openSetDoseScreen(position, eventDate.third, 14);
                                                 }
                                             }
                                         });
@@ -435,66 +371,16 @@ public class CalendarView extends LinearLayout{
                                         mCycles.add(new Pair<Integer, Integer>(PatientModelHelper.EventList.END_CYCLE_DATE, position));
                                         mCycle = eventDate.third;
                                         isBackGroundSet = true;
-                                        if (eventDate.third < 4) {
+                                        if (eventDate.third < 3) {
                                             textView.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.oak_right_21));
                                             textView.setText("OAK");
                                         } else {
                                             textView.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.calendar_right_cycle));
                                         }
-//                                        switch (position) {
-//                                            case 0:
-//                                                isBackGroundSet = true;
-//                                                view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_dat_calendar_left));
-//                                                break;
-//                                            case 6:
-//                                                isBackGroundSet = true;
-//                                                view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_day_calendar_right));
-//                                                break;
-//                                            case 7:
-//                                                isBackGroundSet = true;
-//                                                view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_dat_calendar_left));
-//                                                break;
-//                                            case 13:
-//                                                isBackGroundSet = true;
-//                                                view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_day_calendar_right));
-//                                                break;
-//                                            case 14:
-//                                                isBackGroundSet = true;
-//                                                view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_dat_calendar_left));
-//                                                break;
-//                                            case 20:
-//                                                isBackGroundSet = true;
-//                                                view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_day_calendar_right));
-//                                                break;
-//                                            case 21:
-//                                                isBackGroundSet = true;
-//                                                view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_dat_calendar_left));
-//                                                break;
-//                                            case 27:
-//                                                isBackGroundSet = true;
-//                                                view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_day_calendar_right));
-//                                                break;
-//                                            case 28:
-//                                                isBackGroundSet = true;
-//                                                view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_dat_calendar_left));
-//                                                break;
-//                                            case 34:
-//                                                isBackGroundSet = true;
-//                                                view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_day_calendar_right));
-//                                                break;
-//                                            case 35:
-//                                                isBackGroundSet = true;
-//                                                view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_dat_calendar_left));
-//                                                break;
-//                                            case 41:
-//                                                isBackGroundSet = true;
-//                                                view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_day_calendar_right));
-//                                                break;
-//                                        }
                                         view.setOnClickListener(new OnClickListener() {
                                             @Override
                                             public void onClick(View view) {
-                                                if (eventDate.third < 4) {
+                                                if (eventDate.third < 3) {
                                                     openSetDoseScreen(position, eventDate.third, 21);
                                                 }
                                             }
@@ -559,12 +445,11 @@ public class CalendarView extends LinearLayout{
         }
 
         private void openSetDoseScreen(int position, int cycle, int count){
-            Date date = getItem(position);
-            Intent intent = new Intent(getContext(), SetDoseActivity.class);
-            intent.putExtra(SetDoseActivity.PATIENT_ID_ARG, mPatient.getId());
-            if (date != null) {
-                intent.putExtra(SetDoseActivity.DATE_STRING_ARG, DateUtils.format(date, DateUtils.DEFAULT_DATE_PATTERN));
-            }
+            Intent intent = new Intent(getContext(), MonitoringActivity.class);
+//            intent.putExtra(SetDoseActivity.PATIENT_ID_ARG, mPatient.getId());
+//            if (date != null) {
+//                intent.putExtra(SetDoseActivity.DATE_STRING_ARG, DateUtils.format(date, DateUtils.DEFAULT_DATE_PATTERN));
+//            }
             intent.putExtra(SetDoseActivity.CYCLE, cycle);
             intent.putExtra(SetDoseActivity.COUNT, count);
             getContext().startActivity(intent);
@@ -574,6 +459,17 @@ public class CalendarView extends LinearLayout{
 
     private void setCyclesCounter(){
         List<Double> cycles = new ArrayList<>();
+
+//        if (!update){
+//            CyclesCounterHolder.instance().reset();
+//        }
+
+        if (monthBeginningCell == -1) {
+            CyclesCounterHolder.instance().reset(0);
+        } else {
+            CyclesCounterHolder.instance().reset(0.1);
+        }
+
         if (mCycles.size() == 2) {
             if (mCycles.get(0).first == PatientModelHelper.EventList.START_CYCLE_DATE) {
                 int start = 0;
@@ -607,7 +503,7 @@ public class CalendarView extends LinearLayout{
                     end = 5;
                 }
                 for (int i = 0; i < 6; i++){
-                    if (i >= start && i <= end){
+                    if (i >= start/* && i <= end*/){
                         cycles.add(mCycle += 0.1);
                         mLast = cycles.get(i);
                     } else {
@@ -618,7 +514,7 @@ public class CalendarView extends LinearLayout{
             } else if (mCycles.get(0).first == PatientModelHelper.EventList.END_CYCLE_DATE) {
                 int start = 0;
                 int end = 0;
-                int pos = mCycles.get(0).second;
+                int pos = endPos;
                 if (pos >= 0 && pos <= 6) {
                     end = 0;
                 } else if (pos >= 7 && pos <= 13) {
@@ -647,10 +543,9 @@ public class CalendarView extends LinearLayout{
                     start = 5;
                 }
                 for (int i = 0; i < 6; i++){
-                    if (i <= end){
-                        //mCycle = mCycle - 1;
-                        cycles.add(-1.0);
-                    } else if (i >= start){
+                    if (i < start){
+                        cycles.add(CyclesCounterHolder.instance().increase());
+                    } else if (i >= start && i <= end){
                         cycles.add(mCycle += 0.1);
                     } else {
                         cycles.add(-1.0);
@@ -675,8 +570,24 @@ public class CalendarView extends LinearLayout{
                 } else if (pos >= 35 && pos <= 41) {
                     start = 5;
                 }
+
+                int end = 0;
+                if (endPos >= 0 && endPos <= 6) {
+                    end = 0;
+                } else if (endPos >= 7 && endPos <= 13) {
+                    end = 1;
+                } else if (endPos >= 14 && endPos <= 20) {
+                    end = 2;
+                } else if (endPos >= 21 && endPos <= 27) {
+                    end = 3;
+                } else if (endPos >= 28 && endPos <= 34) {
+                    end = 4;
+                } else if (endPos >= 35 && endPos <= 41) {
+                    end = 5;
+                }
+
                 for (int i = 0; i < 6; i++){
-                    if (i>=start){
+                    if (i >=start && i <= end){
                         cycles.add(mCycle += 0.1);
                         mLast = cycles.get(i);
                     } else {
@@ -831,9 +742,71 @@ public class CalendarView extends LinearLayout{
                     }
                 }
 
+            } else if (mCycles.get(0).first == PatientModelHelper.EventList.OAK_DATE){
+                int zero = 0;
+                int end = 0;
+                int start = 0;
+
+
+                int pos = mCycles.get(0).second;
+
+                if (pos >= 0 && pos <= 6) {
+                    zero = 0;
+                } else if (pos >= 7 && pos <= 13) {
+                    zero = 1;
+                } else if (pos >= 14 && pos <= 20) {
+                    zero = 2;
+                } else if (pos >= 21 && pos <= 27) {
+                    zero = 3;
+                } else if (pos >= 28 && pos <= 34) {
+                    zero = 4;
+                } else if (pos >= 35 && pos <= 41) {
+                    zero = 5;
+                }
+
+                pos = mCycles.get(1).second;
+                if (pos >= 0 && pos <= 6) {
+                    end = 0;
+                } else if (pos >= 7 && pos <= 13) {
+                    end = 1;
+                } else if (pos >= 14 && pos <= 20) {
+                    end = 2;
+                } else if (pos >= 21 && pos <= 27) {
+                    end = 3;
+                } else if (pos >= 28 && pos <= 34) {
+                    end = 4;
+                } else if (pos >= 35 && pos <= 41) {
+                    end = 5;
+                }
+                pos = mCycles.get(2).second;
+                if (pos >= 0 && pos <= 6) {
+                    start = 0;
+                } else if (pos >= 7 && pos <= 13) {
+                    start = 1;
+                } else if (pos >= 14 && pos <= 20) {
+                    start = 2;
+                } else if (pos >= 21 && pos <= 27) {
+                    start = 3;
+                } else if (pos >= 28 && pos <= 34) {
+                    start = 4;
+                } else if (pos >= 35 && pos <= 41) {
+                    start = 5;
+                }
+
+                for (int i = 0; i < 6; i++){
+                    if (i >= start && i <= end) {
+                        cycles.add(mCycle += 0.1);
+                    } else if (i <= zero){
+                        cycles.add(-1.0);
+                    } else {
+                        cycles.add(-1.0);
+                    }
+                }
             }
         }
-
+        if (update) {
+            CyclesCounterHolder.instance().setCycleCounter(mCycle);
+        }
         mCycleCountView.setAdapter(new CycleCountAdapter(getContext(), cycles));
     }
 
@@ -861,7 +834,8 @@ public class CalendarView extends LinearLayout{
 
                 // set text
                 if (mCycles.get(position) != null && mCycles.get(position) > 0) {
-                    ((TextView) view).setText(String.format(Locale.ROOT, "%1$.1f", mCycles.get(position)));
+                    String digit = String.valueOf(mCycles.get(position));
+                    ((TextView) view).setText(String.format(Locale.ROOT, "%s ( %s )", digit.charAt(0), digit.charAt(2)));
                 } else {
                     ((TextView) view).setText("");
                 }
