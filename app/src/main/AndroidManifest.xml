@@ -19,7 +19,8 @@
         </activity>
         <activity
             android:name=".activities.IntroActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -36,10 +37,12 @@
         <activity android:name=".activities.ControlActivity"/>
         <activity android:name=".activities.ShortInstructionActivity"/>
         <activity android:name=".activities.NotForPatientActivity"
-                  android:theme="@style/AppTheme.NoActionBar"/>
+                  android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".new_version.gui.activities.StartActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".new_version.gui.activities.NewCalendarActivity"
                   android:theme="@style/AppTheme.NoActionBar"/>

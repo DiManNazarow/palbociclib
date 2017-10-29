@@ -30,7 +30,7 @@
         android:textStyle="normal"
         android:textColor="#52454a"
         android:lineSpacingExtra="8sp"
-        android:text="Назначается в начале каждого цикла, на 14 день во время первых двух циклов и в случае  возникновения клинических показаний"/>
+        android:text="Назначается в начале каждого цикла, на 15 день во время первых двух циклов и в случае  возникновения клинических показаний"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,7 +52,7 @@
             android:textColor="#65c162"
             android:letterSpacing="0.04"
             android:gravity="center_horizontal"
-            android:text="ОТМЕНА"
+            android:text="@string/new_version.back"
             />
 
         <TextView
@@ -65,7 +65,7 @@
             android:textColor="#65c162"
             android:letterSpacing="0.04"
             android:gravity="center_horizontal"
-            android:text="МОНИТОРИНГ"
+            android:text="@string/new_version.therapy"
             />
 
     </LinearLayout>

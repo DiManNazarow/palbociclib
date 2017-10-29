@@ -30,7 +30,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
                     android:lineSpacingExtra="10sp"
-                    android:text="Номер цикла"
+                    android:text="@string/new_version.cycle_number_spinner"
                     android:textColor="#8b2c2424"
                     android:textSize="14sp"
                     android:textStyle="normal"
@@ -63,7 +63,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
                     android:lineSpacingExtra="10sp"
-                    android:text="День ОАК"
+                    android:text="@string/new_version.oak_day"
                     android:textColor="#8b2c2424"
                     android:textSize="14sp"
                     android:textStyle="normal"
@@ -93,7 +93,7 @@
             android:layout_marginTop="@dimen/default_margin"
             android:fontFamily="sans-serif-medium"
             android:lineSpacingExtra="10sp"
-            android:text="Выберите текущую дозировку"
+            android:text="@string/new_version.set_current_dose"
             android:textColor="#de52454a"
             android:textSize="14sp"
             android:textStyle="normal"/>
@@ -101,16 +101,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginLeft="@dimen/default_margin"
             android:layout_marginRight="@dimen/default_margin"
-            android:layout_marginTop="@dimen/default_margin">
+            android:layout_marginTop="@dimen/default_margin"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
                 <ImageButton
                     android:id="@+id/button_dose_125"
@@ -120,16 +120,17 @@
                     android:src="@drawable/dose125"/>
 
                 <TextView
+                    android:id="@+id/button_dose_125_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:textSize="14sp"
                     android:fontFamily="sans-serif"
-                    android:textStyle="normal"
-                    android:textColor="#8a65c162"
-                    android:lineSpacingExtra="10sp"
                     android:gravity="center_horizontal"
+                    android:lineSpacingExtra="10sp"
                     android:text="125 мг"
+                    android:textColor="#8a65c162"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
                     />
 
             </LinearLayout>
@@ -137,9 +138,9 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginLeft="44dp"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
 
                 <ImageButton
@@ -150,16 +151,17 @@
                     android:src="@drawable/dose100"/>
 
                 <TextView
+                    android:id="@+id/button_dose_100_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:textSize="14sp"
                     android:fontFamily="sans-serif"
-                    android:textStyle="normal"
-                    android:textColor="#8a65c162"
-                    android:lineSpacingExtra="10sp"
                     android:gravity="center_horizontal"
+                    android:lineSpacingExtra="10sp"
                     android:text="100 мг"
+                    android:textColor="#8a65c162"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
                     />
 
             </LinearLayout>
@@ -167,9 +169,9 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginLeft="44dp"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
 
                 <ImageButton
@@ -180,16 +182,17 @@
                     android:src="@drawable/dose75"/>
 
                 <TextView
+                    android:id="@+id/button_dose_75_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:textSize="14sp"
                     android:fontFamily="sans-serif"
-                    android:textStyle="normal"
-                    android:textColor="#8a65c162"
-                    android:lineSpacingExtra="10sp"
                     android:gravity="center_horizontal"
+                    android:lineSpacingExtra="10sp"
                     android:text="75 мг"
+                    android:textColor="#8a65c162"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
                     />
 
             </LinearLayout>
@@ -197,16 +200,21 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/toxic_info_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/default_margin"
             android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginRight="@dimen/default_margin"
             android:textSize="14sp"
             android:fontFamily="sans-serif-medium"
             android:textStyle="normal"
             android:textColor="#de52454a"
             android:lineSpacingExtra="10sp"
-            android:text="Укажите степень гематотоксичности"
+            android:text="@string/new_version.set_hemo_toxic"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:drawableRight="@drawable/ic_help_circle_grey600_18dp"
             />
 
         <LinearLayout
@@ -223,7 +231,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/cycle_button"
-                android:text="1"
+                android:text="@string/new_version.one"
                 android:textColor="@color/green"/>
 
             <Button
@@ -233,25 +241,25 @@
                 android:layout_weight="1"
                 android:background="@drawable/cycle_button"
                 android:textColor="@color/green"
-                android:text="2"/>
+                android:text="@string/new_version.two"/>
 
             <Button
                 android:id="@+id/toxic_button_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/cycle_button"
+                android:background="@drawable/grade_3_monitoring_background"
                 android:textColor="@color/green"
-                android:text="3"/>
+                android:text="@string/new_version.three"/>
 
             <Button
                 android:id="@+id/toxic_button_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/cycle_button"
-                android:textColor="@color/green"
-                android:text="4"/>
+                android:background="@color/red"
+                android:textColor="@color/white"
+                android:text="@string/new_version.four"/>
 
         </LinearLayout>
 
@@ -273,7 +281,7 @@
                 android:layout_height="36dp"
                 android:layout_margin="@dimen/default_margin"
                 android:background="@color/calculate_button_background"
-                android:text="Рассчитать приём"
+                android:text="@string/new_version.appointments"
                 android:textColor="@color/white"
                 android:visibility="visible"
                 tools:visibility="gone"/>
@@ -294,7 +302,7 @@
                     android:layout_marginTop="@dimen/default_margin"
                     android:fontFamily="sans-serif-medium"
                     android:lineSpacingExtra="10sp"
-                    android:text="Рекомендуемые действия:"
+                    android:text="@string/new_version.recommended_action"
                     android:textColor="#de52454a"
                     android:textSize="14sp"
                     android:textStyle="normal"

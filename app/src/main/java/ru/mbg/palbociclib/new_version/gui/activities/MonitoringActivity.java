@@ -1,11 +1,13 @@
 package ru.mbg.palbociclib.new_version.gui.activities;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -29,6 +31,8 @@ public class MonitoringActivity extends AppCompatActivity {
     public static final String CYCLE = "cycle";
     public static final String COUNT = "count";
 
+    @BindView(R.id.toxic_info_text)
+    protected TextView mToxicInfoText;
     @BindView(R.id.cycle_spinner)
     protected Spinner mCycleSpinner;
     @BindView(R.id.days_spinner)
@@ -78,7 +82,7 @@ public class MonitoringActivity extends AppCompatActivity {
         setContentView(R.layout.activity_monitoring);
         ButterKnife.bind(this);
 
-        setTitle("Мониторинг приема");
+        setTitle(R.string.new_version_monitoring_activity_title);
         setNavigationButton();
 
         if (hasExtra()){
@@ -89,6 +93,19 @@ public class MonitoringActivity extends AppCompatActivity {
             setupClearView();
         }
         mCalculateButton.setEnabled(false);
+        mToxicInfoText.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                final int DRAWABLE_RIGHT = 2;
+                if(motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    if(motionEvent.getRawX() >= (mToxicInfoText.getRight() - mToxicInfoText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        GuiUtils.displayOkDialog(MonitoringActivity.this, "Определение степени гематоксичности (грейда)", getString(R.string.new_version_rule), null, false);
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -138,6 +155,14 @@ public class MonitoringActivity extends AppCompatActivity {
         }
         mDaysAdapter.setDropDownViewResource(R.layout.spinner_item);
         mDaysSpinner.setAdapter(mDaysAdapter);
+
+        if (mCycle == 1){
+            m75Button.setVisibility(View.GONE);
+            m100Button.setVisibility(View.GONE);
+            findViewById(R.id.button_dose_75_text).setVisibility(View.GONE);
+            findViewById(R.id.button_dose_100_text).setVisibility(View.GONE);
+        }
+
     }
 
     private void addSpinnerListeners(){
@@ -149,8 +174,25 @@ public class MonitoringActivity extends AppCompatActivity {
                     mDaysAdapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_item, daysShort);
                     mDaysAdapter.setDropDownViewResource(R.layout.spinner_item);
                     mDaysSpinner.setAdapter(mDaysAdapter);
+                } else {
+                    mDaysAdapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_item, daysFull);
+                    mDaysAdapter.setDropDownViewResource(R.layout.spinner_item);
+                    mDaysSpinner.setAdapter(mDaysAdapter);
+                }
+                if (mCycle == 1){
+                    m75Button.setVisibility(View.GONE);
+                    m100Button.setVisibility(View.GONE);
+                    findViewById(R.id.button_dose_75_text).setVisibility(View.GONE);
+                    findViewById(R.id.button_dose_100_text).setVisibility(View.GONE);
+                } else {
+                    m75Button.setVisibility(View.VISIBLE);
+                    m100Button.setVisibility(View.VISIBLE);
+                    findViewById(R.id.button_dose_75_text).setVisibility(View.VISIBLE);
+                    findViewById(R.id.button_dose_100_text).setVisibility(View.VISIBLE);
                 }
                 processEnableCalculateButton();
+                mCalculateButton.setVisibility(View.VISIBLE);
+                closeInfo();
             }
 
             @Override
@@ -171,6 +213,8 @@ public class MonitoringActivity extends AppCompatActivity {
                     }
                 }
                 processEnableCalculateButton();
+                mCalculateButton.setVisibility(View.VISIBLE);
+                closeInfo();
             }
 
             @Override
@@ -180,11 +224,11 @@ public class MonitoringActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar_nav, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.toolbar_nav, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -241,11 +285,13 @@ public class MonitoringActivity extends AppCompatActivity {
         mToxic1Button.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
         mToxic2Button.setBackgroundResource(R.drawable.cycle_button);
         mToxic2Button.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
-        mToxic3Button.setBackgroundResource(R.drawable.cycle_button);
+        mToxic3Button.setBackgroundResource(R.drawable.grade_3_monitoring_background);
         mToxic3Button.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
-        mToxic4Button.setBackgroundResource(R.drawable.cycle_button);
-        mToxic4Button.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
+        mToxic4Button.setBackground(new ColorDrawable(ContextCompat.getColor(getApplicationContext(), R.color.red)));
+        mToxic4Button.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
         processEnableCalculateButton();
+        mCalculateButton.setVisibility(View.VISIBLE);
+        closeInfo();
     }
 
     @OnClick(R.id.toxic_button_2)
@@ -255,11 +301,13 @@ public class MonitoringActivity extends AppCompatActivity {
         mToxic1Button.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
         mToxic2Button.setBackgroundResource(R.drawable.cycle_button_fill);
         mToxic2Button.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
-        mToxic3Button.setBackgroundResource(R.drawable.cycle_button);
+        mToxic3Button.setBackgroundResource(R.drawable.grade_3_monitoring_background);
         mToxic3Button.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
-        mToxic4Button.setBackgroundResource(R.drawable.cycle_button);
-        mToxic4Button.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
+        mToxic4Button.setBackground(new ColorDrawable(ContextCompat.getColor(getApplicationContext(), R.color.red)));
+        mToxic4Button.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
         processEnableCalculateButton();
+        mCalculateButton.setVisibility(View.VISIBLE);
+        closeInfo();
     }
 
     @OnClick(R.id.toxic_button_3)
@@ -271,9 +319,11 @@ public class MonitoringActivity extends AppCompatActivity {
         mToxic2Button.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
         mToxic3Button.setBackgroundResource(R.drawable.cycle_button_fill);
         mToxic3Button.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
-        mToxic4Button.setBackgroundResource(R.drawable.cycle_button);
-        mToxic4Button.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
+        mToxic4Button.setBackground(new ColorDrawable(ContextCompat.getColor(getApplicationContext(), R.color.red)));
+        mToxic4Button.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
         processEnableCalculateButton();
+        mCalculateButton.setVisibility(View.VISIBLE);
+        closeInfo();
     }
 
     @OnClick(R.id.toxic_button_4)
@@ -283,11 +333,13 @@ public class MonitoringActivity extends AppCompatActivity {
         mToxic1Button.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
         mToxic2Button.setBackgroundResource(R.drawable.cycle_button);
         mToxic2Button.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
-        mToxic3Button.setBackgroundResource(R.drawable.cycle_button);
+        mToxic3Button.setBackgroundResource(R.drawable.grade_3_monitoring_background);
         mToxic3Button.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
         mToxic4Button.setBackgroundResource(R.drawable.cycle_button_fill);
         mToxic4Button.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
         processEnableCalculateButton();
+        mCalculateButton.setVisibility(View.VISIBLE);
+        closeInfo();
     }
 
     @OnClick(R.id.calculate_button)
@@ -373,7 +425,7 @@ public class MonitoringActivity extends AppCompatActivity {
                     nextOakTextView.setText(R.string.start_new_cycle_2_lover);
                     setViewBackgroundWithoutResettingPadding(nextOakTextView, R.drawable.row_fill_red);
                 } else {
-                    continueTextView.setText(R.string.pause_monitoring);
+                    continueTextView.setText(R.string.pause);
                     setViewBackgroundWithoutResettingPadding(continueTextView, R.drawable.row_fill_green);
                     nextOakTextView.setText(R.string.start_new_cycle_2);
                     setViewBackgroundWithoutResettingPadding(nextOakTextView, R.drawable.row_fill_green);
@@ -395,7 +447,7 @@ public class MonitoringActivity extends AppCompatActivity {
                     dopInfo.setText(R.string.control_on_14_day);
                     setViewBackgroundWithoutResettingPadding(dopInfo, R.drawable.row_fill_yellow);
                 } else if (mToxic > 3){
-                    continueTextView.setText(R.string.stop_monitoring);
+                    continueTextView.setText(R.string.delay_monitoring);
                     setViewBackgroundWithoutResettingPadding(continueTextView, R.drawable.row_fill_red);
                     nextOakTextView.setText(R.string.start_new_cycle_lover);
                     setViewBackgroundWithoutResettingPadding(nextOakTextView, R.drawable.row_fill_red);
@@ -442,7 +494,7 @@ public class MonitoringActivity extends AppCompatActivity {
                     nextOakTextView.setText(R.string.new_cycle_with_zitopenii);
                     setViewBackgroundWithoutResettingPadding(nextOakTextView, R.drawable.row_fill_yellow);
                 } else if (mToxic > 3){
-                    continueTextView.setText(R.string.stop_monitoring);
+                    continueTextView.setText(R.string.delay_monitoring);
                     setViewBackgroundWithoutResettingPadding(continueTextView, R.drawable.row_fill_yellow);
                     nextOakTextView.setText(R.string.start_new_cycle_lover);
                     setViewBackgroundWithoutResettingPadding(nextOakTextView, R.drawable.row_fill_yellow);

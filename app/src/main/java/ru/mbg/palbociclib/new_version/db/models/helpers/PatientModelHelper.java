@@ -28,29 +28,6 @@ public class PatientModelHelper {
 
     }
 
-//    public static List<Three<Date /*Дата календаря*/, Integer /*Тип*/, Double/*цикл*/>> prepareCalendarInfo(Date currentDate, Patient patient){
-//        for (int i = 0; i<12; i++){
-//
-//            Calendar calendar = (Calendar) currentDate.clone();
-//
-//            // determine the cell for current month's beginning
-//            calendar.set(Calendar.DAY_OF_MONTH, 0);
-//            int monthBeginningCell = calendar.get(Calendar.DAY_OF_WEEK) - 2;
-//
-//            // move calendar backwards to the beginning of the week
-//            calendar.add(Calendar.DAY_OF_MONTH, -monthBeginningCell);
-//
-//
-//
-//            for (int j = 0; j<48; j++){
-//
-//
-//
-//            }
-//
-//        }
-//    }
-
     public static List<Three<Integer, Date, Integer>> fillPatientActionDate(Patient patient){
         List<Three<Integer, Date, Integer>> actions = new ArrayList<>();
 
@@ -100,56 +77,6 @@ public class PatientModelHelper {
             calendar.add(Calendar.DAY_OF_MONTH, 1);
             actions.add(new Three<Integer, Date, Integer>(EventList.END_CYCLE_DATE, calendar.getTime(), i + 1));
         }
-
-//        if (patient.getCycleCount() < 4) {
-//            calendar.add(Calendar.DAY_OF_MONTH, 7);
-//            actions.add(new Three<Integer, Date, Integer>(EventList.START_CYCLE_DATE, calendar.getTime(), 3));
-//            for (int i = 1; i <= 20; i++) {
-//                calendar.add(Calendar.DAY_OF_MONTH, 1);
-//                if (i != 14) {
-//                    actions.add(new Three<Integer, Date, Integer>(EventList.CYCLE_DATE, calendar.getTime(), 3));
-//                } else {
-//                    actions.add(new Three<Integer, Date, Integer>(EventList.OAK_DATE, calendar.getTime(), 3));
-//                }
-//                actions.add(new Three<Integer, Date, Integer>(EventList.CYCLE_DATE, calendar.getTime(), 3));
-//            }
-//            calendar.add(Calendar.DAY_OF_MONTH, 1);
-//            actions.add(new Three<Integer, Date, Integer>(EventList.END_CYCLE_DATE, calendar.getTime(), 3));
-//        }
-//
-//        if (patient.getCycleCount() < 3) {
-//
-//            calendar.add(Calendar.DAY_OF_MONTH, 7);
-//            actions.add(new Three<Integer, Date, Integer>(EventList.START_CYCLE_DATE, calendar.getTime(), 2));
-//            for (int i = 1; i <= 20; i++) {
-//                calendar.add(Calendar.DAY_OF_MONTH, 1);
-//                if (i != 14) {
-//                    actions.add(new Three<Integer, Date, Integer>(EventList.CYCLE_DATE, calendar.getTime(), 2));
-//                } else {
-//                    actions.add(new Three<Integer, Date, Integer>(EventList.OAK_DATE, calendar.getTime(), 2));
-//                }
-//                actions.add(new Three<Integer, Date, Integer>(EventList.CYCLE_DATE, calendar.getTime(), 2));
-//            }
-//            calendar.add(Calendar.DAY_OF_MONTH, 1);
-//            actions.add(new Three<Integer, Date, Integer>(EventList.END_CYCLE_DATE, calendar.getTime(), 2));
-//        }
-//
-//        if (patient.getCycleCount() < 2) {
-//
-//            calendar.add(Calendar.DAY_OF_MONTH, 7);
-//            actions.add(new Three<Integer, Date, Integer>(EventList.START_CYCLE_DATE, calendar.getTime(), 1));
-//            for (int i = 1; i <= 20; i++) {
-//                calendar.add(Calendar.DAY_OF_MONTH, 1);
-//                if (i != 14) {
-//                    actions.add(new Three<Integer, Date, Integer>(EventList.CYCLE_DATE, calendar.getTime(), 1));
-//                } else {
-//                    actions.add(new Three<Integer, Date, Integer>(EventList.OAK_DATE, calendar.getTime(), 1));
-//                }
-//                actions.add(new Three<Integer, Date, Integer>(EventList.CYCLE_DATE, calendar.getTime(), 1));
-//            }
-//            calendar.add(Calendar.DAY_OF_MONTH, 1);
-//            actions.add(new Three<Integer, Date, Integer>(EventList.END_CYCLE_DATE, calendar.getTime(), 1));
-//        }
 
         return actions;
     }

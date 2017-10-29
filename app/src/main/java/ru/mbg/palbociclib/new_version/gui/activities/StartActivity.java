@@ -66,8 +66,8 @@ public class StartActivity extends AppCompatActivity {
         mPatient.setCycleCount(1);
         mFirstCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
         mSecondCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.orange));
-        mThirdCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.orange));
-        mFourthCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.orange));
+        mThirdCycleButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.grade_3_background));
+        mFourthCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.red));
     }
 
     @OnClick(R.id.second_button)
@@ -75,8 +75,8 @@ public class StartActivity extends AppCompatActivity {
         mPatient.setCycleCount(2);
         mSecondCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
         mFirstCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.orange));
-        mThirdCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.orange));
-        mFourthCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.orange));
+        mThirdCycleButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.grade_3_background));
+        mFourthCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.red));
     }
 
     @OnClick(R.id.third_button)
@@ -85,7 +85,7 @@ public class StartActivity extends AppCompatActivity {
         mThirdCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
         mFirstCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.orange));
         mSecondCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.orange));
-        mFourthCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.orange));
+        mFourthCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.red));
     }
 
     @OnClick(R.id.fourth_button)
@@ -94,7 +94,7 @@ public class StartActivity extends AppCompatActivity {
         mFourthCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
         mFirstCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.orange));
         mSecondCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.orange));
-        mThirdCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.orange));
+        mThirdCycleButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.grade_3_background));
     }
 
     @OnClick(R.id.next_button_view)
