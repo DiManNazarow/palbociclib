@@ -1,30 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:background="#65c162">
+    android:layout_height="wrap_content"
+    android:background="#65c162"
+    android:paddingBottom="@dimen/default_margin">
 
-    <TextView
-        android:id="@+id/cycle_text_view"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_margin"
-        android:layout_marginLeft="@dimen/default_margin"
-        android:textSize="20sp"
-        android:fontFamily="sans-serif-medium"
-        android:textStyle="normal"
-        android:textColor="#ffffff"
-        tools:text="Цикл 2"
-        />
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/title_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="#ffffff"
+            tools:text="Цикл 2"
+            />
+
+        <ImageButton
+            android:id="@+id/close_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/default_margin"
+            android:src="@drawable/close"
+            android:background="@null"/>
+
+    </RelativeLayout>
+
 
     <TextView
         android:id="@+id/cycle_date_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/cycle_text_view"
+        android:layout_below="@+id/title_text_view"
         android:layout_marginLeft="@dimen/default_margin"
         android:layout_marginTop="4dp"
         android:textSize="12sp"
@@ -35,15 +53,18 @@
         tools:text="Дата начала: 9.08.2017"
         />
 
-    <ImageButton
-        android:id="@+id/close_button"
+    <TextView
+        android:id="@+id/day_of_cycle_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="@dimen/default_margin"
-        android:layout_marginRight="@dimen/default_margin"
-        android:src="@drawable/close"
-        android:background="@null"/>
+        android:layout_below="@+id/cycle_date_text_view"
+        android:layout_marginLeft="@dimen/default_margin"
+        android:layout_marginTop="4dp"
+        android:textSize="12sp"
+        android:fontFamily="sans-serif"
+        android:textStyle="normal"
+        android:textColor="#e6ffffff"
+        android:lineSpacingExtra="4sp"
+        tools:text="Сегодня 7 день 1 цикла"/>
 
-
-</RelativeLayout>
+</LinearLayout>

@@ -45,7 +45,6 @@ public class PatientModelHelper {
             } else {
                 actions.add(new Three<Integer, Date, Integer>(EventList.OAK_DATE, calendar.getTime(), patient.getCycleCount()));
             }
-            actions.add(new Three<Integer, Date, Integer>(EventList.CYCLE_DATE, calendar.getTime(), patient.getCycleCount()));
         }
         calendar.add(Calendar.DAY_OF_MONTH, 1);
         actions.add(new Three<Integer, Date, Integer>(EventList.END_CYCLE_DATE, calendar.getTime(), patient.getCycleCount()));
@@ -72,13 +71,36 @@ public class PatientModelHelper {
                 } else {
                     actions.add(new Three<Integer, Date, Integer>(EventList.OAK_DATE, calendar.getTime(), i + 1));
                 }
-                actions.add(new Three<Integer, Date, Integer>(EventList.CYCLE_DATE, calendar.getTime(), i + 1));
             }
             calendar.add(Calendar.DAY_OF_MONTH, 1);
             actions.add(new Three<Integer, Date, Integer>(EventList.END_CYCLE_DATE, calendar.getTime(), i + 1));
         }
 
         return actions;
+    }
+
+    public static Pair<Integer, Integer> getDaysOfCycle(List<Three<Integer, Date, Integer>> actionDate){
+        int counter = 0;
+        int cycle = 0;
+        Date today = new Date();
+        if (actionDate == null || actionDate.isEmpty()){
+            return new Pair<>(0, 0);
+        }
+        for (int i = actionDate.size() - 1; i>=0; i--){
+            if (actionDate.get(i).second.before(today) || DateUtils.compareDate(actionDate.get(i).second, today)){
+                if (actionDate.get(i).first != EventList.START_CYCLE_DATE){
+                    counter++;
+                    cycle = actionDate.get(i).third;
+                } else {
+                    if (DateUtils.compareDate(actionDate.get(i).second, today)){
+                        return new Pair<>(1, actionDate.get(i).third);
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+        return new Pair<>(counter + 1, cycle);
     }
 
 }

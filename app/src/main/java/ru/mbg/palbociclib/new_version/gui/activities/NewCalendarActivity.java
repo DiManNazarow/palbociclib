@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Pair;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -53,12 +54,20 @@ public class NewCalendarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_calendar);
         ButterKnife.bind(this);
 
+        mCycleInfoView.setTitleText(getString(R.string.new_version_calendar_title));
+
         long patientId = getIntent().getLongExtra(Patient.SERIALIZABLE_NAME, -1);
         mPatient = ((App)getApplicationContext()).getAppDatabase().patientDao().findPatientById(patientId);
 
         mPatient.setOaksDate(PatientModelHelper.fillPatientActionDate(mPatient));
 
-        mCycleInfoView.setCycleText(getString(R.string.cycle_oak_card, mPatient.getCycleCount()));
+        Pair<Integer, Integer> info = PatientModelHelper.getDaysOfCycle(mPatient.getOaksDate());
+        if (info.second == 0) {
+            mCycleInfoView.setDayOfCycleText(getString(R.string.cycle_oak_card, mPatient.getCycleCount()));
+        } else {
+            mCycleInfoView.setDayOfCycleText(getString(R.string.cycle_day_of_oak, info.first, info.second));
+        }
+
         mCycleInfoView.setDateText(getString(R.string.new_version_date_start, mPatient.getCycleStartDate()));
         mCycleInfoView.setCloseButtonClickListener(new View.OnClickListener() {
             @Override

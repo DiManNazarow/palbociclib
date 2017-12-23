@@ -2,6 +2,7 @@ package ru.mbg.palbociclib.new_version.gui.activities;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -64,37 +65,53 @@ public class StartActivity extends AppCompatActivity {
     @OnClick(R.id.first_button)
     protected void onFirstCycleClick(){
         mPatient.setCycleCount(1);
-        mFirstCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
-        mSecondCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.orange));
-        mThirdCycleButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.grade_3_background));
-        mFourthCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.red));
+        mFirstCycleButton.setBackgroundResource(R.drawable.start_activity_cycle_button_left_fill);
+        mFirstCycleButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
+        mSecondCycleButton.setBackgroundResource(R.drawable.cycle_button);
+        mSecondCycleButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
+        mThirdCycleButton.setBackgroundResource(R.drawable.cycle_button);
+        mThirdCycleButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
+        mFourthCycleButton.setBackgroundResource(R.drawable.start_activity_cycle_button_right);
+        mFourthCycleButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
     }
 
     @OnClick(R.id.second_button)
     protected void onSecondCycleClick(){
         mPatient.setCycleCount(2);
-        mSecondCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
-        mFirstCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.orange));
-        mThirdCycleButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.grade_3_background));
-        mFourthCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.red));
+        mFirstCycleButton.setBackgroundResource(R.drawable.start_activity_cycle_button_left);
+        mFirstCycleButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
+        mSecondCycleButton.setBackgroundResource(R.drawable.cycle_button_fill);
+        mSecondCycleButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
+        mThirdCycleButton.setBackgroundResource(R.drawable.cycle_button);
+        mThirdCycleButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
+        mFourthCycleButton.setBackgroundResource(R.drawable.start_activity_cycle_button_right);
+        mFourthCycleButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
     }
 
     @OnClick(R.id.third_button)
     protected void onThirdCycleClick(){
         mPatient.setCycleCount(3);
-        mThirdCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
-        mFirstCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.orange));
-        mSecondCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.orange));
-        mFourthCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.red));
+        mFirstCycleButton.setBackgroundResource(R.drawable.start_activity_cycle_button_left);
+        mFirstCycleButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
+        mSecondCycleButton.setBackgroundResource(R.drawable.cycle_button);
+        mSecondCycleButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
+        mThirdCycleButton.setBackgroundResource(R.drawable.cycle_button_fill);
+        mThirdCycleButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
+        mFourthCycleButton.setBackgroundResource(R.drawable.start_activity_cycle_button_right);
+        mFourthCycleButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
     }
 
     @OnClick(R.id.fourth_button)
     protected void onFourthCycleClick(){
         mPatient.setCycleCount(4);
-        mFourthCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
-        mFirstCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.orange));
-        mSecondCycleButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.orange));
-        mThirdCycleButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.grade_3_background));
+        mFirstCycleButton.setBackgroundResource(R.drawable.start_activity_cycle_button_left);
+        mFirstCycleButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
+        mSecondCycleButton.setBackgroundResource(R.drawable.cycle_button);
+        mSecondCycleButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
+        mThirdCycleButton.setBackgroundResource(R.drawable.cycle_button);
+        mThirdCycleButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
+        mFourthCycleButton.setBackgroundResource(R.drawable.start_activity_cycle_button_right_fill);
+        mFourthCycleButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
     }
 
     @OnClick(R.id.next_button_view)

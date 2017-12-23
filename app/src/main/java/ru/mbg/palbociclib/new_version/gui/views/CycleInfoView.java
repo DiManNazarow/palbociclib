@@ -17,10 +17,12 @@ import ru.mbg.palbociclib.R;
 
 public class CycleInfoView extends LinearLayout {
 
-    @BindView(R.id.cycle_text_view)
+    @BindView(R.id.title_text_view)
     protected TextView mCycleTextView;
     @BindView(R.id.cycle_date_text_view)
     protected TextView mDateTextView;
+    @BindView(R.id.day_of_cycle_text_view)
+    protected TextView mDayOfCycleTextView;
     @BindView(R.id.close_button)
     protected ImageButton mCloseButton;
 
@@ -52,12 +54,28 @@ public class CycleInfoView extends LinearLayout {
         ButterKnife.bind(this, mRootView);
     }
 
-    public void setCycleText(String text){
+    public void setTitleText(String text){
         mCycleTextView.setText(text);
     }
 
     public void setDateText(String text){
         mDateTextView.setText(text);
+    }
+
+    public void setDayOfCycleText(String text){
+        mDayOfCycleTextView.setText(text);
+    }
+
+    public TextView getCycleTextView() {
+        return mCycleTextView;
+    }
+
+    public TextView getDateTextView() {
+        return mDateTextView;
+    }
+
+    public TextView getDayOfCycleTextView() {
+        return mDayOfCycleTextView;
     }
 
     public void setCloseButtonClickListener(OnClickListener onClickListener){
