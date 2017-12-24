@@ -248,6 +248,11 @@
     <string name="new_version.recommended_action">Рекомендуемые действия:</string>
     <string name="new_version.cycle_number_spinner">Номер цикла</string>
     <string name="new_version.oak_day">День ОАК</string>
+    <string name="new_version.hint_view.plan_oak">OAK Плановый общий анализ крови, проводится на 1-й и 15-й день цикла</string>
+    <string name="new_version.hint_view.control_oak">OAK Контрольный общий анализ крови показан при обнаружении цитопении 3 степени на 15 день, проводится дополнительно на 22 день цикла</string>
+    <string name="new_version.hint_view.out_of_plan_oak">OAK Внеплановый общий анализ крови по клиническим показаниям</string>
+    <string name="new_version.oak">ОАК</string>
+    <string name="new_version.hint">Подсказка</string>
 
     <string name="stop_monitoring">Прервать прием до восстановления количества клеток до Грейда меньше или равного 2</string>
     <string name="delay_monitoring">Отложить начало терапии до восстановления показателей крови до 1-2 степени гематологической токсичности</string>

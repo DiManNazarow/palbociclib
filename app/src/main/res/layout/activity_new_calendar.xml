@@ -20,6 +20,12 @@
 
         </ru.mbg.palbociclib.new_version.gui.views.CycleInfoView>
 
+        <ru.mbg.palbociclib.new_version.gui.views.HintView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </ru.mbg.palbociclib.new_version.gui.views.HintView>
+
         <ru.mbg.palbociclib.new_version.gui.views.MonthPickerView
             android:id="@+id/month_picker_view"
             android:layout_width="match_parent"
