@@ -8,7 +8,7 @@ import ru.mbg.palbociclib.new_version.db.dao.PatientDao;
 import ru.mbg.palbociclib.new_version.db.models.Event;
 import ru.mbg.palbociclib.new_version.db.models.Patient;
 
-@Database(entities = {Patient.class, Event.class}, version = 2)
+@Database(entities = {Patient.class, Event.class}, version = 3)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract PatientDao patientDao();

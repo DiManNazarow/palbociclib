@@ -9,7 +9,7 @@
     <string name="tab_more">Еще</string>
     <string name="title_more">Профиль пользователя</string>
     <string name="warning">Внимание</string>
-    <string name="doctors_only">Приложение предназначено\nтолько для врачей!</string>
+    <string name="doctors_only">Приложение предназначено только для медецинских работников и емеет ознакомительный характер. Лечение пациента каждый врач проводит индивидуально.</string>
     <string name="disclaimer1">Используя данное приложение, вы принимаете</string>
     <string name="disclaimer2">Пользовательское соглашение</string>
     <string name="i_am_a_doctor">Да, я врач!</string>
@@ -215,17 +215,17 @@
     <string name="error.wrong_aok_data">Указанные данные ОАК не позволяют назначить лечение</string>
 
     <string name="new_version.next">ПЛАН ВЕДЕНИЯ ПАЦИЕНТКИ</string>
-    <string name="new_version.date_cycle_start">Дата начала цикла тиропии</string>
+    <string name="new_version.date_cycle_start">Дата начала цикла терапии</string>
     <string name="new_version.calendar_title">Даты мониторинга показателей крови</string>
     <string name="new_version.one">1</string>
     <string name="new_version.two">2</string>
     <string name="new_version.three">3</string>
     <string name="new_version.set_hemo_toxic">Укажите степень гематологической токсичности</string>
-    <string name="new_version.set_current_dose">Выберите текущую дозировку препарата</string>
+    <string name="new_version.set_current_dose">Выберите текущую дозировку палбоциклиба</string>
     <string name="new_version.four">4 И БОЛЕЕ</string>
     <string name="new_version.welcome">Здравствуйте!</string>
     <string name="new_version.start_info_text">Данные рекомендации по управлению гематологической токсичностью основаны на инструкции по применению препарата палбоциклиб, первого ингибитора CDK 4/6, одобренного в Российской Федерации.</string>
-    <string name="new_version.date_of_app_create">Дата создания приложения:</string>
+    <string name="new_version.date_of_app_create">Дата создания приложения: 10.11.2017</string>
     <string name="new_version.choose_date_and_cycle">Чтобы начать пользоваться приложением введите номер цикла приема препарата и дату его начала</string>
     <string name="new_version.cycle_number">Номер цикла терапии</string>
     <string name="new_version.input_date">Введите дату начала цикла</string>
@@ -240,38 +240,66 @@
     <string name="new_version.error">Ошибка</string>
     <string name="new_version.error.empty_date">Не указана дата начала цикла.</string>
     <string name="new_version.error.empty_cycle">Цикл не выбран.</string>
-    <string name="new_version.rule" formatted="false">Определение степени гематоксичности ( грэйда ) производится согласно CTCAE 4.0.\nГрэйд 1: Нейтрофилы ≥1500/мл;\nГрэйд 2: Нейтрофилы 1000 — 1500/мл;\nГрэйд 3: Нейтрофилы 500 — 1000/мл;\nГрэйд 4: Нейтрофилы менее 500/мл;</string>
-    <string name="new_version.appointments">Назначения</string>
+    <string name="new_version.rule" formatted="false">Нейтропения (АЧН = абсолютное число нейтрофилов; НГН = нижняя граница нормы)\n
+        Степень 1: АЧН\u003CНГН – 1500/мм3;\n
+        Степень 2: АЧН 1000 – \u0031500/мм3;\n
+        Степень 3: АЧН 500 – \u0031000/мм3;\n
+        Степень 4: АЧН \u003C 500/мм3;\n\n
+        Лейкопения (АЧЛ = абсолютное число лейкоцитов; НГН = нижняя граница нормы)\n
+        Степень 1: АЧЛ\u003CНГН – 3000/мм3;\n
+        Степень 2: АЧЛ 2000 – \u003C3000/мм3;\n
+        Степень 3: АЧЛ 1000 – \u003C2000/мм3;\n
+        Степень 4: АЧЛ \u003C 1000/мм3;\n\n
+        Тромбоцитопения (ЧТ = число тромбоцитов; НГН = нижняя граница нормы)\n
+        Степень 1: ЧТ\u003CНГН – 75 000/мм3;\n
+        Степень 2: ЧТ 50 000 – \u003C75 000/мм3;\n
+        Степень 3: 25 000 – \u003C50 000/мм3;\n
+        Степень 4: \u003C 25 000/мм3;
+    </string>
+    <string name="new_version.appointments">Расчитать назначения</string>
     <string name="new_version.back">НАЗАД</string>
     <string name="new_version.therapy">ТЕРАПИЯ</string>
     <string name="new_version.monitoring_activity_title">Планирование терапии</string>
     <string name="new_version.recommended_action">Рекомендуемые действия:</string>
     <string name="new_version.cycle_number_spinner">Номер цикла</string>
     <string name="new_version.oak_day">День ОАК</string>
-    <string name="new_version.hint_view.plan_oak">OAK Плановый общий анализ крови, проводится на 1-й и 15-й день цикла</string>
-    <string name="new_version.hint_view.control_oak">OAK Контрольный общий анализ крови показан при обнаружении цитопении 3 степени на 15 день, проводится дополнительно на 22 день цикла</string>
-    <string name="new_version.hint_view.out_of_plan_oak">OAK Внеплановый общий анализ крови по клиническим показаниям</string>
+    <string name="new_version.hint_view.plan_oak">Плановый общий анализ крови, проводится на 1-й и 15-й день цикла</string>
+    <string name="new_version.hint_view.control_oak">Контрольный общий анализ крови показан при обнаружении цитопении 3 степени на 15 день, проводится дополнительно на 22 день цикла</string>
+    <string name="new_version.hint_view.out_of_plan_oak">Внеплановый общий анализ крови по клиническим показаниям</string>
     <string name="new_version.oak">ОАК</string>
     <string name="new_version.hint">Подсказка</string>
 
-    <string name="stop_monitoring">Прервать прием до восстановления количества клеток до Грейда меньше или равного 2</string>
-    <string name="delay_monitoring">Отложить начало терапии до восстановления показателей крови до 1-2 степени гематологической токсичности</string>
-    <string name="start_monitoring">Начать прием Палбоциклиба 125 мг во время еды. Необходимо принимать препарат примерно в одинаковое время каждый день.</string>
+    <string name="stop_monitoring">Прервать прием до восстановления показателей ОАК до степени \u2264 2</string>
+    <string name="delay_monitoring">Отложить начало терапии до восстановления числа нейтрофилов >= 1500</string>
+    <string name="start_monitoring">Начать прием в дозе 125 мг</string>
     <string name="start_monitoring_same_dose">Начало приема в прежней дозе</string>
-    <string name="continue_in_same_dose">Продолжить прием в текущей дозе</string>
-    <string name="continue_in_lover_dose">Возобновить прием в следующей пониженной дозе</string>
-    <string name="pause">7 дней перерыв</string>
+    <string name="continue_in_same_dose">Продолжить прием в прежней дозе</string>
+    <string name="continue_in_lover_dose">Возобновить прием в следующей дозе</string>
+    <string name="pause">Плановый перерыв 7 дней (22-28 дни цикла)</string>
     <string name="start_new_cycle_lover">Начать цикл в следующей пониженной дозе</string>
     <string name="start_new_cycle_2">Начать цикл 2 в прежней дозе</string>
     <string name="start_new_cycle_3">Начать цикл 3 в прежней дозе</string>
     <string name="start_new_cycle_2_lover">Начать цикл 2 в следующей пониженной дозе</string>
     <string name="start_new_cycle_3_lover">Начать цикл 3 в следующей пониженной дозе</string>
     <string name="control_on_14_day">Контроль ОАК на 14-й день</string>
-    <string name="control_on_21_day">Контроль ОАК на 21-й день</string>
+    <string name="control_on_21_day">Контроль ОАК: день 22</string>
     <string name="control_in_new_cycle">Контроль ОАК в 1-й день каждого следующего цикла</string>
     <string name="pause_monitoring">Отложить начало терапии до восстановления показателей крови до 1-2 степени гематологической токсичности. ОАК повторить через 1 неделю</string>
-    <string name="new_cycle_with_looking">Начать цикл. При восстановлении до Грейда менее или равного 2, рассмотреть снижение дозы в случае замедленного ( более 1 недели ) восстановления показателей крови</string>
+    <string name="new_cycle_with_looking">Начать цикл при восстановлении до степени \u2264 2. Рассмотреть снижение дозы в случае замедленного ( > 1 недели ) восстановления показателей крови</string>
     <string name="new_cycle_with_zitopenii">Начать цикл при восстановлении до степени (грейда) менее или равного 2.\nРассмотреть снижение дозы в случае замедленного ( более 1 недели ) восстановления показателей крови/при повторных эпизодах цитопении Грейда 3</string>
+
+    <string name="new_version.toxic_one">0 - 1</string>
+    <string name="new_version.toxic_two">2</string>
+    <string name="new_version.toxic_three">3</string>
+    <string name="new_version.toxic_fourth">3* - 4</string>
+    <string name="new_version.toxic_info">* Если имеется нейтропения 3-й степени с лихорадкой \u2265 38,5 и/или инфекцией</string>
+    <string name="new_version.cycle_count">Цикл: %1$s</string>
+    <string name="new_version.day_count">День: %1$s-й</string>
+    <string name="new_version.day_count.empty">День: -</string>
+
+    <string name="new_version.oak_by_plan">Плановый общий анализ крови</string>
+    <string name="new_version.oak_out_of_plan">Внеплановый общий анализ крови</string>
+    <string name="new_version.control_oak">Контрольный общий анализ крови</string>
 
     <string name="monday">ПН</string>
     <string name="tuesday">ВТ</string>

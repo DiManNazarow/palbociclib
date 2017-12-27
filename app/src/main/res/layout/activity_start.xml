@@ -2,6 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,7 +17,7 @@
 
     </ImageView>
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/up"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -25,63 +26,145 @@
         android:layout_alignParentStart="true"
         android:weightSum="5">
 
-        <TextView
-            android:id="@+id/hello"
+        <android.support.constraint.Guideline
+            android:id="@+id/divider"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/default_margin"
-            android:fontFamily="sans-serif"
-            android:gravity="center"
-            android:textColor="#2c2427"
-            android:textSize="32sp"
-            android:textStyle="normal"
-            android:layout_weight="1.3"
-            android:text="@string/new_version.welcome"/>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.60"/>
 
         <TextView
-            android:id="@+id/info"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginRight="@dimen/default_margin"
-            android:layout_marginLeft="@dimen/default_margin"
-            android:layout_marginTop="8dp"
-            android:textSize="16sp"
-            android:textColor="#52454a"
-            android:text="@string/new_version.start_info_text"
-            android:lineSpacingExtra="8sp"
-            android:layout_weight="1"
+            android:id="@+id/date_create_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:gravity="center"
-            />
-
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
+            android:autoSizeMaxTextSize="18sp"
+            android:autoSizeMinTextSize="12dp"
+            android:autoSizeTextType="uniform"
             android:text="@string/new_version.date_of_app_create"
             android:textColor="#52454a"
-            android:textSize="16sp"
-            android:layout_weight="1.5"
-            android:gravity="center_vertical"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/divider"/>
 
         <TextView
-            android:id="@+id/cycle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/default_margin"
-            android:layout_marginLeft="@dimen/default_margin"
-            android:layout_marginRight="@dimen/default_margin"
+            android:id="@+id/textView18"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:autoSizeMaxTextSize="18sp"
+            android:autoSizeMinTextSize="10dp"
+            android:autoSizeTextType="uniform"
             android:fontFamily="sans-serif"
             android:gravity="center"
             android:lineSpacingExtra="8sp"
             android:text="@string/new_version.choose_date_and_cycle"
             android:textColor="#52454a"
-            android:textSize="16sp"
-            android:textStyle="normal"
-            android:layout_weight="1.2"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/date_create_text_view"/>
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:text="@string/new_version.welcome"
+            android:fontFamily="sans-serif"
+            android:textColor="#2c2427"
+            android:textSize="32sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="16dp"/>
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:autoSizeMaxTextSize="18sp"
+            android:autoSizeMinTextSize="10dp"
+            android:autoSizeTextType="uniform"
+            android:gravity="center"
+            android:lineSpacingExtra="8sp"
+            android:text="@string/new_version.start_info_text"
+            android:textColor="#52454a"
+            app:layout_constraintBottom_toTopOf="@+id/date_create_text_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView19"
+            app:layout_constraintVertical_bias="0.0"/>
+
+        <!--<TextView-->
+            <!--android:id="@+id/hello"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginTop="@dimen/default_margin"-->
+            <!--android:fontFamily="sans-serif"-->
+            <!--android:gravity="center"-->
+            <!--android:textColor="#2c2427"-->
+            <!--android:textSize="32sp"-->
+            <!--android:textStyle="normal"-->
+            <!--android:layout_weight="1.3"-->
+            <!--android:text="@string/new_version.welcome"/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/info"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginRight="@dimen/default_margin"-->
+            <!--android:layout_marginLeft="@dimen/default_margin"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:textSize="16sp"-->
+            <!--android:textColor="#52454a"-->
+            <!--android:text="@string/new_version.start_info_text"-->
+            <!--android:lineSpacingExtra="8sp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:gravity="center"-->
+            <!--/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/date"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginLeft="32dp"-->
+            <!--android:layout_marginRight="32dp"-->
+            <!--android:text="@string/new_version.date_of_app_create"-->
+            <!--android:textColor="#52454a"-->
+            <!--android:textSize="16sp"-->
+            <!--android:layout_weight="1.5"-->
+            <!--android:gravity="center_vertical"/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/cycle"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginBottom="@dimen/default_margin"-->
+            <!--android:layout_marginLeft="@dimen/default_margin"-->
+            <!--android:layout_marginRight="@dimen/default_margin"-->
+            <!--android:fontFamily="sans-serif"-->
+            <!--android:gravity="center"-->
+            <!--android:lineSpacingExtra="8sp"-->
+            <!--android:text="@string/new_version.choose_date_and_cycle"-->
+            <!--android:textColor="#52454a"-->
+            <!--android:textSize="16sp"-->
+            <!--android:textStyle="normal"-->
+            <!--android:layout_weight="1.2"/>-->
+
+    </android.support.constraint.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/center"
@@ -176,7 +259,7 @@
 
     </LinearLayout>
 
-    <TextView
+    <Button
         android:id="@+id/next_button_view"
         android:layout_width="match_parent"
         android:layout_height="48dp"
@@ -184,10 +267,11 @@
         android:fontFamily="sans-serif-medium"
         android:textStyle="normal"
         android:textColor="#ffffff"
-        android:background="#65c162"
+        android:background="@color/greyed_out"
         android:gravity="center_vertical|end"
         android:paddingRight="@dimen/default_margin"
         android:text="@string/new_version.next"
+        android:enabled="false"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"/>
 

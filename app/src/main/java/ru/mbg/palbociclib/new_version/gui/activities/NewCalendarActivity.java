@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -44,9 +45,11 @@ public class NewCalendarActivity extends AppCompatActivity {
     @BindView(R.id.month_recycler_view)
     protected RecyclerView mMonthRecyclerView;
     @BindView(R.id.floatingActionButton)
-    protected FloatingActionButton mMonitoringButton;
+    protected FrameLayout mMonitoringButton;
 
     private Patient mPatient;
+
+    private Pair<Integer, Integer> info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +64,7 @@ public class NewCalendarActivity extends AppCompatActivity {
 
         mPatient.setOaksDate(PatientModelHelper.fillPatientActionDate(mPatient));
 
-        Pair<Integer, Integer> info = PatientModelHelper.getDaysOfCycle(mPatient.getOaksDate());
+        info = PatientModelHelper.getDaysOfCycle(mPatient.getOaksDate());
         if (info.second == 0) {
             mCycleInfoView.setDayOfCycleText(getString(R.string.cycle_oak_card, mPatient.getCycleCount()));
         } else {
@@ -89,7 +92,9 @@ public class NewCalendarActivity extends AppCompatActivity {
         mMonitoringButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPopup();
+                Intent intent = new Intent(getApplicationContext(), MonitoringActivity.class);
+                intent.putExtra(SetDoseActivity.CYCLE, info.second);
+                startActivity(intent);
             }
         });
 
@@ -114,6 +119,7 @@ public class NewCalendarActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MonitoringActivity.class);
+                intent.putExtra(SetDoseActivity.CYCLE, info.second);
                 startActivity(intent);
             }
         });

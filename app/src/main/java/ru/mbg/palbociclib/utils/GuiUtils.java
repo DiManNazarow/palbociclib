@@ -6,7 +6,11 @@ import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import ru.mbg.palbociclib.R;
 
@@ -36,6 +40,48 @@ public class GuiUtils {
         builder.setCancelable(cancelable);
         try {
             builder.show();
+        } catch (WindowManager.BadTokenException ignored) {
+        }
+    }
+
+    public static void displayCustomOkDialog(Context context, final int title, final int message, @Nullable DialogInterface.OnClickListener listener, boolean cancelable) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+//        if (!Utils.isEmpty(context.getString(title))) {
+//            builder.setTitle(title);
+//        }
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog, null);
+        TextView titleTV = (TextView)view.findViewById(R.id.title_text_view);
+        titleTV.setText(title);
+        TextView content = (TextView)view.findViewById(R.id.content_text_view);
+        content.setText(message);
+        builder.setView(view);
+        builder.setPositiveButton(R.string.app_ok, listener);
+        builder.setCancelable(cancelable);
+        try {
+            AlertDialog alertDialog = builder.create();
+            alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            alertDialog.show();
+        } catch (WindowManager.BadTokenException ignored) {
+        }
+    }
+
+    public static void displayCustomOkDialog(Context context, final String title, final String message, @Nullable DialogInterface.OnClickListener listener, boolean cancelable) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+//        if (!Utils.isEmpty(context.getString(title))) {
+//            builder.setTitle(title);
+//        }
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog, null);
+        TextView titleTV = (TextView)view.findViewById(R.id.title_text_view);
+        titleTV.setText(title);
+        TextView content = (TextView)view.findViewById(R.id.content_text_view);
+        content.setText(message);
+        builder.setView(view);
+        builder.setPositiveButton(R.string.app_ok, listener);
+        builder.setCancelable(cancelable);
+        try {
+            AlertDialog alertDialog = builder.create();
+            alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            alertDialog.show();
         } catch (WindowManager.BadTokenException ignored) {
         }
     }

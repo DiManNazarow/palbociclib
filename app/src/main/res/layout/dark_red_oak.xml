@@ -25,7 +25,7 @@
         android:layout_width="12dp"
         android:layout_height="4dp"
         android:visibility="visible"
-        android:background="#59ffffff"
+        android:background="@drawable/label_red_light"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="6dp"/>

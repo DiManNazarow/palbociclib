@@ -42,12 +42,13 @@
     <color name="disable_color">#c9d1da</color>
 
     <color name="green">#65c162</color>
+    <color name="green_light">#98d496</color>
 
     <color name="light_green">#93db81</color>
 
     <color name="row_fill_yellow">#fff8f4</color>
-    <color name="row_fill_green">#f7fbf3</color>
-    <color name="row_fill_red">#13ff0004</color>
+    <color name="row_fill_green">#d7e6c9</color>
+    <color name="row_fill_red">#18ff0004</color>
     <color name="calculate_button_background">#b5b7b4</color>
 
     <color name="orange">#ff9075</color>
@@ -58,5 +59,7 @@
     <color name="pause">#78eaeaea</color>
 
     <color name="red">#ffff4444</color>
+
+    <color name="dark_red_oak_color">#da4f54</color>
 
 </resources>

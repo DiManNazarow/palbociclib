@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -11,366 +11,413 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/green">
+
+        </android.support.v7.widget.Toolbar>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default_margin"
+            android:layout_height="32dp"
             android:orientation="horizontal"
-            android:weightSum="2">
+            android:gravity="top|center_horizontal"
+            android:background="@color/green">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/cycle_count_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/default_margin">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
-                    android:lineSpacingExtra="10sp"
-                    android:text="@string/new_version.cycle_number_spinner"
-                    android:textColor="#8b2c2424"
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    />
-
-                <Spinner
-                    android:id="@+id/cycle_spinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                </Spinner>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginRight="16dp"
-                    android:background="#ffa98c"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/default_margin">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
-                    android:lineSpacingExtra="10sp"
-                    android:text="@string/new_version.oak_day"
-                    android:textColor="#8b2c2424"
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    />
-
-                <Spinner
-                    android:id="@+id/days_spinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                </Spinner>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginRight="16dp"
-                    android:background="#ffa98c"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/default_margin"
-            android:layout_marginTop="@dimen/default_margin"
-            android:fontFamily="sans-serif-medium"
-            android:lineSpacingExtra="10sp"
-            android:text="@string/new_version.set_current_dose"
-            android:textColor="#de52454a"
-            android:textSize="14sp"
-            android:textStyle="normal"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/default_margin"
-            android:layout_marginRight="@dimen/default_margin"
-            android:layout_marginTop="@dimen/default_margin"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/button_dose_125"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="@drawable/round_pill"
-                    android:src="@drawable/dose125"/>
-
-                <TextView
-                    android:id="@+id/button_dose_125_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="sans-serif"
-                    android:gravity="center_horizontal"
-                    android:lineSpacingExtra="10sp"
-                    android:text="125 мг"
-                    android:textColor="#8a65c162"
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="44dp"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-
-                <ImageButton
-                    android:id="@+id/button_dose_100"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="@drawable/round_pill"
-                    android:src="@drawable/dose100"/>
-
-                <TextView
-                    android:id="@+id/button_dose_100_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="sans-serif"
-                    android:gravity="center_horizontal"
-                    android:lineSpacingExtra="10sp"
-                    android:text="100 мг"
-                    android:textColor="#8a65c162"
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="44dp"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-
-                <ImageButton
-                    android:id="@+id/button_dose_75"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="@drawable/round_pill"
-                    android:src="@drawable/dose75"/>
-
-                <TextView
-                    android:id="@+id/button_dose_75_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="sans-serif"
-                    android:gravity="center_horizontal"
-                    android:lineSpacingExtra="10sp"
-                    android:text="75 мг"
-                    android:textColor="#8a65c162"
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/toxic_info_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/default_margin"
-            android:layout_marginTop="@dimen/default_margin"
-            android:layout_marginRight="@dimen/default_margin"
-            android:textSize="14sp"
-            android:fontFamily="sans-serif-medium"
-            android:textStyle="normal"
-            android:textColor="#de52454a"
-            android:lineSpacingExtra="10sp"
-            android:text="@string/new_version.set_hemo_toxic"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:drawableRight="@drawable/ic_help_circle_grey600_18dp"
-            />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/default_margin"
-            android:layout_marginRight="@dimen/default_margin"
-            android:layout_marginTop="@dimen/default_margin"
-            android:weightSum="4">
-
-            <Button
-                android:id="@+id/toxic_button_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/cycle_button"
-                android:text="@string/new_version.one"
-                android:textColor="@color/green"/>
-
-            <Button
-                android:id="@+id/toxic_button_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/cycle_button"
-                android:textColor="@color/green"
-                android:text="@string/new_version.two"/>
-
-            <Button
-                android:id="@+id/toxic_button_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/grade_3_monitoring_background"
-                android:textColor="@color/green"
-                android:text="@string/new_version.three"/>
-
-            <Button
-                android:id="@+id/toxic_button_4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/red"
                 android:textColor="@color/white"
-                android:text="@string/new_version.four"/>
+                android:layout_marginRight="8dp"
+                android:textSize="12sp"
+                tools:text="Цикл: 1"/>
+
+            <TextView
+                android:id="@+id/day_count_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                tools:text="День: 1-й"/>
 
         </LinearLayout>
 
-        <View
+        <TextView
+            android:id="@+id/oak_out_of_plan"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#e9f2dd"
-            android:layout_marginTop="@dimen/default_margin"/>
+            android:layout_height="42dp"
+            android:background="@color/row_fill_red"
+            android:textColor="@color/text_color"
+            android:textSize="18sp"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/default_margin"
+            android:paddingRight="@dimen/default_margin"
+            android:text="@string/new_version.oak_out_of_plan"
+            android:textStyle="bold"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/oak_by_plan"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:background="@color/row_fill_green"
+            android:textColor="@color/text_color"
+            android:textSize="18sp"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/default_margin"
+            android:paddingRight="@dimen/default_margin"
+            android:text="@string/new_version.oak_by_plan"
+            android:textStyle="bold"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/control_oak"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:background="@color/row_fill_yellow"
+            android:textColor="@color/text_color"
+            android:textSize="18sp"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/default_margin"
+            android:paddingRight="@dimen/default_margin"
+            android:text="@string/new_version.control_oak"
+            android:textStyle="bold"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/calculate_button"
-                android:layout_width="match_parent"
-                android:layout_height="36dp"
-                android:layout_margin="@dimen/default_margin"
-                android:background="@color/calculate_button_background"
-                android:text="@string/new_version.appointments"
-                android:textColor="@color/white"
-                android:visibility="visible"
-                tools:visibility="gone"/>
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/default_margin"
+                android:layout_marginTop="@dimen/default_margin"
+                android:fontFamily="sans-serif-medium"
+                android:lineSpacingExtra="10sp"
+                android:text="@string/new_version.set_current_dose"
+                android:textColor="#de52454a"
+                android:textSize="14sp"
+                android:textStyle="normal"/>
 
             <LinearLayout
-                android:id="@+id/info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone"
-                tools:visibility="visible">
+                android:layout_marginLeft="@dimen/default_margin"
+                android:layout_marginRight="@dimen/default_margin"
+                android:layout_marginTop="@dimen/default_margin"
+                android:orientation="horizontal">
 
-                <TextView
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/button_dose_125"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/round_pill"
+                        android:src="@drawable/dose125"/>
+
+                    <TextView
+                        android:id="@+id/button_dose_125_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_horizontal"
+                        android:lineSpacingExtra="10sp"
+                        android:text="125 мг"
+                        android:textColor="#8a65c162"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="44dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+
+                    <ImageButton
+                        android:id="@+id/button_dose_100"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/round_pill"
+                        android:src="@drawable/dose100"/>
+
+                    <TextView
+                        android:id="@+id/button_dose_100_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_horizontal"
+                        android:lineSpacingExtra="10sp"
+                        android:text="100 мг"
+                        android:textColor="#8a65c162"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="44dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+
+                    <ImageButton
+                        android:id="@+id/button_dose_75"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/round_pill"
+                        android:src="@drawable/dose75"/>
+
+                    <TextView
+                        android:id="@+id/button_dose_75_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_horizontal"
+                        android:lineSpacingExtra="10sp"
+                        android:text="75 мг"
+                        android:textColor="#8a65c162"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--<TextView-->
+                <!--android:id="@+id/toxic_info_text"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="@dimen/default_margin"-->
+                <!--android:layout_marginTop="@dimen/default_margin"-->
+                <!--android:layout_marginRight="@dimen/default_margin"-->
+                <!--android:textSize="14sp"-->
+                <!--android:fontFamily="sans-serif-medium"-->
+                <!--android:textStyle="normal"-->
+                <!--android:textColor="#de52454a"-->
+                <!--android:lineSpacingExtra="10sp"-->
+                <!--android:text="@string/new_version.set_hemo_toxic"-->
+                <!--android:ellipsize="end"-->
+                <!--android:maxLines="2"-->
+                <!--android:drawableRight="@drawable/ic_help_circle_grey600_18dp"-->
+                <!--/>-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/default_margin"
+                android:layout_marginRight="@dimen/default_margin"
+                android:layout_marginTop="@dimen/default_margin"
+                android:weightSum="4">
+
+                <Button
+                    android:id="@+id/toxic_button_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/start_activity_cycle_button_left"
+                    android:text="@string/new_version.toxic_one"
+                    android:textColor="@color/green"/>
+
+                <Button
+                    android:id="@+id/toxic_button_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/cycle_button"
+                    android:textColor="@color/green"
+                    android:text="@string/new_version.toxic_two"/>
+
+                <Button
+                    android:id="@+id/toxic_button_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/cycle_button"
+                    android:textColor="@color/green"
+                    android:text="@string/new_version.toxic_three"/>
+
+                <Button
+                    android:id="@+id/toxic_button_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/start_activity_cycle_button_right"
+                    android:textColor="@color/green"
+                    android:text="@string/new_version.toxic_fourth"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="@dimen/default_margin"
+                android:layout_marginRight="@dimen/default_margin"
+                android:textSize="14sp"
+                android:textColor="@color/text_color"
+                android:text="@string/new_version.toxic_info"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#e9f2dd"
+                android:layout_marginTop="@dimen/default_margin"/>
+
+            <LinearLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/calculate_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:layout_margin="@dimen/default_margin"
+                    android:background="@color/calculate_button_background"
+                    android:text="@string/new_version.appointments"
+                    android:textColor="@color/white"
+                    android:visibility="visible"
+                    tools:visibility="gone"/>
+
+
+                <LinearLayout
+                    android:id="@+id/info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/default_margin"
-                    android:layout_marginTop="@dimen/default_margin"
-                    android:fontFamily="sans-serif-medium"
-                    android:lineSpacingExtra="10sp"
-                    android:text="@string/new_version.recommended_action"
-                    android:textColor="#de52454a"
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    />
-
-                <TextView
-                    android:id="@+id/continue_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="56dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginTop="@dimen/default_margin"
-                    android:fontFamily="sans-serif-medium"
-                    android:gravity="center_vertical"
-                    android:lineSpacingExtra="6sp"
-                    android:paddingLeft="@dimen/default_margin"
-                    android:paddingRight="@dimen/default_margin"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    android:textColor="#52454a"
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    />
-
-                <TextView
-                    android:id="@+id/next_oak_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="56dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:gravity="center_vertical"
-                    android:lineSpacingExtra="6sp"
-                    android:paddingLeft="@dimen/default_margin"
-                    android:paddingRight="@dimen/default_margin"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    android:textColor="#52454a"
-                    android:textStyle="normal"
-                    />
-
-                <TextView
-                    android:id="@+id/dop_info"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="56dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:gravity="center_vertical"
-                    android:lineSpacingExtra="6sp"
-                    android:paddingLeft="@dimen/default_margin"
-                    android:paddingRight="@dimen/default_margin"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    android:textColor="#52454a"
-                    android:textSize="14sp"
-                    android:textStyle="normal"
+                    android:orientation="vertical"
                     android:visibility="gone"
-                    />
+                    tools:visibility="visible">
+
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="@dimen/default_margin"-->
+                        <!--android:layout_marginTop="@dimen/default_margin"-->
+                        <!--android:fontFamily="sans-serif-medium"-->
+                        <!--android:lineSpacingExtra="10sp"-->
+                        <!--android:text="@string/new_version.recommended_action"-->
+                        <!--android:textColor="#de52454a"-->
+                        <!--android:textSize="14sp"-->
+                        <!--android:textStyle="normal"-->
+                        <!--/>-->
+
+                    <TextView
+                        android:id="@+id/first_action"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="56dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="@dimen/default_margin"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="6sp"
+                        android:paddingLeft="@dimen/default_margin"
+                        android:paddingRight="@dimen/default_margin"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:textColor="#52454a"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:id="@+id/second_action"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="56dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="6sp"
+                        android:paddingLeft="@dimen/default_margin"
+                        android:paddingRight="@dimen/default_margin"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:textColor="#52454a"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:id="@+id/third_action"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="56dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="6sp"
+                        android:paddingLeft="@dimen/default_margin"
+                        android:paddingRight="@dimen/default_margin"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:textColor="#52454a"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:visibility="gone"
+                        />
+
+                    <TextView
+                        android:id="@+id/fourth_action"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="56dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="6sp"
+                        android:paddingLeft="@dimen/default_margin"
+                        android:paddingRight="@dimen/default_margin"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:textColor="#52454a"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:visibility="gone"
+                        />
+
+                </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+    </ScrollView>
 
-
-</ScrollView>
+</LinearLayout>

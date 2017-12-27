@@ -44,14 +44,42 @@
 
     </LinearLayout>
 
-    <android.support.design.widget.FloatingActionButton
+    <FrameLayout
         android:id="@+id/floatingActionButton"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_margin="@dimen/default_margin"
-        android:src="@drawable/pill"
-        app:backgroundTint="@color/green"
-        app:layout_anchor="@+id/linearLayout2"
-        app:layout_anchorGravity="bottom|right"/>
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom|right"
+        android:background="@drawable/floating_drawable"
+        android:layout_margin="@dimen/default_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:elevation="6dp"
+            android:text="@string/new_version.oak"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <View
+            android:layout_width="12dp"
+            android:layout_height="3dp"
+            android:background="@drawable/label_red_light"
+            android:layout_marginTop="35dp"
+            android:layout_marginLeft="19dp"
+            android:elevation="8dp"/>
+
+    </FrameLayout>
+
+    <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:id="@+id/floatingActionButton"-->
+        <!--android:layout_width="56dp"-->
+        <!--android:layout_height="56dp"-->
+        <!--android:layout_margin="@dimen/default_margin"-->
+        <!--android:src="@drawable/oak_dark_red"-->
+        <!--app:backgroundTint="@color/green"-->
+        <!--app:layout_anchor="@+id/linearLayout2"-->
+        <!--app:layout_anchorGravity="bottom|right"/>-->
 
 </android.support.design.widget.CoordinatorLayout>
