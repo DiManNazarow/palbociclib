@@ -98,6 +98,13 @@ public class DateUtils {
         return calendar.getTime();
     }
 
+    public static Date increaseMonth(Date current, int count){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(current);
+        calendar.add(Calendar.MONTH, count);
+        return calendar.getTime();
+    }
+
     public static Date getCurrentDate(){
         Calendar calendar = Calendar.getInstance();
         return calendar.getTime();

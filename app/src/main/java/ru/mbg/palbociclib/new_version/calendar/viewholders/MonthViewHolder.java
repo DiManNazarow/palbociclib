@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.TextView;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -14,9 +15,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.mbg.palbociclib.R;
 import ru.mbg.palbociclib.new_version.db.models.Patient;
+import ru.mbg.palbociclib.utils.DateUtils;
 import ru.mbg.palbociclib.views.CalendarView;
 
 public class MonthViewHolder extends RecyclerView.ViewHolder {
+
+    @BindView(R.id.month_text_view)
+    protected TextView mMonthNameTextView;
+    @BindView(R.id.calendar_view_1)
+    protected CalendarView mCalendarView;
 
     public MonthViewHolder(Context context, ViewGroup viewGroup) {
         super(LayoutInflater.from(context).inflate(R.layout.layout_month_view_holder, viewGroup, false));
@@ -28,10 +35,17 @@ public class MonthViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void setup(Patient patient, Date nextMonth){
-        ((CalendarView)itemView).setCalendarData(patient, nextMonth);
+        mCalendarView.setCalendarData(patient, nextMonth);
+        String[] months = itemView.getContext().getResources().getStringArray(R.array.months);
+        int month = DateUtils.getMonth(nextMonth);
+        mMonthNameTextView.setText(months[month]);
+
     }
 
     public void setup(Patient patient, Date nextMonth, int cycleIncreaseSize){
-        ((CalendarView)itemView).setCalendarData(patient, nextMonth, cycleIncreaseSize);
+        mCalendarView.setCalendarData(patient, nextMonth, cycleIncreaseSize);
+        String[] months = itemView.getContext().getResources().getStringArray(R.array.months);
+        int month = DateUtils.getMonth(nextMonth);
+        mMonthNameTextView.setText(months[month]);
     }
 }

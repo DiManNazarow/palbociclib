@@ -1,8 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ru.mbg.palbociclib.views.CalendarView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/calendar_view_1"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_view"
     android:layout_width="match_parent"
-    android:layout_height="277dp">
+    android:layout_height="310dp"
+    android:orientation="vertical">
 
-</ru.mbg.palbociclib.views.CalendarView>
+    <TextView
+        android:id="@+id/month_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginRight="64dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:textSize="12sp"
+        android:fontFamily="sans-serif"
+        android:textStyle="normal"
+        android:textColor="#52454a"
+        android:lineSpacingExtra="4sp"
+        tools:text="Сентябрь"
+        />
+
+    <ru.mbg.palbociclib.views.CalendarView
+        android:id="@+id/calendar_view_1"
+        android:layout_width="match_parent"
+        android:layout_height="287dp">
+
+    </ru.mbg.palbociclib.views.CalendarView>
+
+</LinearLayout>

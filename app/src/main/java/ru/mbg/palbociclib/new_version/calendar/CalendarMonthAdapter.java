@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 
 import ru.mbg.palbociclib.R;
 import ru.mbg.palbociclib.new_version.calendar.viewholders.ColumnNameViewHolder;
@@ -25,7 +26,7 @@ public class CalendarMonthAdapter extends RecyclerView.Adapter<RecyclerView.View
     private static final int MONTH_NAME_VIEW_TYPE = 1;
     private static final int MONTH_VIEW_TYPE = 2;
 
-    private static final int ITEM_COUNT = 3;
+    private static final int ITEM_COUNT = 6;
 
     private Context mContext;
 
@@ -35,10 +36,15 @@ public class CalendarMonthAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     private Date currentMonth;
 
+    boolean dateStartBeforeToday = false;
+
+    private List<MonthViewHolder> holders;
+
     public CalendarMonthAdapter(Context context, Patient patient) {
         mContext = context;
         mPatient = patient;
-        currentMonth = DateUtils.getCurrentDate();
+        //currentMonth = DateUtils.getCurrentDate();
+        currentMonth = DateUtils.getDate(mPatient.getCycleStartDate(), DateUtils.DEFAULT_DATE_PATTERN);
         nextMonth = DateUtils.increaseMonth(currentMonth);
     }
 
@@ -51,51 +57,45 @@ public class CalendarMonthAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        switch (viewType){
-            case MONTH_NAME_VIEW_TYPE: return new MonthNameViewHolder(parent.getContext(), parent);
-            case MONTH_VIEW_TYPE: return new MonthViewHolder(parent.getContext(), parent);
-            default: return null;
-        }
+        return new MonthViewHolder(parent.getContext(), parent);
+//        switch (viewType){
+//            case MONTH_NAME_VIEW_TYPE: return new MonthNameViewHolder(parent.getContext(), parent);
+//            case MONTH_VIEW_TYPE: return new MonthViewHolder(parent.getContext(), parent);
+//            default: return null;
+//        }
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder != null){
-            switch (position){
-                case 0:{
-                    ((MonthViewHolder)holder).setup(mPatient, currentMonth);
-                    break;
-                }
-                case 1:{
-                    String[] months = mContext.getResources().getStringArray(R.array.months);
-                    int month = DateUtils.getMonth(currentMonth);
-                    if (month == 11){
-                        month = -1;
-                    }
-                    ((MonthNameViewHolder)holder).setMonthName(months[month + 1]);
-                    break;
-                }
-                case 2:{
-                    ((MonthViewHolder)holder).setup(mPatient, nextMonth, 1);
-                    break;
-                }
+            if (position == 0){
+                ((MonthViewHolder)holder).setup(mPatient, currentMonth);
+            } else {
+                ((MonthViewHolder) holder).setup(mPatient, DateUtils.increaseMonth(currentMonth, position));
             }
         }
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        switch (position){
-            case 0: return MONTH_VIEW_TYPE;
-            case 1: return MONTH_NAME_VIEW_TYPE;
-            case 2: return MONTH_VIEW_TYPE;
-            default: return -1;
-        }
-    }
+//    @Override
+//    public int getItemViewType(int position) {
+//        switch (position){
+//            case 0: return MONTH_VIEW_TYPE;
+//            case 1: return MONTH_NAME_VIEW_TYPE;
+//            case 2: return MONTH_VIEW_TYPE;
+//            default: return -1;
+//        }
+//    }
 
     @Override
     public int getItemCount() {
         return ITEM_COUNT;
+    }
+
+    private void createViewHolders(RecyclerView recyclerView){
+        holders = new ArrayList<>();
+        for (int i = 0; i<ITEM_COUNT; i++){
+            holders.add(new MonthViewHolder(recyclerView.getContext(), recyclerView));
+        }
     }
 
 }

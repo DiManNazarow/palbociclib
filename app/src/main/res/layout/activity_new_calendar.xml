@@ -26,12 +26,12 @@
 
         </ru.mbg.palbociclib.new_version.gui.views.HintView>
 
-        <ru.mbg.palbociclib.new_version.gui.views.MonthPickerView
-            android:id="@+id/month_picker_view"
-            android:layout_width="match_parent"
-            android:layout_height="56dp">
+        <!--<ru.mbg.palbociclib.new_version.gui.views.MonthPickerView-->
+            <!--android:id="@+id/month_picker_view"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="56dp">-->
 
-        </ru.mbg.palbociclib.new_version.gui.views.MonthPickerView>
+        <!--</ru.mbg.palbociclib.new_version.gui.views.MonthPickerView>-->
 
         <include layout="@layout/layout_column_name_view_holder"/>
 

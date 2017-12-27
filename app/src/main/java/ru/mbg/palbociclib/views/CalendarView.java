@@ -64,6 +64,8 @@ public class CalendarView extends LinearLayout{
 
     private boolean update = true;
 
+    private boolean countSet = false;
+
     public CalendarView(Context context) {
         super(context);
         init();
@@ -150,12 +152,14 @@ public class CalendarView extends LinearLayout{
 
             // update grid
             grid.setAdapter(new CalendarAdapter(getContext(), cells, mPatient));
-            grid.post(new Runnable() {
-                @Override
-                public void run() {
-                    setCyclesCounter();
-                }
-            });
+            if (!countSet) {
+                grid.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        setCyclesCounter();
+                    }
+                });
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -198,6 +202,7 @@ public class CalendarView extends LinearLayout{
                 // today
                 Calendar todayByCalendar = Calendar.getInstance();
                 Calendar todayByList = (Calendar) currentDate.clone();
+                todayByList.add(Calendar.SECOND, 2);
 
                 // inflate item if it does not exist yet
                 if (view == null)
@@ -844,6 +849,7 @@ public class CalendarView extends LinearLayout{
             CyclesCounterHolder.instance().setCycleCounter(mCycle);
         }
         mCycleCountView.setAdapter(new CycleCountAdapter(getContext(), cycles));
+        countSet = true;
     }
 
     private class CycleCountAdapter extends ArrayAdapter<Double> {

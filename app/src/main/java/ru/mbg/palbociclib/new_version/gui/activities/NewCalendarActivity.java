@@ -40,8 +40,8 @@ public class NewCalendarActivity extends AppCompatActivity {
 
     @BindView(R.id.cycle_info_view)
     protected CycleInfoView mCycleInfoView;
-    @BindView(R.id.month_picker_view)
-    protected MonthPickerView mMonthPickerView;
+//    @BindView(R.id.month_picker_view)
+//    protected MonthPickerView mMonthPickerView;
     @BindView(R.id.month_recycler_view)
     protected RecyclerView mMonthRecyclerView;
     @BindView(R.id.floatingActionButton)
@@ -82,12 +82,12 @@ public class NewCalendarActivity extends AppCompatActivity {
         mMonthRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         mMonthRecyclerView.setAdapter(new CalendarMonthAdapter(getApplicationContext(), mPatient));
 
-        mMonthPickerView.setDateItemPickListener(new MonthPickerView.OnDateItemPickListener() {
-            @Override
-            public void onDatePick(Date date) {
-                mMonthRecyclerView.setAdapter(new CalendarMonthAdapter(getApplicationContext(), date, mPatient));
-            }
-        });
+//        mMonthPickerView.setDateItemPickListener(new MonthPickerView.OnDateItemPickListener() {
+//            @Override
+//            public void onDatePick(Date date) {
+//                mMonthRecyclerView.setAdapter(new CalendarMonthAdapter(getApplicationContext(), date, mPatient));
+//            }
+//        });
 
         mMonitoringButton.setOnClickListener(new View.OnClickListener() {
             @Override
