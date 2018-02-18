@@ -127,6 +127,16 @@ public class DateUtils {
         return dateParts;
     }
 
+    public static int[] getCurrentDate(Date date){
+        int[] dateParts = new int[3];
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        dateParts[0] = calendar.get(Calendar.DAY_OF_MONTH);
+        dateParts[1] = calendar.get(Calendar.MONTH);
+        dateParts[2] = calendar.get(Calendar.YEAR);
+        return dateParts;
+    }
+
     public static Date getCurrentDate(int offset){
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_MONTH, offset);

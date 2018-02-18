@@ -2,27 +2,39 @@ apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'Palbocilib'
+            keyPassword '4815162342'
+            storeFile file('G:/AndroidProject/keys/palbocilib.jks')
+            storePassword '4815162342'
+        }
+    }
     compileSdkVersion 26
     buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "mbg.ru.palbociclib"
         minSdkVersion 19
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        debug {
+            signingConfig signingConfigs.config
         }
     }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -33,32 +45,23 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:support-v4:26.0.0'
     compile 'com.android.support:cardview-v7:26.0.0'
-
     // Floating recycler view headers
     compile 'ca.barrenechea.header-decor:header-decor:0.2.8'
-
     // Image picker & cropper
     compile 'com.theartofdev.edmodo:android-image-cropper:2.4.2'
-
     // Draw initials on avatars
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
-
     // Realm RecyclerView adapter
     compile 'io.realm:android-adapters:2.0.0'
-
     // Customized calendar
     compile 'com.squareup:android-times-square:1.6.5@aar'
-
     // PDF Viewver
     compile 'com.github.barteksc:android-pdf-viewer:2.5.1'
-
     // Butter Knife
     compile 'com.jakewharton:butterknife:8.7.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
-
     compile 'net.danlew:android.joda:2.9.9'
-
     // Room Persistence Library
-    compile "android.arch.persistence.room:runtime:1.0.0-alpha9"
+    compile 'android.arch.persistence.room:runtime:1.0.0-alpha9'
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0-alpha9"
 }

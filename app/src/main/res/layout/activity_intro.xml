@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/looper_group_info"
     android:gravity="center_horizontal"
-    tools:context="ru.mbg.palbociclib.activities.IntroActivity">
+    tools:context="ru.mbg.palbociclib.new_version.gui.activities.IntroActivity">
 
 
     <ImageView

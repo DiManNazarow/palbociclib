@@ -3,20 +3,18 @@ package ru.mbg.palbociclib.new_version.calendar.viewholders;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
 import java.util.Date;
-import java.util.HashSet;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.mbg.palbociclib.R;
-import ru.mbg.palbociclib.new_version.db.models.Patient;
+import ru.mbg.palbociclib.new_version.models.Patient;
 import ru.mbg.palbociclib.utils.DateUtils;
-import ru.mbg.palbociclib.views.CalendarView;
+import ru.mbg.palbociclib.new_version.gui.views.CalendarView;
 
 public class MonthViewHolder extends RecyclerView.ViewHolder {
 

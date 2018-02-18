@@ -3,37 +3,22 @@ package ru.mbg.palbociclib.new_version.gui.activities;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Pair;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
-
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import ru.mbg.palbociclib.App;
 import ru.mbg.palbociclib.R;
 import ru.mbg.palbociclib.new_version.calendar.CalendarMonthAdapter;
-import ru.mbg.palbociclib.new_version.db.DatabaseHelper;
-import ru.mbg.palbociclib.new_version.db.models.Event;
-import ru.mbg.palbociclib.new_version.db.models.Patient;
-import ru.mbg.palbociclib.new_version.db.models.helpers.PatientModelHelper;
+import ru.mbg.palbociclib.new_version.models.Patient;
+import ru.mbg.palbociclib.new_version.models.PatientModelHelper;
 import ru.mbg.palbociclib.new_version.gui.views.CycleInfoView;
-import ru.mbg.palbociclib.new_version.gui.views.MonthPickerView;
 import ru.mbg.palbociclib.utils.DateUtils;
 
 public class NewCalendarActivity extends AppCompatActivity {
@@ -57,10 +42,15 @@ public class NewCalendarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_calendar);
         ButterKnife.bind(this);
 
-        mCycleInfoView.setTitleText(getString(R.string.new_version_calendar_title));
+        mPatient = (Patient)getIntent().getSerializableExtra(Patient.SERIALIZABLE_NAME);
 
-        long patientId = getIntent().getLongExtra(Patient.SERIALIZABLE_NAME, -1);
-        mPatient = ((App)getApplicationContext()).getAppDatabase().patientDao().findPatientById(patientId);
+        if (mPatient == null){
+            mPatient = new Patient();
+            mPatient.setCycleCount(1);
+            mPatient.setCycleStartDate(DateUtils.getCurrentDateString());
+        }
+
+        mCycleInfoView.setTitleText(getString(R.string.new_version_calendar_title));
 
         mPatient.setOaksDate(PatientModelHelper.fillPatientActionDate(mPatient));
 
@@ -93,7 +83,7 @@ public class NewCalendarActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MonitoringActivity.class);
-                intent.putExtra(SetDoseActivity.CYCLE, info.second);
+                intent.putExtra(MonitoringActivity.CYCLE, info.second);
                 startActivity(intent);
             }
         });
@@ -119,7 +109,7 @@ public class NewCalendarActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MonitoringActivity.class);
-                intent.putExtra(SetDoseActivity.CYCLE, info.second);
+                intent.putExtra(MonitoringActivity.CYCLE, info.second);
                 startActivity(intent);
             }
         });

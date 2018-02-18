@@ -2,7 +2,6 @@ package ru.mbg.palbociclib.new_version.gui.activities;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -23,7 +22,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ru.mbg.palbociclib.App;
 import ru.mbg.palbociclib.R;
-import ru.mbg.palbociclib.new_version.db.models.Patient;
+import ru.mbg.palbociclib.new_version.models.Patient;
 import ru.mbg.palbociclib.utils.DateUtils;
 import ru.mbg.palbociclib.utils.GuiUtils;
 import ru.mbg.palbociclib.utils.Utils;
@@ -147,16 +146,8 @@ public class StartActivity extends AppCompatActivity {
             return;
         }
 
-        Patient patient = ((App)getApplicationContext()).getAppDatabase().patientDao().findByDateAndCycle(mPatient.getCycleStartDate(), mPatient.getCycleCount());
-        long id;
-        if (patient == null){
-            id = ((App)getApplicationContext()).getAppDatabase().patientDao().insert(mPatient);
-        } else {
-            id = patient.getId();
-        }
-
         Intent intent = new Intent(getApplicationContext(), NewCalendarActivity.class);
-        intent.putExtra(Patient.SERIALIZABLE_NAME, id);
+        intent.putExtra(Patient.SERIALIZABLE_NAME, mPatient);
         startActivity(intent);
     }
 

@@ -23,11 +23,11 @@
         tools:text="Сентябрь"
         />
 
-    <ru.mbg.palbociclib.views.CalendarView
+    <ru.mbg.palbociclib.new_version.gui.views.CalendarView
         android:id="@+id/calendar_view_1"
         android:layout_width="match_parent"
         android:layout_height="287dp">
 
-    </ru.mbg.palbociclib.views.CalendarView>
+    </ru.mbg.palbociclib.new_version.gui.views.CalendarView>
 
 </LinearLayout>

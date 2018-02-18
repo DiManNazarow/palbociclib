@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Палбоциклиб</string>
+    <string name="app_name">CDK 4/6 Нежелательные явления</string>
     <string name="tab_calendar">Календарь</string>
     <string name="title_calendar">Календарь</string>
     <string name="tab_patients">Пациенты</string>
@@ -9,7 +9,7 @@
     <string name="tab_more">Еще</string>
     <string name="title_more">Профиль пользователя</string>
     <string name="warning">Внимание</string>
-    <string name="doctors_only">Приложение предназначено только для медецинских работников и емеет ознакомительный характер. Лечение пациента каждый врач проводит индивидуально.</string>
+    <string name="doctors_only">Приложение предназначено только для медицинских работников и имеет ознакомительный характер. Лечение пациента каждый врач проводит индивидуально.</string>
     <string name="disclaimer1">Используя данное приложение, вы принимаете</string>
     <string name="disclaimer2">Пользовательское соглашение</string>
     <string name="i_am_a_doctor">Да, я врач!</string>
@@ -220,7 +220,7 @@
     <string name="new_version.one">1</string>
     <string name="new_version.two">2</string>
     <string name="new_version.three">3</string>
-    <string name="new_version.set_hemo_toxic">Укажите степень гематологической токсичности</string>
+    <string name="new_version.set_hemo_toxic">Укажите степень\nгематологической токсичности</string>
     <string name="new_version.set_current_dose">Выберите текущую дозировку палбоциклиба</string>
     <string name="new_version.four">4 И БОЛЕЕ</string>
     <string name="new_version.welcome">Здравствуйте!</string>

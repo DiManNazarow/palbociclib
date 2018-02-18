@@ -3,21 +3,13 @@ package ru.mbg.palbociclib.new_version.calendar;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 
-import ru.mbg.palbociclib.R;
-import ru.mbg.palbociclib.new_version.calendar.viewholders.ColumnNameViewHolder;
-import ru.mbg.palbociclib.new_version.calendar.viewholders.MonthNameViewHolder;
 import ru.mbg.palbociclib.new_version.calendar.viewholders.MonthViewHolder;
-import ru.mbg.palbociclib.new_version.db.models.Patient;
+import ru.mbg.palbociclib.new_version.models.Patient;
 import ru.mbg.palbociclib.utils.DateUtils;
 
 
